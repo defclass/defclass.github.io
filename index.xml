@@ -6,8 +6,21 @@
     <description>Recent content on Michael Wong</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 05 May 2019 22:49:25 +0800</lastBuildDate>
     
 	<atom:link href="https://www.huangqian.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>Less Macros More functions</title>
+      <link>https://www.huangqian.org/posts/less-macro-more-functions/</link>
+      <pubDate>Sun, 05 May 2019 22:49:25 +0800</pubDate>
+      
+      <guid>https://www.huangqian.org/posts/less-macro-more-functions/</guid>
+      <description>Preface This article mainly talks about my experiences of using macros.
+Prerequisite knowledge  Understand the basic grammar of Clojure and the primary usage of macros, and have written some running Clojure code. Know the meaning of defmacro, quote (`), unquote(~), unquote-splicing(~@). Know the differences of evaluation between macros and functions.  When to use macros? One big problem with macros is that they are hard to understand. So, principally, we should use macros as little as possible.</description>
+    </item>
     
     
   </channel>
