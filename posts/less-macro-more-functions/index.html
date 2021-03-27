@@ -47,84 +47,84 @@
 <h3 id="creating-context">Creating context</h3>
 <p>Referring to the lexical environment.</p>
 <p>For example, We can use macros to create our let.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defmacro </span>our-let [binds <span style="color:#f92672">&amp;</span> body]
-  <span style="color:#f92672">`</span>((<span style="color:#66d9ef">fn </span><span style="color:#f92672">~</span>(<span style="color:#a6e22e">vec</span> (map first (<span style="color:#a6e22e">partition-all</span> <span style="color:#ae81ff">2</span> binds)))
-      <span style="color:#f92672">~@</span>body)
-    <span style="color:#f92672">~@</span>(map second (<span style="color:#a6e22e">partition-all</span> <span style="color:#ae81ff">2</span> binds))))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">our-let</span> [<span style="color:#000">binds</span> <span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+  <span style="color:#000">`</span>((<span style="color:#a90d91">fn </span><span style="color:#000">~</span>(<span style="color:#000">vec</span> (<span style="color:#a90d91">map first </span>(<span style="color:#000">partition-all</span> <span style="color:#1c01ce">2</span> <span style="color:#000">binds</span>)))
+      <span style="color:#000">~@</span><span style="color:#000">body</span>)
+    <span style="color:#000">~@</span>(<span style="color:#a90d91">map second </span>(<span style="color:#000">partition-all</span> <span style="color:#1c01ce">2</span> <span style="color:#000">binds</span>))))
 
-(<span style="color:#a6e22e">our-let</span> [a <span style="color:#ae81ff">1</span>
-          b <span style="color:#ae81ff">2</span>]
-  (+ a b))
+(<span style="color:#000">our-let</span> [<span style="color:#000">a</span> <span style="color:#1c01ce">1</span>
+          <span style="color:#000">b</span> <span style="color:#1c01ce">2</span>]
+  (<span style="color:#a90d91">+ </span><span style="color:#000">a</span> <span style="color:#000">b</span>))
 </code></pre></div><blockquote>
 <p>Q: The number of parameters bound to let is limited. How to expand it?.</p>
 </blockquote>
 <p>Another case refers to various states around the calculation.</p>
 <p>An Example: calculating time. Insert code snippets into a specific context.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defmacro </span>cal-time
-  [<span style="color:#f92672">&amp;</span> body]
-  <span style="color:#f92672">`</span>(<span style="color:#66d9ef">let </span>[start# (<span style="color:#a6e22e">System/currentTimeMillis</span>)
-         result# (<span style="color:#66d9ef">do </span><span style="color:#f92672">~@</span>body)
-         end# (<span style="color:#a6e22e">System/currentTimeMillis</span>)]
-     {<span style="color:#e6db74">:time-ms</span> (- end# start#)
-      <span style="color:#e6db74">:result</span> result#}))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">cal-time</span>
+  [<span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+  <span style="color:#000">`</span>(<span style="color:#a90d91">let </span>[<span style="color:#000">start#</span> (<span style="color:#000">System/currentTimeMillis</span>)
+         <span style="color:#000">result#</span> (<span style="color:#a90d91">do </span><span style="color:#000">~@</span><span style="color:#000">body</span>)
+         <span style="color:#000">end#</span> (<span style="color:#000">System/currentTimeMillis</span>)]
+     {<span style="color:#c41a16">:time-ms</span> (<span style="color:#a90d91">- </span><span style="color:#000">end#</span> <span style="color:#000">start#</span>)
+      <span style="color:#c41a16">:result</span> <span style="color:#000">result#</span>}))
 
-(<span style="color:#a6e22e">cal-time</span> (<span style="color:#a6e22e">Thread/sleep</span> <span style="color:#ae81ff">5000</span>))
+(<span style="color:#000">cal-time</span> (<span style="color:#000">Thread/sleep</span> <span style="color:#1c01ce">5000</span>))
 </code></pre></div><h3 id="with-macros">With-macros</h3>
 <p>For example, the macro <code>with-open</code>.It will prepare and clean up some resources automatically to avoid potential memory leakage.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defmacro </span>with-open
-  [bindings <span style="color:#f92672">&amp;</span> body]
-  (<span style="color:#a6e22e">cond</span>
-    (= (count bindings) <span style="color:#ae81ff">0</span>) <span style="color:#f92672">`</span>(<span style="color:#66d9ef">do </span><span style="color:#f92672">~@</span>body)
-    (symbol? (<span style="color:#a6e22e">bindings</span> <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">`</span>(<span style="color:#66d9ef">let </span><span style="color:#f92672">~</span>(subvec bindings <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">2</span>)
-                              (<span style="color:#a6e22e">try</span>
-                                (with-open <span style="color:#f92672">~</span>(subvec bindings <span style="color:#ae81ff">2</span>) <span style="color:#f92672">~@</span>body)
-                                (<span style="color:#a6e22e">finally</span>
-                                  (<span style="color:#66d9ef">. </span><span style="color:#f92672">~</span>(<span style="color:#a6e22e">bindings</span> <span style="color:#ae81ff">0</span>) close))))
-    <span style="color:#e6db74">:else</span> (<span style="color:#a6e22e">throw</span> (<span style="color:#a6e22e">IllegalArgumentException.</span>
-                   <span style="color:#e6db74">&#34;with-open only allows Symbols in bindings&#34;</span>))))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">with-open</span>
+  [<span style="color:#000">bindings</span> <span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+  (<span style="color:#000">cond</span>
+    (<span style="color:#a90d91">= </span>(<span style="color:#a90d91">count </span><span style="color:#000">bindings</span>) <span style="color:#1c01ce">0</span>) <span style="color:#000">`</span>(<span style="color:#a90d91">do </span><span style="color:#000">~@</span><span style="color:#000">body</span>)
+    (<span style="color:#a90d91">symbol? </span>(<span style="color:#000">bindings</span> <span style="color:#1c01ce">0</span>)) <span style="color:#000">`</span>(<span style="color:#a90d91">let </span><span style="color:#000">~</span>(<span style="color:#a90d91">subvec </span><span style="color:#000">bindings</span> <span style="color:#1c01ce">0</span> <span style="color:#1c01ce">2</span>)
+                              (<span style="color:#000">try</span>
+                                (<span style="color:#a90d91">with-open </span><span style="color:#000">~</span>(<span style="color:#a90d91">subvec </span><span style="color:#000">bindings</span> <span style="color:#1c01ce">2</span>) <span style="color:#000">~@</span><span style="color:#000">body</span>)
+                                (<span style="color:#000">finally</span>
+                                  (<span style="color:#a90d91">. </span><span style="color:#000">~</span>(<span style="color:#000">bindings</span> <span style="color:#1c01ce">0</span>) <span style="color:#000">close</span>))))
+    <span style="color:#c41a16">:else</span> (<span style="color:#000">throw</span> (<span style="color:#000">IllegalArgumentException.</span>
+                   <span style="color:#c41a16">&#34;with-open only allows Symbols in bindings&#34;</span>))))
 </code></pre></div><h3 id="conditional-evaluation">Conditional evaluation</h3>
 <p>The parameters are evaluated only under certain circumstances.</p>
 <p>For example, <code>when</code> in <code>clojure.core</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defmacro </span>when
-  [test <span style="color:#f92672">&amp;</span> body]
-  (<span style="color:#66d9ef">if </span>test
-    (<span style="color:#66d9ef">do </span><span style="color:#f92672">~@</span>body)
-    nil))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">when</span>
+  [<span style="color:#a90d91">test </span><span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+  (<span style="color:#a90d91">if </span><span style="color:#000">test</span>
+    (<span style="color:#a90d91">do </span><span style="color:#000">~@</span><span style="color:#000">body</span>)
+    <span style="color:#000">nil</span>))
 
-(when false
-  (prn <span style="color:#ae81ff">123</span>))
+(<span style="color:#a90d91">when </span><span style="color:#000">false</span>
+  (<span style="color:#a90d91">prn </span><span style="color:#1c01ce">123</span>))
 </code></pre></div><blockquote>
 <p>Q: Is there another way to protect parameters from being evaluated?</p>
 </blockquote>
 <h3 id="repeat-the-evaluation-of-the-parameters">Repeat the evaluation of the parameters.</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defmacro </span>while
-  [test <span style="color:#f92672">&amp;</span> body]
-  <span style="color:#f92672">`</span>(<span style="color:#66d9ef">loop </span>[]
-     (when <span style="color:#f92672">~</span>test
-       <span style="color:#f92672">~@</span>body
-       (<span style="color:#a6e22e">recur</span>))))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">while</span>
+  [<span style="color:#a90d91">test </span><span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+  <span style="color:#000">`</span>(<span style="color:#a90d91">loop </span>[]
+     (<span style="color:#a90d91">when </span><span style="color:#000">~</span><span style="color:#000">test</span>
+       <span style="color:#000">~@</span><span style="color:#000">body</span>
+       (<span style="color:#000">recur</span>))))
 
-(<span style="color:#66d9ef">def </span>a (<span style="color:#a6e22e">atom</span> <span style="color:#ae81ff">10</span>))
-(<span style="color:#a6e22e">while</span> (pos? <span style="color:#f92672">@</span>a) (<span style="color:#66d9ef">do </span>(println <span style="color:#f92672">@</span>a) (<span style="color:#a6e22e">swap!</span> a dec)))
+(<span style="color:#a90d91">def </span><span style="color:#000">a</span> (<span style="color:#000">atom</span> <span style="color:#1c01ce">10</span>))
+(<span style="color:#000">while</span> (<span style="color:#a90d91">pos? </span><span style="color:#000">@</span><span style="color:#000">a</span>) (<span style="color:#a90d91">do </span>(<span style="color:#a90d91">println </span><span style="color:#000">@</span><span style="color:#000">a</span>) (<span style="color:#000">swap!</span> <span style="color:#000">a</span> <span style="color:#000">dec</span>)))
 </code></pre></div><h3 id="compile-time-calculation">Compile time calculation</h3>
 <p>If the values are determined at compile-time, we can calculate them directly at compile time. The results can be used directly at runtime to speed up calculations.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defmacro </span>params-number [<span style="color:#f92672">&amp;</span> body]
-  <span style="color:#f92672">`</span>(<span style="color:#66d9ef">let </span>[n# <span style="color:#f92672">~</span>(count body)]
-     n#))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">params-number</span> [<span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+  <span style="color:#000">`</span>(<span style="color:#a90d91">let </span>[<span style="color:#000">n#</span> <span style="color:#000">~</span>(<span style="color:#a90d91">count </span><span style="color:#000">body</span>)]
+     <span style="color:#000">n#</span>))
 
-(<span style="color:#a6e22e">params-number</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>)
+(<span style="color:#000">params-number</span> <span style="color:#1c01ce">1</span> <span style="color:#1c01ce">2</span> <span style="color:#1c01ce">3</span>)
 </code></pre></div><h2 id="how-i-write-a-macro">How I write a macro</h2>
 <p>I would like to share what I will do when writing a complex macro.I am not a macro expert, and the macro below is not written by me neither : ).</p>
 <p>Consider we encounter a condition that requires writing deep nested if-else-if-else expression; And if the resulting success continues, otherwise return immediately.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">let </span>[rt1 (<span style="color:#a6e22e">exist-user?</span> user)]
-  (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">fail?</span> rt1)
-    rt1
-    (<span style="color:#66d9ef">let </span>[rt2 (<span style="color:#a6e22e">channel-is-full?</span> channel)]
-      (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">fail?</span> rt2)
-        rt2
-        (<span style="color:#66d9ef">let </span>[rt3 (<span style="color:#a6e22e">add-member</span> channel-id user-id)]
-          rt3
-          (<span style="color:#a6e22e">ok</span>))))))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">let </span>[<span style="color:#000">rt1</span> (<span style="color:#000">exist-user?</span> <span style="color:#000">user</span>)]
+  (<span style="color:#a90d91">if </span>(<span style="color:#000">fail?</span> <span style="color:#000">rt1</span>)
+    <span style="color:#000">rt1</span>
+    (<span style="color:#a90d91">let </span>[<span style="color:#000">rt2</span> (<span style="color:#000">channel-is-full?</span> <span style="color:#000">channel</span>)]
+      (<span style="color:#a90d91">if </span>(<span style="color:#000">fail?</span> <span style="color:#000">rt2</span>)
+        <span style="color:#000">rt2</span>
+        (<span style="color:#a90d91">let </span>[<span style="color:#000">rt3</span> (<span style="color:#000">add-member</span> <span style="color:#000">channel-id</span> <span style="color:#000">user-id</span>)]
+          <span style="color:#000">rt3</span>
+          (<span style="color:#000">ok</span>))))))
 </code></pre></div><p>There are three main steps:</p>
 <ul>
 <li>
@@ -134,26 +134,26 @@
 <p>step2: Write out the syntax template you prefer to use.</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">new-macro</span>
-    (<span style="color:#a6e22e">exist-user?</span> user)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#000">new-macro</span>
+    (<span style="color:#000">exist-user?</span> <span style="color:#000">user</span>)
 
-    (<span style="color:#a6e22e">channel-is-full?</span> channel)
+    (<span style="color:#000">channel-is-full?</span> <span style="color:#000">channel</span>)
 
-    (<span style="color:#a6e22e">add-member</span> channel-id user-id)
+    (<span style="color:#000">add-member</span> <span style="color:#000">channel-id</span> <span style="color:#000">user-id</span>)
   
-    (<span style="color:#a6e22e">ok</span>))
+    (<span style="color:#000">ok</span>))
 </code></pre></div><ul>
 <li>step3: Translate the code of step2 into step1.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defmacro </span>new-macro
-  [first-clause <span style="color:#f92672">&amp;</span> clauses]
-  (<span style="color:#66d9ef">let </span>[g (<span style="color:#a6e22e">gensym</span>)]
-    <span style="color:#f92672">`</span>(<span style="color:#66d9ef">let </span>[<span style="color:#f92672">~</span>g <span style="color:#f92672">~</span>first-clause]
-       (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">fail?</span> (first <span style="color:#f92672">~</span>g)
-         <span style="color:#f92672">~</span>g
-         <span style="color:#f92672">~</span>(<span style="color:#66d9ef">if </span>clauses
-            <span style="color:#f92672">`</span>(<span style="color:#a6e22e">new-macro</span> <span style="color:#f92672">~@</span>clauses)
-            g)))))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">new-macro</span>
+  [<span style="color:#000">first-clause</span> <span style="color:#000">&amp;</span> <span style="color:#000">clauses</span>]
+  (<span style="color:#a90d91">let </span>[<span style="color:#000">g</span> (<span style="color:#000">gensym</span>)]
+    <span style="color:#000">`</span>(<span style="color:#a90d91">let </span>[<span style="color:#000">~</span><span style="color:#000">g</span> <span style="color:#000">~</span><span style="color:#000">first-clause</span>]
+       (<span style="color:#a90d91">if </span>(<span style="color:#000">fail?</span> (<span style="color:#a90d91">first </span><span style="color:#000">~</span><span style="color:#000">g</span>)
+         <span style="color:#000">~</span><span style="color:#000">g</span>
+         <span style="color:#000">~</span>(<span style="color:#a90d91">if </span><span style="color:#000">clauses</span>
+            <span style="color:#000">`</span>(<span style="color:#000">new-macro</span> <span style="color:#000">~@</span><span style="color:#000">clauses</span>)
+            <span style="color:#000">g</span>)))))
 </code></pre></div><h2 id="misc">Misc</h2>
 <h3 id="dont-make-a-macro-unless-you-have-no-choice">Don&rsquo;t make a macro unless you have no choice</h3>
 <ul>
@@ -171,38 +171,38 @@
 <h3 id="macro-only-encapsulates-a-thin-layer-over-function">Macro only encapsulates a thin layer over function</h3>
 <p>Macros should only  involve in the specific part which needs to change the evaluation behavior;</p>
 <p>Many macros that I have read can be simplified by just extracting a helper function that doesn&rsquo;t require changing the default evaluation behavior.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#75715e">;;;; Tag the result</span>
-(<span style="color:#66d9ef">defmacro </span>tag-result
-  [group tag date <span style="color:#f92672">&amp;</span> body]
-  <span style="color:#f92672">`</span>(<span style="color:#66d9ef">let </span>[result# <span style="color:#f92672">~</span>body
-        group# (str <span style="color:#f92672">~</span>group <span style="color:#e6db74">&#34;-addition-group&#34;</span>)
-        tag# (str <span style="color:#f92672">~</span>tag <span style="color:#e6db74">&#34;-addition-group&#34;</span>)
-        date# (<span style="color:#a6e22e">t/plus</span> <span style="color:#f92672">~</span>date (<span style="color:#a6e22e">t/days</span> <span style="color:#ae81ff">5</span>))]
-    {<span style="color:#e6db74">:group</span> group#
-     <span style="color:#e6db74">:tag</span> tag#
-     <span style="color:#e6db74">:date</span> date#
-     <span style="color:#e6db74">:result</span> result#}))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#177500">;;;; Tag the result</span>
+(<span style="color:#a90d91">defmacro </span><span style="color:#000">tag-result</span>
+  [<span style="color:#000">group</span> <span style="color:#000">tag</span> <span style="color:#000">date</span> <span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+  <span style="color:#000">`</span>(<span style="color:#a90d91">let </span>[<span style="color:#000">result#</span> <span style="color:#000">~</span><span style="color:#000">body</span>
+        <span style="color:#000">group#</span> (<span style="color:#a90d91">str </span><span style="color:#000">~</span><span style="color:#000">group</span> <span style="color:#c41a16">&#34;-addition-group&#34;</span>)
+        <span style="color:#000">tag#</span> (<span style="color:#a90d91">str </span><span style="color:#000">~</span><span style="color:#000">tag</span> <span style="color:#c41a16">&#34;-addition-group&#34;</span>)
+        <span style="color:#000">date#</span> (<span style="color:#000">t/plus</span> <span style="color:#000">~</span><span style="color:#000">date</span> (<span style="color:#000">t/days</span> <span style="color:#1c01ce">5</span>))]
+    {<span style="color:#c41a16">:group</span> <span style="color:#000">group#</span>
+     <span style="color:#c41a16">:tag</span> <span style="color:#000">tag#</span>
+     <span style="color:#c41a16">:date</span> <span style="color:#000">date#</span>
+     <span style="color:#c41a16">:result</span> <span style="color:#000">result#</span>}))
 
-(<span style="color:#a6e22e">tag-result</span> <span style="color:#e6db74">&#34;group&#34;</span> <span style="color:#e6db74">&#34;tag&#34;</span> (<span style="color:#a6e22e">t/now</span>) (+ <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span>))
+(<span style="color:#000">tag-result</span> <span style="color:#c41a16">&#34;group&#34;</span> <span style="color:#c41a16">&#34;tag&#34;</span> (<span style="color:#000">t/now</span>) (<span style="color:#a90d91">+ </span><span style="color:#1c01ce">4</span> <span style="color:#1c01ce">5</span> <span style="color:#1c01ce">6</span> <span style="color:#1c01ce">7</span> <span style="color:#1c01ce">8</span>))
 
-<span style="color:#75715e">;;;; A better implement. We can extract the process of tagging.</span>
+<span style="color:#177500">;;;; A better implement. We can extract the process of tagging.</span>
 
-(<span style="color:#66d9ef">defn </span>tag-result-f
-  [group tag date result]
-  (<span style="color:#66d9ef">let </span>[group (str group <span style="color:#e6db74">&#34;-addition-group&#34;</span>)
-        tag (str tag <span style="color:#e6db74">&#34;-addition-group&#34;</span>)
-        date (<span style="color:#a6e22e">t/plus</span> date (<span style="color:#a6e22e">t/days</span> <span style="color:#ae81ff">5</span>))]
-    {<span style="color:#e6db74">:group</span> group
-     <span style="color:#e6db74">:tag</span> tag
-     <span style="color:#e6db74">:date</span> date
-     <span style="color:#e6db74">:result</span> result}))
+(<span style="color:#a90d91">defn </span><span style="color:#000">tag-result-f</span>
+  [<span style="color:#000">group</span> <span style="color:#000">tag</span> <span style="color:#000">date</span> <span style="color:#000">result</span>]
+  (<span style="color:#a90d91">let </span>[<span style="color:#000">group</span> (<span style="color:#a90d91">str </span><span style="color:#000">group</span> <span style="color:#c41a16">&#34;-addition-group&#34;</span>)
+        <span style="color:#000">tag</span> (<span style="color:#a90d91">str </span><span style="color:#000">tag</span> <span style="color:#c41a16">&#34;-addition-group&#34;</span>)
+        <span style="color:#000">date</span> (<span style="color:#000">t/plus</span> <span style="color:#000">date</span> (<span style="color:#000">t/days</span> <span style="color:#1c01ce">5</span>))]
+    {<span style="color:#c41a16">:group</span> <span style="color:#000">group</span>
+     <span style="color:#c41a16">:tag</span> <span style="color:#000">tag</span>
+     <span style="color:#c41a16">:date</span> <span style="color:#000">date</span>
+     <span style="color:#c41a16">:result</span> <span style="color:#000">result</span>}))
 
-(<span style="color:#66d9ef">defmacro </span>another-tag-result
-  [group tag date <span style="color:#f92672">&amp;</span> body]
-  <span style="color:#f92672">`</span>(<span style="color:#66d9ef">let </span>[result# <span style="color:#f92672">~</span>(reverse body)]
-    (<span style="color:#a6e22e">tag-result-f</span> <span style="color:#f92672">~</span>group <span style="color:#f92672">~</span>tag <span style="color:#f92672">~</span>date result#)))
+(<span style="color:#a90d91">defmacro </span><span style="color:#000">another-tag-result</span>
+  [<span style="color:#000">group</span> <span style="color:#000">tag</span> <span style="color:#000">date</span> <span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+  <span style="color:#000">`</span>(<span style="color:#a90d91">let </span>[<span style="color:#000">result#</span> <span style="color:#000">~</span>(<span style="color:#a90d91">reverse </span><span style="color:#000">body</span>)]
+    (<span style="color:#000">tag-result-f</span> <span style="color:#000">~</span><span style="color:#000">group</span> <span style="color:#000">~</span><span style="color:#000">tag</span> <span style="color:#000">~</span><span style="color:#000">date</span> <span style="color:#000">result#</span>)))
 
-(<span style="color:#a6e22e">another-tag-result</span> <span style="color:#e6db74">&#34;group&#34;</span> <span style="color:#e6db74">&#34;tag&#34;</span> (<span style="color:#a6e22e">t/now</span>) (+ <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span>))
+(<span style="color:#000">another-tag-result</span> <span style="color:#c41a16">&#34;group&#34;</span> <span style="color:#c41a16">&#34;tag&#34;</span> (<span style="color:#000">t/now</span>) (<span style="color:#a90d91">+ </span><span style="color:#1c01ce">4</span> <span style="color:#1c01ce">5</span> <span style="color:#1c01ce">6</span> <span style="color:#1c01ce">7</span> <span style="color:#1c01ce">8</span>))
 
 </code></pre></div><h3 id="parameter-check">Parameter check</h3>
 <p>This is the same rule as for functions. We should check the parameter in runtime and even in compile time.</p>
@@ -210,21 +210,21 @@
 <p>The cost of debugging a macro is very high, so we have to do more strict defensive checks than functions.</p>
 <h3 id="be-wary-of-repeated-evaluations">Be wary of repeated evaluations</h3>
 <p>It&rsquo;s easy to write buggy macros caused by repeated evaluation, and some of them are not easy to debug sometimes.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defmacro </span>transform-http-result
-  [<span style="color:#f92672">&amp;</span> body]
-  <span style="color:#f92672">`</span>(<span style="color:#a6e22e">try</span>
-     (<span style="color:#a6e22e">log/debugf</span> <span style="color:#e6db74">&#34;http-result: %s&#34;</span> <span style="color:#f92672">~@</span>body)
-     (<span style="color:#a6e22e">transform</span> <span style="color:#f92672">~@</span>body)))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">transform-http-result</span>
+  [<span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+  <span style="color:#000">`</span>(<span style="color:#000">try</span>
+     (<span style="color:#000">log/debugf</span> <span style="color:#c41a16">&#34;http-result: %s&#34;</span> <span style="color:#000">~@</span><span style="color:#000">body</span>)
+     (<span style="color:#000">transform</span> <span style="color:#000">~@</span><span style="color:#000">body</span>)))
 </code></pre></div><h2 id="destructive-parameter">Destructive parameter</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defmacro </span>test-a
-  [[<span style="color:#f92672">&amp;</span> opts] <span style="color:#f92672">&amp;</span> body]
-  (prn (class opts))
-  (prn (class body)))
-=&gt; <span style="color:#f92672">#</span><span style="color:#e6db74">&#39;user/test-a</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">test-a</span>
+  [[<span style="color:#000">&amp;</span> <span style="color:#000">opts</span>] <span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+  (<span style="color:#a90d91">prn </span>(<span style="color:#a90d91">class </span><span style="color:#000">opts</span>))
+  (<span style="color:#a90d91">prn </span>(<span style="color:#a90d91">class </span><span style="color:#000">body</span>)))
+<span style="color:#000">=&gt;</span> <span style="color:#000">#</span><span style="color:#c41a16">&#39;user/test-a</span>
 
-(<span style="color:#a6e22e">test-a</span> [<span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>] <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>)
-clojure.lang.PersistentVector$ChunkedSeq
-clojure.lang.PersistentList
+(<span style="color:#000">test-a</span> [<span style="color:#1c01ce">4</span> <span style="color:#1c01ce">5</span> <span style="color:#1c01ce">6</span>] <span style="color:#1c01ce">1</span> <span style="color:#1c01ce">2</span> <span style="color:#1c01ce">3</span>)
+<span style="color:#000">clojure.lang.PersistentVector$ChunkedSeq</span>
+<span style="color:#000">clojure.lang.PersistentList</span>
 </code></pre></div><p>We can see that the data structures of the two <code>&amp;</code> are different.</p>
 <p>To convert them into data structures, you need to convert them with <code>(vec opts)</code>.</p>
 <h2 id="reference">Reference</h2>
