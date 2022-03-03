@@ -68,7 +68,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h3 id="creating-context">Creating context</h3>
 <p>Referring to the lexical environment.</p>
 <p>For example, We can use macros to create our let.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">our-let</span> [<span style="color:#000">binds</span> <span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">our-let</span> [<span style="color:#000">binds</span> <span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
   <span style="color:#000">`</span>((<span style="color:#a90d91">fn </span><span style="color:#000">~</span>(<span style="color:#000">vec</span> (<span style="color:#a90d91">map first </span>(<span style="color:#000">partition-all</span> <span style="color:#1c01ce">2</span> <span style="color:#000">binds</span>)))
       <span style="color:#000">~@</span><span style="color:#000">body</span>)
     <span style="color:#000">~@</span>(<span style="color:#a90d91">map second </span>(<span style="color:#000">partition-all</span> <span style="color:#1c01ce">2</span> <span style="color:#000">binds</span>))))
@@ -81,7 +81,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </blockquote>
 <p>Another case refers to various states around the calculation.</p>
 <p>An Example: calculating time. Insert code snippets into a specific context.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">cal-time</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">cal-time</span>
   [<span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
   <span style="color:#000">`</span>(<span style="color:#a90d91">let </span>[<span style="color:#000">start#</span> (<span style="color:#000">System/currentTimeMillis</span>)
          <span style="color:#000">result#</span> (<span style="color:#a90d91">do </span><span style="color:#000">~@</span><span style="color:#000">body</span>)
@@ -92,7 +92,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (<span style="color:#000">cal-time</span> (<span style="color:#000">Thread/sleep</span> <span style="color:#1c01ce">5000</span>))
 </code></pre></div><h3 id="with-macros">With-macros</h3>
 <p>For example, the macro <code>with-open</code>.It will prepare and clean up some resources automatically to avoid potential memory leakage.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">with-open</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">with-open</span>
   [<span style="color:#000">bindings</span> <span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
   (<span style="color:#000">cond</span>
     (<span style="color:#a90d91">= </span>(<span style="color:#a90d91">count </span><span style="color:#000">bindings</span>) <span style="color:#1c01ce">0</span>) <span style="color:#000">`</span>(<span style="color:#a90d91">do </span><span style="color:#000">~@</span><span style="color:#000">body</span>)
@@ -106,7 +106,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre></div><h3 id="conditional-evaluation">Conditional evaluation</h3>
 <p>The parameters are evaluated only under certain circumstances.</p>
 <p>For example, <code>when</code> in <code>clojure.core</code>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">when</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">when</span>
   [<span style="color:#a90d91">test </span><span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
   (<span style="color:#a90d91">if </span><span style="color:#000">test</span>
     (<span style="color:#a90d91">do </span><span style="color:#000">~@</span><span style="color:#000">body</span>)
@@ -118,7 +118,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Q: Is there another way to protect parameters from being evaluated?</p>
 </blockquote>
 <h3 id="repeat-the-evaluation-of-the-parameters">Repeat the evaluation of the parameters.</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">while</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">while</span>
   [<span style="color:#a90d91">test </span><span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
   <span style="color:#000">`</span>(<span style="color:#a90d91">loop </span>[]
      (<span style="color:#a90d91">when </span><span style="color:#000">~</span><span style="color:#000">test</span>
@@ -129,7 +129,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (<span style="color:#000">while</span> (<span style="color:#a90d91">pos? </span><span style="color:#000">@</span><span style="color:#000">a</span>) (<span style="color:#a90d91">do </span>(<span style="color:#a90d91">println </span><span style="color:#000">@</span><span style="color:#000">a</span>) (<span style="color:#000">swap!</span> <span style="color:#000">a</span> <span style="color:#000">dec</span>)))
 </code></pre></div><h3 id="compile-time-calculation">Compile time calculation</h3>
 <p>If the values are determined at compile-time, we can calculate them directly at compile time. The results can be used directly at runtime to speed up calculations.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">params-number</span> [<span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">params-number</span> [<span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
   <span style="color:#000">`</span>(<span style="color:#a90d91">let </span>[<span style="color:#000">n#</span> <span style="color:#000">~</span>(<span style="color:#a90d91">count </span><span style="color:#000">body</span>)]
      <span style="color:#000">n#</span>))
 
@@ -137,7 +137,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre></div><h2 id="how-i-write-a-macro">How I write a macro</h2>
 <p>I would like to share what I will do when writing a complex macro. The macro below is not written by me : ).</p>
 <p>Consider we encounter a condition that requires writing deep nested if-else-if-else expression; And if the resulting success continues, otherwise return immediately.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">let </span>[<span style="color:#000">rt1</span> (<span style="color:#000">exist-user?</span> <span style="color:#000">user</span>)]
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">let </span>[<span style="color:#000">rt1</span> (<span style="color:#000">exist-user?</span> <span style="color:#000">user</span>)]
   (<span style="color:#a90d91">if </span>(<span style="color:#000">fail?</span> <span style="color:#000">rt1</span>)
     <span style="color:#000">rt1</span>
     (<span style="color:#a90d91">let </span>[<span style="color:#000">rt2</span> (<span style="color:#000">channel-is-full?</span> <span style="color:#000">channel</span>)]
@@ -155,7 +155,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>step2: Write out the syntax template you prefer to use.</p>
 </li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#000">new-macro</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#000">new-macro</span>
     (<span style="color:#000">exist-user?</span> <span style="color:#000">user</span>)
 
     (<span style="color:#000">channel-is-full?</span> <span style="color:#000">channel</span>)
@@ -166,7 +166,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre></div><ul>
 <li>step3: Translate the code of step2 into step1.</li>
 </ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">new-macro</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">new-macro</span>
   [<span style="color:#000">first-clause</span> <span style="color:#000">&amp;</span> <span style="color:#000">clauses</span>]
   (<span style="color:#a90d91">let </span>[<span style="color:#000">g</span> (<span style="color:#000">gensym</span>)]
     <span style="color:#000">`</span>(<span style="color:#a90d91">let </span>[<span style="color:#000">~</span><span style="color:#000">g</span> <span style="color:#000">~</span><span style="color:#000">first-clause</span>]
@@ -192,7 +192,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h3 id="macro-only-encapsulates-a-thin-layer-over-function">Macro only encapsulates a thin layer over function</h3>
 <p>Macros should only  involve in the specific part which needs to change the evaluation behavior;</p>
 <p>Many macros that I have read can be simplified by just extracting a helper function that doesn&rsquo;t require changing the default evaluation behavior.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#177500">;;;; Tag the result</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#177500">;;;; Tag the result</span>
 (<span style="color:#a90d91">defmacro </span><span style="color:#000">tag-result</span>
   [<span style="color:#000">group</span> <span style="color:#000">tag</span> <span style="color:#000">date</span> <span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
   <span style="color:#000">`</span>(<span style="color:#a90d91">let </span>[<span style="color:#000">result#</span> <span style="color:#000">~</span><span style="color:#000">body</span>
@@ -231,13 +231,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>The cost of debugging a macro is very high, so we have to do more strict defensive checks than functions.</p>
 <h3 id="be-wary-of-repeated-evaluations">Be wary of repeated evaluations</h3>
 <p>It&rsquo;s easy to write buggy macros caused by repeated evaluation, and some of them are not easy to debug sometimes.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">transform-http-result</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">transform-http-result</span>
   [<span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
   <span style="color:#000">`</span>(<span style="color:#000">try</span>
      (<span style="color:#000">log/debugf</span> <span style="color:#c41a16">&#34;http-result: %s&#34;</span> <span style="color:#000">~@</span><span style="color:#000">body</span>)
      (<span style="color:#000">transform</span> <span style="color:#000">~@</span><span style="color:#000">body</span>)))
 </code></pre></div><h2 id="destructive-parameter">Destructive parameter</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">test-a</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defmacro </span><span style="color:#000">test-a</span>
   [[<span style="color:#000">&amp;</span> <span style="color:#000">opts</span>] <span style="color:#000">&amp;</span> <span style="color:#000">body</span>]
   (<span style="color:#a90d91">prn </span>(<span style="color:#a90d91">class </span><span style="color:#000">opts</span>))
   (<span style="color:#a90d91">prn </span>(<span style="color:#a90d91">class </span><span style="color:#000">body</span>)))
