@@ -21,13 +21,12 @@
       <description>近几年的工作都是写 Clojure ，大多数时间是用函数式编程风格。 OOP 的设计模式在函数式语言里显得非常轻量，有时根本意识不到有些用法是设计模式。简单聊一聊，常用的设计模式在Clojure里可能长什么样子。由于语言类型不同，一些和语言构件相关的模式在 Clojure 里不太需要，比如我在写 Clojure 时就很少需要用迭代器模式。
 对象是 OOP 编程语言中的一等公民，在函数式语言中函数是编程中的一等公民，所以下面有些地方我会直接用函数来代替对象，如工厂模式用生产函数来代替生产对象。
 策略模式 定义：策略模式定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。
-(defn quack [] (println &amp;#34;quack&amp;#34;)) (defn squeak [] (println &amp;#34;squeak&amp;#34;)) (defn make-sound [duck?] (let [sound-f (if duck? quack squeak)] (sound-f))) (make-sound true) 小辨析：
+(defn quack [] (println &amp;#34;quack&amp;#34;)) (defn squeak [] (println &amp;#34;squeak&amp;#34;))  (defn make-sound [duck?]  (let [sound-f (if duck? quack squeak)]  (sound-f)))  (make-sound true) 小辨析：
 策略模式：在context对象主动指定哪个策略对象来执行动作。
 状态模式：在context对象中的状态决定使用哪一个state状态对象来操作，state状态对象在执行操作中反过来会改变context对象中的状态。
 单件模式 定义：确保一个类只有一个实例，并提供一个全局访问点。
-(let [conn (delay (create-conn))] (defn get-instance [] @conn)) (get-instance) 工厂模式 定义: 定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。
-(defn create-adder [n] (fn [x] (+ n x))) (map (fn [x] (create-adder x)) (range 10)) 抽象工厂模式在Clojure中似乎和工厂模式没有太多区别。
-装饰者模式 定义：动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。</description>
+(let [conn (delay (create-conn))]  (defn get-instance [] @conn)) (get-instance) 工厂模式 定义: 定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。
+(defn create-adder  [n]  (fn [x]  (+ n x)))  (map (fn [x] (create-adder x))  (range 10)) 抽象工厂模式在Clojure中似乎和工厂模式没有太多区别。</description>
     </item>
     
     

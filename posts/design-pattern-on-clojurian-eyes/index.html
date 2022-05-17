@@ -50,78 +50,78 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>对象是 OOP 编程语言中的一等公民，在函数式语言中函数是编程中的一等公民，所以下面有些地方我会直接用函数来代替对象，如工厂模式用生产函数来代替生产对象。</p>
 <h2 id="策略模式">策略模式</h2>
 <p>定义：策略模式定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defn </span><span style="color:#000">quack</span> [] (<span style="color:#a90d91">println </span><span style="color:#c41a16">&#34;quack&#34;</span>))
-(<span style="color:#a90d91">defn </span><span style="color:#000">squeak</span> [] (<span style="color:#a90d91">println </span><span style="color:#c41a16">&#34;squeak&#34;</span>))
-
-(<span style="color:#a90d91">defn </span><span style="color:#000">make-sound</span> [<span style="color:#000">duck?</span>]
-  (<span style="color:#a90d91">let </span>[<span style="color:#000">sound-f</span> (<span style="color:#a90d91">if </span><span style="color:#000">duck?</span> <span style="color:#000">quack</span> <span style="color:#000">squeak</span>)]
-    (<span style="color:#000">sound-f</span>)))
-
-(<span style="color:#000">make-sound</span> <span style="color:#000">true</span>)
-</code></pre></div><p>小辨析：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a90d91">defn </span><span style="color:#000">quack</span> [] (<span style="color:#a90d91">println </span><span style="color:#c41a16">&#34;quack&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#a90d91">defn </span><span style="color:#000">squeak</span> [] (<span style="color:#a90d91">println </span><span style="color:#c41a16">&#34;squeak&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a90d91">defn </span><span style="color:#000">make-sound</span> [<span style="color:#000">duck?</span>]
+</span></span><span style="display:flex;"><span>  (<span style="color:#a90d91">let </span>[<span style="color:#000">sound-f</span> (<span style="color:#a90d91">if </span><span style="color:#000">duck?</span> <span style="color:#000">quack</span> <span style="color:#000">squeak</span>)]
+</span></span><span style="display:flex;"><span>    (<span style="color:#000">sound-f</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#000">make-sound</span> <span style="color:#000">true</span>)
+</span></span></code></pre></div><p>小辨析：</p>
 <p>策略模式：在context对象主动指定哪个策略对象来执行动作。</p>
 <p>状态模式：在context对象中的状态决定使用哪一个state状态对象来操作，state状态对象在执行操作中反过来会改变context对象中的状态。</p>
 <h2 id="单件模式">单件模式</h2>
 <p>定义：确保一个类只有一个实例，并提供一个全局访问点。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">let </span>[<span style="color:#000">conn</span> (<span style="color:#000">delay</span> (<span style="color:#000">create-conn</span>))]
- (<span style="color:#a90d91">defn </span><span style="color:#000">get-instance</span> [] <span style="color:#000">@</span><span style="color:#000">conn</span>))
-(<span style="color:#000">get-instance</span>)
-</code></pre></div><h2 id="工厂模式">工厂模式</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a90d91">let </span>[<span style="color:#000">conn</span> (<span style="color:#000">delay</span> (<span style="color:#000">create-conn</span>))]
+</span></span><span style="display:flex;"><span> (<span style="color:#a90d91">defn </span><span style="color:#000">get-instance</span> [] <span style="color:#000">@</span><span style="color:#000">conn</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#000">get-instance</span>)
+</span></span></code></pre></div><h2 id="工厂模式">工厂模式</h2>
 <p>定义:  定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defn </span><span style="color:#000">create-adder</span>
-  [<span style="color:#000">n</span>]
-  (<span style="color:#a90d91">fn </span>[<span style="color:#000">x</span>]
-    (<span style="color:#a90d91">+ </span><span style="color:#000">n</span> <span style="color:#000">x</span>)))
-
-(<span style="color:#a90d91">map </span>(<span style="color:#a90d91">fn </span>[<span style="color:#000">x</span>] (<span style="color:#000">create-adder</span> <span style="color:#000">x</span>))
-  (<span style="color:#a90d91">range </span><span style="color:#1c01ce">10</span>))
-</code></pre></div><p>抽象工厂模式在Clojure中似乎和工厂模式没有太多区别。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a90d91">defn </span><span style="color:#000">create-adder</span>
+</span></span><span style="display:flex;"><span>  [<span style="color:#000">n</span>]
+</span></span><span style="display:flex;"><span>  (<span style="color:#a90d91">fn </span>[<span style="color:#000">x</span>]
+</span></span><span style="display:flex;"><span>    (<span style="color:#a90d91">+ </span><span style="color:#000">n</span> <span style="color:#000">x</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a90d91">map </span>(<span style="color:#a90d91">fn </span>[<span style="color:#000">x</span>] (<span style="color:#000">create-adder</span> <span style="color:#000">x</span>))
+</span></span><span style="display:flex;"><span>  (<span style="color:#a90d91">range </span><span style="color:#1c01ce">10</span>))
+</span></span></code></pre></div><p>抽象工厂模式在Clojure中似乎和工厂模式没有太多区别。</p>
 <h2 id="装饰者模式">装饰者模式</h2>
 <p>定义：动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。</p>
 <p>Clojure　类型继承很弱，依然以函数来实现。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defn </span><span style="color:#000">origin</span> [<span style="color:#000">n</span>] <span style="color:#000">n</span>)
-
-(<span style="color:#a90d91">defn </span><span style="color:#000">decorator</span>
-  <span style="color:#c41a16">&#34;add 5&#34;</span>
-  [<span style="color:#000">f</span>]
-  (<span style="color:#a90d91">fn </span>[<span style="color:#000">n</span>]
-    (<span style="color:#a90d91">+ </span>(<span style="color:#000">f</span> <span style="color:#000">n</span>) <span style="color:#1c01ce">5</span>)))
-
-(<span style="color:#a90d91">def </span><span style="color:#000">new-f</span> (<span style="color:#000">decorator</span> <span style="color:#000">origin</span>))
-(<span style="color:#000">new-f</span> <span style="color:#1c01ce">3</span>)
-</code></pre></div><p>小辨析：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a90d91">defn </span><span style="color:#000">origin</span> [<span style="color:#000">n</span>] <span style="color:#000">n</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a90d91">defn </span><span style="color:#000">decorator</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#c41a16">&#34;add 5&#34;</span>
+</span></span><span style="display:flex;"><span>  [<span style="color:#000">f</span>]
+</span></span><span style="display:flex;"><span>  (<span style="color:#a90d91">fn </span>[<span style="color:#000">n</span>]
+</span></span><span style="display:flex;"><span>    (<span style="color:#a90d91">+ </span>(<span style="color:#000">f</span> <span style="color:#000">n</span>) <span style="color:#1c01ce">5</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a90d91">def </span><span style="color:#000">new-f</span> (<span style="color:#000">decorator</span> <span style="color:#000">origin</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#000">new-f</span> <span style="color:#1c01ce">3</span>)
+</span></span></code></pre></div><p>小辨析：</p>
 <p>装饰者：　装饰与被装饰者实现同一个接口，在同一个接口内增强功能。</p>
 <p>适配器：　适配与被适配者实现的是两个不同的接口。意图是改变接口，满足客户的期望。</p>
 <p>外观模式：用一个接口实现子系统的一群接口。意图是，提供子系统的一个简化接口。</p>
 <h2 id="观察者模式">观察者模式</h2>
 <p>定义：观察者模式：定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">def </span><span style="color:#000">subject</span> (<span style="color:#000">atom</span> <span style="color:#000">nil</span>))
-
-(<span style="color:#a90d91">defn </span><span style="color:#000">subscribe</span> [<span style="color:#a90d91">key ref </span><span style="color:#000">old-state</span> <span style="color:#000">new-state</span>]
-  (<span style="color:#a90d91">print </span><span style="color:#c41a16">&#34;Current val is &#34;</span> <span style="color:#000">new-state</span>))
-
-(<span style="color:#000">add-watch</span> <span style="color:#000">subject</span> <span style="color:#c41a16">:sub</span> <span style="color:#000">subscribe</span>)
-(<span style="color:#000">reset!</span> <span style="color:#000">subject</span> {<span style="color:#c41a16">:foo</span> <span style="color:#c41a16">&#34;bar&#34;</span>})
-(<span style="color:#000">remove-watch</span> <span style="color:#000">subject</span> <span style="color:#c41a16">:sub</span>)
-</code></pre></div><h2 id="命令模式">命令模式</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a90d91">def </span><span style="color:#000">subject</span> (<span style="color:#000">atom</span> <span style="color:#000">nil</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a90d91">defn </span><span style="color:#000">subscribe</span> [<span style="color:#a90d91">key ref </span><span style="color:#000">old-state</span> <span style="color:#000">new-state</span>]
+</span></span><span style="display:flex;"><span>  (<span style="color:#a90d91">print </span><span style="color:#c41a16">&#34;Current val is &#34;</span> <span style="color:#000">new-state</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#000">add-watch</span> <span style="color:#000">subject</span> <span style="color:#c41a16">:sub</span> <span style="color:#000">subscribe</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#000">reset!</span> <span style="color:#000">subject</span> {<span style="color:#c41a16">:foo</span> <span style="color:#c41a16">&#34;bar&#34;</span>})
+</span></span><span style="display:flex;"><span>(<span style="color:#000">remove-watch</span> <span style="color:#000">subject</span> <span style="color:#c41a16">:sub</span>)
+</span></span></code></pre></div><h2 id="命令模式">命令模式</h2>
 <p>定义：命令模式：将“请求”封装成对象，调用方可以直接调用对象的execute。命令模式也支持可撤销的操作。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">def </span><span style="color:#000">command1</span> (<span style="color:#a90d91">fn </span>[] (<span style="color:#a90d91">print </span><span style="color:#c41a16">&#34;command1&#34;</span>)))
-(<span style="color:#a90d91">def </span><span style="color:#000">command2</span> (<span style="color:#a90d91">fn </span>[] (<span style="color:#a90d91">print </span><span style="color:#c41a16">&#34;command2&#34;</span>)))
-
-(<span style="color:#a90d91">doseq </span>[<span style="color:#000">cmd</span> [<span style="color:#000">command1</span> <span style="color:#000">command2</span>]]
-  (<span style="color:#000">cmd</span>))
-</code></pre></div><p>小辨析：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a90d91">def </span><span style="color:#000">command1</span> (<span style="color:#a90d91">fn </span>[] (<span style="color:#a90d91">print </span><span style="color:#c41a16">&#34;command1&#34;</span>)))
+</span></span><span style="display:flex;"><span>(<span style="color:#a90d91">def </span><span style="color:#000">command2</span> (<span style="color:#a90d91">fn </span>[] (<span style="color:#a90d91">print </span><span style="color:#c41a16">&#34;command2&#34;</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a90d91">doseq </span>[<span style="color:#000">cmd</span> [<span style="color:#000">command1</span> <span style="color:#000">command2</span>]]
+</span></span><span style="display:flex;"><span>  (<span style="color:#000">cmd</span>))
+</span></span></code></pre></div><p>小辨析：</p>
 <p>策略模式：在调用方需要传入一致的参数.</p>
 <p>命令模式：将不同命令的参数封装在命令对象里，只留一个execute方法。</p>
 <h2 id="适配器模式">适配器模式</h2>
 <p>定义：适配器模式，将一个类的接口，转换成客户期望的另一个接口。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a90d91">defn </span><span style="color:#000">add</span> [<span style="color:#000">x</span> <span style="color:#000">y</span>] (<span style="color:#a90d91">+ </span><span style="color:#000">x</span> <span style="color:#000">y</span>))
-
-(<span style="color:#a90d91">defn </span><span style="color:#000">adopter</span> [<span style="color:#000">x</span> <span style="color:#000">y</span>]
-  (<span style="color:#000">add</span> (<span style="color:#000">Integer/parseInt</span> <span style="color:#000">x</span>) (<span style="color:#000">Integer/parseInt</span> <span style="color:#000">y</span>)))
-
-(<span style="color:#000">adopter</span> <span style="color:#c41a16">&#34;1&#34;</span> <span style="color:#c41a16">&#34;2&#34;</span>)
-</code></pre></div><p>小辨析：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a90d91">defn </span><span style="color:#000">add</span> [<span style="color:#000">x</span> <span style="color:#000">y</span>] (<span style="color:#a90d91">+ </span><span style="color:#000">x</span> <span style="color:#000">y</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a90d91">defn </span><span style="color:#000">adopter</span> [<span style="color:#000">x</span> <span style="color:#000">y</span>]
+</span></span><span style="display:flex;"><span>  (<span style="color:#000">add</span> (<span style="color:#000">Integer/parseInt</span> <span style="color:#000">x</span>) (<span style="color:#000">Integer/parseInt</span> <span style="color:#000">y</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#000">adopter</span> <span style="color:#c41a16">&#34;1&#34;</span> <span style="color:#c41a16">&#34;2&#34;</span>)
+</span></span></code></pre></div><p>小辨析：</p>
 <p>装饰者：　装饰与被装饰者实现同一个接口，在同一个接口内增强功能。</p>
 <p>适配器：　适配与被适配者实现的是两个不同的接口。意图是改变接口，满足客户的期望。</p>
 <p>外观模式：用一个接口实现子系统的一群接口。意图是，提供子系统的一个简化接口。</p>
