@@ -9,9 +9,24 @@ body {
   padding: 0 20px;
 }
 
+
+li {
+  list-style: none;
+}
+
 header#banner a {
   color: #FFB0B0;
   text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav > ul > li {
+  margin-right: 10px;
 }
 
 a {
@@ -32,9 +47,6 @@ article img {
   height: auto;
 }
 
-li {
-  list-style: none;
-}
 
 article li {
   list-style: tibetan;

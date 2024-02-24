@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Articles on Michael Wong</title>
+    <link>http://localhost:1313/en/</link>
+    <description>Recent content in Articles on Michael Wong</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 28 Apr 2021 22:16:59 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The refactoring of logseq</title>
+      <link>http://localhost:1313/en/refactoring-of-logseq/</link>
+      <pubDate>Wed, 28 Apr 2021 22:16:59 +0800</pubDate>
+      <guid>http://localhost:1313/en/refactoring-of-logseq/</guid>
+      <description>We have been worked the refactoring of Logseq since about two months ago. Below I am going to talk bit about it.&#xA;Why does Logseq need refactoring? Logseq was a side project for providing outliner features on org-mode and markdown files by @Tiensonqin. Since it was released, many people like it a lot. With the needs grew, @Tiensonqin add many new features with happiness . Compared to other outliner note-taking apps, Logseq has a lot of manipulation around files, characters, and bytes.</description>
+    </item>
+    <item>
+      <title>Less macros more functions</title>
+      <link>http://localhost:1313/en/less-macro-more-functions/</link>
+      <pubDate>Sun, 05 May 2019 22:49:25 +0800</pubDate>
+      <guid>http://localhost:1313/en/less-macro-more-functions/</guid>
+      <description>Preface This article mainly talks about my experiences of using macros.&#xA;Prerequisite knowledge Understand the basic grammar of Clojure and the primary usage of macros, and have written some running Clojure code. Know the meaning of defmacro, quote (`), unquote(~), unquote-splicing(~@). Know the differences of evaluation between macros and functions. When to use macros? One big problem with macros is that they are hard to understand. So, principally, we should use macros as little as possible.</description>
+    </item>
+  </channel>
+</rss>

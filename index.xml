@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Michael Wong</title>
-    <link>https://www.huangqian.org/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Michael Wong</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <lastBuildDate>Wed, 06 Oct 2021 15:09:26 +0800</lastBuildDate>
-    <atom:link href="https://www.huangqian.org/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Clojure 如何表达 OOP 设计模式</title>
-      <link>https://www.huangqian.org/posts/design-pattern-on-clojurian-eyes/</link>
+      <link>http://localhost:1313/cn/design-pattern-on-clojurian-eyes/</link>
       <pubDate>Wed, 06 Oct 2021 15:09:26 +0800</pubDate>
-      <guid>https://www.huangqian.org/posts/design-pattern-on-clojurian-eyes/</guid>
+      <guid>http://localhost:1313/cn/design-pattern-on-clojurian-eyes/</guid>
       <description>近几年的工作都是写 Clojure ，大多数时间是用函数式编程风格。 OOP 的设计模式在函数式语言里显得非常轻量，有时根本意识不到有些用法是设计模式。简单聊一聊，常用的设计模式在Clojure里可能长什么样子。由于语言类型不同，一些和语言构件相关的模式在 Clojure 里不太需要，比如我在写 Clojure 时就很少需要用迭代器模式。&#xA;对象是 OOP 编程语言中的一等公民，在函数式语言中函数是编程中的一等公民，所以下面有些地方我会直接用函数来代替对象，如工厂模式用生产函数来代替生产对象。&#xA;策略模式 定义：策略模式定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。&#xA;(defn quack [] (println &amp;#34;quack&amp;#34;)) (defn squeak [] (println &amp;#34;squeak&amp;#34;)) (defn make-sound [duck?] (let [sound-f (if duck? quack squeak)] (sound-f))) (make-sound true) 小辨析：&#xA;策略模式：在context对象主动指定哪个策略对象来执行动作。&#xA;状态模式：在context对象中的状态决定使用哪一个state状态对象来操作，state状态对象在执行操作中反过来会改变context对象中的状态。&#xA;单件模式 定义：确保一个类只有一个实例，并提供一个全局访问点。&#xA;(let [conn (delay (create-conn))] (defn get-instance [] @conn)) (get-instance) 工厂模式 定义: 定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。&#xA;(defn create-adder [n] (fn [x] (+ n x))) (map (fn [x] (create-adder x)) (range 10)) 抽象工厂模式在Clojure中似乎和工厂模式没有太多区别。&#xA;装饰者模式 定义：动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。</description>
     </item>
     <item>
       <title>我的思考工具流</title>
-      <link>https://www.huangqian.org/posts/my-thinking-flow/</link>
+      <link>http://localhost:1313/cn/my-thinking-flow/</link>
       <pubDate>Fri, 01 Oct 2021 10:31:05 +0800</pubDate>
-      <guid>https://www.huangqian.org/posts/my-thinking-flow/</guid>
+      <guid>http://localhost:1313/cn/my-thinking-flow/</guid>
       <description>长久以来，我都希望有一款合适的软件可以辅助自己思考。每个人对工具的需求不一样，下面对自己之前的想法和选择做一个总结。&#xA;传统的类似于书本之类的工具，采用的是线性的记录内容。思考不是线性的，如果将思考的内容写到线性工具上，会有许多的不方便，也会损失很多信息。&#xA;我在上大学时候发现了思维导图类工具，迅速地我着迷了起来，只是后来也没有坚持用下去。原因有两个：一是因为我发现很多的导图类的工具会将思考的基本模型抽象成一棵树，二是这类工具一般会用单个文件来限制图谱的范围。我认为，思考应该是无序的网络结构而不是一棵树，二是思考不应当被限制范围，它应当是无限连接并扩展的。&#xA;恰巧最近的工作促使我重新思考了理想工具的样子。&#xA;需求 我常常会对某个情境下的问题有一些思考，这种思考有时会对我产生一些价值。这些思考是一个个很小的思考点。当过了一段时间后，我会自然地脱离了那个情境。即使当时我用笔记下了那时的思考，我发现自己有时也很难准确地理解这个笔记中的含义。我在想，如果有一个工具，将这个思考点与其它的思考点相互连接起来就好了，这样相当于这个思考点就有了上下文。点与点相互连接可以形成一个思考网络。一个维护好的网络，只要能搜索到这个网络，便能很好的复现当时思路。这就创造了一种可能，即我可以不断累加思考的成果，而这些成果的上下文不会丢失。&#xA;由于构建的网络可以永久地保存思考的上下文（即网络），这提供了另一种可能，当我有一个新的想法时，我可以利用搜索，图谱等功能找到新想法与已有网络之间的联系，而这常常可以带来意想不到的发现，我可以利用这个工具将新想法与已有网络联结起来。&#xA;下面简单列举一下我的需求：&#xA;两个核心的需求：一是有一个容器来装一个小粒度的想法，二是有某种机制可以无任何限制地在各个想法之间建立连接。 我需要某种机制来快速记录一些闪念想法。 该工具须提供一个全景的角度来快速浏览相关的想法。 该工具须提供一个机制可根据不同视角对想法进行搜索，这样我可以快速找到相关联的想法，并且让我可以发现想法之间的新联系。 思考是一件很耗费时间和精力的事情，产出的成果常常很有价值，所以数据须完全自己掌握。 自己的对思考模式的理解不断深入，工作流可能也会不断迭代，所以工具要求高度可定制。 软件工具的选择 相对于使用过几十上百种笔记软件的爱好者，我只使用过市面上少数几个类型的笔记软件，后来发现都有一些不太满意的地方。无意评测各类笔记软件，只是对比自己需求进行取舍。&#xA;线性的笔记软件。根据上述的分析，印象笔记，有道云，为知笔记这类工具很难满足需求。&#xA;大纲类的笔记。大纲对页面中的块，天然有父子，同级关系约束，而我需要一种更自由的不受约束载体来装载想法，所以 org-mode, workflowy 不符合我的需求。&#xA;热门的大纲双链类笔记。RoamResearch 有一些优秀特性，而笔记是非常私人的东西，它在数据安全方面无法满足我的需要。Logseq有许多非常优秀的特性，在数据安全方面是比较放心的，只是我在深度思考时候很少用到大纲，此时大纲对我是一种束缚。&#xA;思维导图类软件。文件让想法之间联系非常割裂，树状结构的模型也比较局限，不太适合。&#xA;一番考虑之后，我最后还是决定自己开一个Side Project 来做 &amp;ndash; 这可能是程序员的专属任性。目前这个作品在功能上大致上已经做完了，它还有很多可以改进的地方。下面简单介绍一下：&#xA;ThinkNote 初衷是想让它帮助思考，所以简单地叫它为ThinkNote。如果和其它的笔记软件冲突，可能考虑换一个名字 : )。&#xA;卡片 装载想法最小粒度的容器是一张卡片。&#xA;由于我很少很到富文本，同时为了减少开发工作量，目前的卡片只支持简单的文本格式。&#xA;支持打标签，一个卡片可以打多个标签。标签，可以理解为对相同类型卡片的索引。&#xA;建立连结 在卡片与卡片之间建立连接的方式是在卡片内写上 [[Card ID]] （如 [[V50D0H44NM]]) ，这样就创建了一条从当前卡片指向 ID 为 V50D0H44NM 的卡片的链接。&#xA;图谱 目前可以按tag分类，Card ID，关键字搜索来创建图谱。&#xA;tag 分类 将所有打上tag 的所有卡片搜索出来，并根据卡片之间的联系创建图谱。&#xA;Card ID 将Card ID的卡片以及相关的卡片搜索出来。可以设置一个数字来设置与 Card ID 相关联的距离（即需要几步与Card ID相关联的卡片相连结)。&#xA;在图谱中，可以使用 cmd + left click 来触发按 Card ID 搜索的功能。</description>
     </item>
     <item>
-      <title>The Refactoring Of Logseq</title>
-      <link>https://www.huangqian.org/posts/refactoring-of-logseq/</link>
+      <title>The refactoring of logseq</title>
+      <link>http://localhost:1313/en/refactoring-of-logseq/</link>
       <pubDate>Wed, 28 Apr 2021 22:16:59 +0800</pubDate>
-      <guid>https://www.huangqian.org/posts/refactoring-of-logseq/</guid>
+      <guid>http://localhost:1313/en/refactoring-of-logseq/</guid>
       <description>We have been worked the refactoring of Logseq since about two months ago. Below I am going to talk bit about it.&#xA;Why does Logseq need refactoring? Logseq was a side project for providing outliner features on org-mode and markdown files by @Tiensonqin. Since it was released, many people like it a lot. With the needs grew, @Tiensonqin add many new features with happiness . Compared to other outliner note-taking apps, Logseq has a lot of manipulation around files, characters, and bytes.</description>
     </item>
     <item>
-      <title>Less Macros More Functions</title>
-      <link>https://www.huangqian.org/posts/less-macro-more-functions/</link>
+      <title>Less macros more functions</title>
+      <link>http://localhost:1313/en/less-macro-more-functions/</link>
       <pubDate>Sun, 05 May 2019 22:49:25 +0800</pubDate>
-      <guid>https://www.huangqian.org/posts/less-macro-more-functions/</guid>
+      <guid>http://localhost:1313/en/less-macro-more-functions/</guid>
       <description>Preface This article mainly talks about my experiences of using macros.&#xA;Prerequisite knowledge Understand the basic grammar of Clojure and the primary usage of macros, and have written some running Clojure code. Know the meaning of defmacro, quote (`), unquote(~), unquote-splicing(~@). Know the differences of evaluation between macros and functions. When to use macros? One big problem with macros is that they are hard to understand. So, principally, we should use macros as little as possible.</description>
     </item>
     <item>
       <title></title>
-      <link>https://www.huangqian.org/archives/</link>
+      <link>http://localhost:1313/archives/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.huangqian.org/archives/</guid>
+      <guid>http://localhost:1313/archives/</guid>
       <description></description>
     </item>
     <item>
       <title>Contact</title>
-      <link>https://www.huangqian.org/contact/</link>
+      <link>http://localhost:1313/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.huangqian.org/contact/</guid>
+      <guid>http://localhost:1313/contact/</guid>
       <description>You can leave a message or contact me via Twitter .</description>
     </item>
   </channel>
