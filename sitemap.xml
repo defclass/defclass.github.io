@@ -2,7 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.huangqian.org/en/</loc>
+    <lastmod>2021-10-06T15:09:26+08:00</lastmod>
+  </url><url>
     <loc>https://www.huangqian.org/cn/design-pattern-on-clojurian-eyes/</loc>
+    <lastmod>2021-10-06T15:09:26+08:00</lastmod>
+  </url><url>
+    <loc>https://www.huangqian.org/en/design-pattern-on-clojurian-eyes/</loc>
     <lastmod>2021-10-06T15:09:26+08:00</lastmod>
   </url><url>
     <loc>https://www.huangqian.org/</loc>
@@ -11,11 +17,11 @@
     <loc>https://www.huangqian.org/cn/</loc>
     <lastmod>2021-10-06T15:09:26+08:00</lastmod>
   </url><url>
-    <loc>https://www.huangqian.org/cn/my-thinking-flow/</loc>
+    <loc>https://www.huangqian.org/en/my-thinking-flow/</loc>
     <lastmod>2021-10-01T10:31:05+08:00</lastmod>
   </url><url>
-    <loc>https://www.huangqian.org/en/</loc>
-    <lastmod>2021-04-28T22:16:59+08:00</lastmod>
+    <loc>https://www.huangqian.org/cn/my-thinking-flow/</loc>
+    <lastmod>2021-10-01T10:31:05+08:00</lastmod>
   </url><url>
     <loc>https://www.huangqian.org/en/refactoring-of-logseq/</loc>
     <lastmod>2021-04-28T22:16:59+08:00</lastmod>

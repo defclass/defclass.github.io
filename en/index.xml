@@ -6,17 +6,31 @@
     <description>Recent content in Articles on Michael Wong</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 28 Apr 2021 22:16:59 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 Oct 2021 15:09:26 +0800</lastBuildDate>
     <atom:link href="https://www.huangqian.org/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>The refactoring of logseq</title>
+      <title>Expressing OOP Design Patterns in Clojure</title>
+      <link>https://www.huangqian.org/en/design-pattern-on-clojurian-eyes/</link>
+      <pubDate>Wed, 06 Oct 2021 15:09:26 +0800</pubDate>
+      <guid>https://www.huangqian.org/en/design-pattern-on-clojurian-eyes/</guid>
+      <description>In recent years, my work has mainly involved writing Clojure, predominantly in a functional programming style. Object-oriented programming (OOP) design patterns appear to be lightweight in functional languages, and sometimes one might not even be aware that certain practices are design patterns. Let&amp;rsquo;s discuss how commonly used design patterns might look in Clojure. Due to the different nature of the language, some patterns related to language constructs are not as necessary in Clojure.</description>
+    </item>
+    <item>
+      <title>My Thinking Tool Flow</title>
+      <link>https://www.huangqian.org/en/my-thinking-flow/</link>
+      <pubDate>Fri, 01 Oct 2021 10:31:05 +0800</pubDate>
+      <guid>https://www.huangqian.org/en/my-thinking-flow/</guid>
+      <description>For a long time, I have been hoping for a suitable software to assist my thinking process. Everyone has different needs for tools, and below is a summary of my previous thoughts and choices.&#xA;Traditional tools, such as books, use a linear approach to record content. However, thinking is not linear. If the content of thinking is written on a linear tool, there will be many inconveniences, and much information will be lost.</description>
+    </item>
+    <item>
+      <title>The Refactoring of Logseq</title>
       <link>https://www.huangqian.org/en/refactoring-of-logseq/</link>
       <pubDate>Wed, 28 Apr 2021 22:16:59 +0800</pubDate>
       <guid>https://www.huangqian.org/en/refactoring-of-logseq/</guid>
       <description>We have been worked the refactoring of Logseq since about two months ago. Below I am going to talk bit about it.&#xA;Why does Logseq need refactoring? Logseq was a side project for providing outliner features on org-mode and markdown files by @Tiensonqin. Since it was released, many people like it a lot. With the needs grew, @Tiensonqin add many new features with happiness . Compared to other outliner note-taking apps, Logseq has a lot of manipulation around files, characters, and bytes.</description>
     </item>
     <item>
-      <title>Less macros more functions</title>
+      <title>Less Macros More Functions</title>
       <link>https://www.huangqian.org/en/less-macro-more-functions/</link>
       <pubDate>Sun, 05 May 2019 22:49:25 +0800</pubDate>
       <guid>https://www.huangqian.org/en/less-macro-more-functions/</guid>

@@ -47,9 +47,12 @@ article img {
   height: auto;
 }
 
-
-article li {
+.posts li {
   list-style: tibetan;
+}
+
+article ul {
+  list-style-type: tibetan;
 }
 
 .list-article-time {
