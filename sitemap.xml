@@ -2,33 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/cn/design-pattern-on-clojurian-eyes/</loc>
+    <loc>https://www.huangqian.org/cn/design-pattern-on-clojurian-eyes/</loc>
     <lastmod>2021-10-06T15:09:26+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://www.huangqian.org/</loc>
     <lastmod>2021-10-06T15:09:26+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/cn/</loc>
+    <loc>https://www.huangqian.org/cn/</loc>
     <lastmod>2021-10-06T15:09:26+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/cn/my-thinking-flow/</loc>
+    <loc>https://www.huangqian.org/cn/my-thinking-flow/</loc>
     <lastmod>2021-10-01T10:31:05+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/en/</loc>
+    <loc>https://www.huangqian.org/en/</loc>
     <lastmod>2021-04-28T22:16:59+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/en/refactoring-of-logseq/</loc>
+    <loc>https://www.huangqian.org/en/refactoring-of-logseq/</loc>
     <lastmod>2021-04-28T22:16:59+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/en/less-macro-more-functions/</loc>
+    <loc>https://www.huangqian.org/en/less-macro-more-functions/</loc>
     <lastmod>2019-05-05T22:49:25+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/archives/</loc>
+    <loc>https://www.huangqian.org/archives/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://www.huangqian.org/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>https://www.huangqian.org/contact/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://www.huangqian.org/tags/</loc>
   </url>
 </urlset>
