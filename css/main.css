@@ -51,8 +51,8 @@ article img {
   list-style: tibetan;
 }
 
-article ul {
-  list-style-type: tibetan;
+article ul>li{
+  list-style: tibetan;
 }
 
 .list-article-time {
