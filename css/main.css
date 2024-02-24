@@ -1,0 +1,56 @@
+body {
+  background-color: #EFECEC;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #0C2D57;
+  width: 700px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+header#banner a {
+  color: #FFB0B0;
+  text-decoration: none;
+}
+
+a {
+  color: #FC6736;
+  text-decoration: none;
+}
+
+pre {
+  font-size: 0.88em;
+  padding: 20px;
+  border: #337357 1px dashed;
+}
+
+article img {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 100%;
+  height: auto;
+}
+
+li {
+  list-style: none;
+}
+
+article li {
+  list-style: tibetan;
+}
+
+.list-article-time {
+  font-size: 0.8em;
+  color: grey;
+}
+
+time {
+  font-size: 0.8em;
+  color: #FFB0B0;
+}
+
+.copyright {
+  font-size: 0.9em;
+  color: #FFB0B0;
+}

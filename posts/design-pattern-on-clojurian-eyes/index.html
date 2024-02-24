@@ -1,38 +1,10 @@
 <!DOCTYPE html>
 <html><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Michael Wong&#39;s Site">
     
-    <link rel="shortcut icon" href="https://www.huangqian.org/favicon.ico">
-    
-    <link rel="stylesheet" href="/css/style.min.css">
-
-    <title>Clojure 如何表达 OOP 设计模式</title>
-
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PN3F6HCHZB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-PN3F6HCHZB');
-</script>
-
-
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WLRH33H');</script>
-
-
-</head>
-<body>
-
+    <link rel="stylesheet" href="https://www.huangqian.org/css/main.css" />
+</head><body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WLRH33H"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <header id="banner">
@@ -42,11 +14,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
         </ul>
     </nav>
-</header>
-<main id="content">
+</header><div id="content">
 <article>
     <header id="post-header">
-        <h1>Clojure 如何表达 OOP 设计模式</h1><time>October 6, 2021</time></header><p>近几年的工作都是写 Clojure ，大多数时间是用函数式编程风格。 OOP 的设计模式在函数式语言里显得非常轻量，有时根本意识不到有些用法是设计模式。简单聊一聊，常用的设计模式在Clojure里可能长什么样子。由于语言类型不同，一些和语言构件相关的模式在 Clojure 里不太需要，比如我在写 Clojure 时就很少需要用迭代器模式。</p>
+        <h1>Clojure 如何表达 OOP 设计模式</h1><time>Wed October 6, 2021</time></header><p>近几年的工作都是写 Clojure ，大多数时间是用函数式编程风格。 OOP 的设计模式在函数式语言里显得非常轻量，有时根本意识不到有些用法是设计模式。简单聊一聊，常用的设计模式在Clojure里可能长什么样子。由于语言类型不同，一些和语言构件相关的模式在 Clojure 里不太需要，比如我在写 Clojure 时就很少需要用迭代器模式。</p>
 <p>对象是 OOP 编程语言中的一等公民，在函数式语言中函数是编程中的一等公民，所以下面有些地方我会直接用函数来代替对象，如工厂模式用生产函数来代替生产对象。</p>
 <h2 id="策略模式">策略模式</h2>
 <p>定义：策略模式定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。</p>
@@ -127,7 +98,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>外观模式：用一个接口实现子系统的一群接口。意图是，提供子系统的一个简化接口。</p>
 </article>
 
-        </main><footer id = "footer">  
-  © Michael Wong. All rights reserved.
+        </div><footer id="footer">
+    <p class="copyright">Copyright © Michael Wong</p>
 </footer></body>
 </html>
