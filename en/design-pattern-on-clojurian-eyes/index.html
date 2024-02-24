@@ -23,7 +23,7 @@
 </header><div id="content">
 <article>
     <header id="post-header">
-        <h1>Expressing OOP Design Patterns in Clojure</h1><time>Wed October 6, 2021</time></header><p>In recent years, my work has mainly involved writing Clojure, predominantly in a functional programming style. Object-oriented programming (OOP) design patterns appear to be lightweight in functional languages, and sometimes one might not even be aware that certain practices are design patterns. Let&rsquo;s discuss how commonly used design patterns might look in Clojure. Due to the different nature of the language, some patterns related to language constructs are not as necessary in Clojure. For instance, I rarely find the need for the iterator pattern when writing Clojure.</p>
+        <h1>Expressing OOP Design Patterns in Clojure</h1><time>Published: Wed October 6, 2021</time></header><p>In recent years, my work has mainly involved writing Clojure, predominantly in a functional programming style. Object-oriented programming (OOP) design patterns appear to be lightweight in functional languages, and sometimes one might not even be aware that certain practices are design patterns. Let&rsquo;s discuss how commonly used design patterns might look in Clojure. Due to the different nature of the language, some patterns related to language constructs are not as necessary in Clojure. For instance, I rarely find the need for the iterator pattern when writing Clojure.</p>
 <p>Objects are first-class citizens in OOP languages, while functions take that role in functional languages. Consequently, in the following, I might directly use functions to replace objects, such as using a production function instead of a production object in the factory pattern.</p>
 <h2 id="strategy-pattern">Strategy Pattern</h2>
 <p>Definition: The strategy pattern defines a family of algorithms, encapsulates each one, and makes them interchangeable. This pattern lets the algorithm vary independently from clients that use it.</p>
@@ -102,6 +102,7 @@
 <p>Decorator: Decorator and the decorated object implement the same interface, enhancing functionality within the same interface.</p>
 <p>Adapter: Adapter and the adapted object implement different interfaces. The intention is to change the interface to meet the client&rsquo;s expectations.</p>
 <p>Facade Pattern: Uses one interface to implement a group of interfaces in a subsystem. The intention is to provide a simplified interface for the subsystem.</p>
+<p class="last-updated">Updated on: Sat February 24, 2024</p>
 </article>
 
         </div><footer id="footer">

@@ -23,7 +23,7 @@
 </header><div id="content">
 <article>
     <header id="post-header">
-        <h1>The Refactoring of Logseq</h1><time>Wed April 28, 2021</time></header><p>We have been worked the refactoring of Logseq since about two months ago. Below I am going to talk bit about it.</p>
+        <h1>The Refactoring of Logseq</h1><time>Published: Wed April 28, 2021</time></header><p>We have been worked the refactoring of Logseq since about two months ago. Below I am going to talk bit about it.</p>
 <h2 id="why-does-logseq-need-refactoring">Why does Logseq need refactoring?</h2>
 <p>Logseq was a side project for providing outliner features on org-mode and markdown files by <a href="https://twitter.com/tiensonqin">@Tiensonqin</a>. Since it was released, many people like it a lot.  With the needs grew,  <a href="https://twitter.com/tiensonqin">@Tiensonqin</a> add many new features with happiness .  Compared to other outliner note-taking apps, Logseq has a lot of manipulation around files, characters, and bytes. It led to that codebase quickly grew into such situation &ndash; many functions operate directly on raw string, as the design was easy to implement. With the increasing features, we encountered our problems.</p>
 <p>Most operations are around strings and their positions. When you create, update, delete a block, Logseq had to calculate the start-and-end positions, levels and updating the following blocks&rsquo; positions and levels. In the beginning, we could make it correct by being careful. However, the software complexity grows incredibly fast. When we indent or outdent the blocks in batches,  drag a block tree, drop it into another position, or undo and redo the previous operations,  we still had to calculate the block&rsquo;s position and level, same as the children blocks&rsquo; and the following blocks&rsquo;. Even worse, we need to deal with Unicode characters, like CJK characters, which may occupy 3 or 4 bytes and hardly be calculated right at sometimes. Calculation based on raw strings was the main problem at that time.</p>
@@ -109,6 +109,7 @@
 <p>Logseq Plugin Core is an abstract layer for Developer Plugins. The related API details are also coming soon.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Logseq team is going to refocus on Logseq Core and nail the foundation. I hope we can build a reliable, flexible, and minimal core and bring us a new experience.  The outliner&rsquo;s implementation is side-effect-free and straightforward, and we&rsquo;ll add more tests to make it more robust; The plugin system will bring us more possibilities to meet our needs. We hope you like it.</p>
+<p class="last-updated">Updated on: Sat February 24, 2024</p>
 </article>
 
         </div><footer id="footer">
