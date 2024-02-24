@@ -8,13 +8,6 @@
     <language>en</language>
     <atom:link href="https://www.huangqian.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Awesome X CN</title>
-      <link>https://www.huangqian.org/cn/awesome-x-cn/</link>
-      <pubDate>Sat, 24 Feb 2024 20:54:52 +0900</pubDate>
-      <guid>https://www.huangqian.org/cn/awesome-x-cn/</guid>
-      <description>Github https://github.com/defclass/awesome-x-cn&#xA;开发者 yihong 云风 geniusvczh 蔡學鏞 TualatriX Ning Sun laike9m Yachen Liu 子茄 王子亭 王依依 迟宝宝 Lyric yetone Wey Gu 古思为 Bestony | 白宦成 oldj XiaoPeng Tienson Qin DevOps Forrest 产品 小庞同学 Luo 说不啰嗦 创业者 响马 Cali Castle Jiayuan (Forrest) 国外生活 日本 Cookie 鰻 ϵ( &amp;lsquo;Θ&amp;rsquo; )϶ 魚 Simon Philo 加拿大 MrQ 新西兰 liul85 乙己 资讯 Michael Anti 币股圈 Phyrex 小隐 行走的阿尔法 cryptotrek.eth Wei Huang peicaili 王海滨的财经闲谈 YuanWatching Aiko wuzhe </description>
-    </item>
-    <item>
       <title>Clojure 如何表达 OOP 设计模式</title>
       <link>https://www.huangqian.org/cn/design-pattern-on-clojurian-eyes/</link>
       <pubDate>Wed, 06 Oct 2021 15:09:26 +0800</pubDate>
