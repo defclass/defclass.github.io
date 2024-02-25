@@ -81,6 +81,7 @@ time {
 
 .bi {
   display: inline-block;
+  color: #ddd3d3;
 }
 
 .bi-link {
