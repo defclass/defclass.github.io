@@ -80,11 +80,15 @@ time {
 /*bootstrap SVG-Icons*/
 
 .bi {
-  display: inline-block;
-  color: #ddd3d3;
+  color: #cfd9e5;
+}
+
+.bi:hover{
+  color: #FFB0B0;
 }
 
 .bi-link {
+  display: inline-block;
   width: 1.2rem;
   height: 1.2rem;
 }
