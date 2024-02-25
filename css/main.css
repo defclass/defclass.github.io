@@ -11,7 +11,7 @@ body {
 
 
 li {
-  list-style: none;
+  list-style: tibetan;
 }
 
 header#banner a {
@@ -27,6 +27,7 @@ nav ul {
 
 nav > ul > li {
   margin-right: 10px;
+  list-style: none;
 }
 
 a {
@@ -47,9 +48,6 @@ article img {
   height: auto;
 }
 
-.posts li {
-  list-style: tibetan;
-}
 
 article ul>li{
   list-style: tibetan;
