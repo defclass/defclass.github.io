@@ -27,8 +27,14 @@
 <p>Traditional tools, such as books, use a linear approach to record content. However, thinking is not linear. If the content of thinking is written on a linear tool, there will be many inconveniences, and much information will be lost.</p>
 <p>During my university years, I discovered mind-mapping tools and quickly became fascinated. However, I didn&rsquo;t stick with them for two reasons: firstly, many mind-mapping tools abstract the basic model of thinking into a tree structure, and secondly, these tools often use a single file to limit the scope of the map. I believe that thinking should be an unordered network structure rather than a tree, and thinking should not be restricted in scope; it should be infinite, interconnected, and expandable.</p>
 <p>Coincidentally, my recent work has prompted me to reconsider the ideal form of such a tool.</p>
-<h2 id="requirements">Requirements</h2>
-<p>I often have reflections on problems in certain situations, and these reflections sometimes bring value. These reflections are small individual points of thought. After some time, I naturally move away from that situation. Even if I took notes at that time, I sometimes find it challenging to accurately understand the meaning of those notes. I imagine having a tool that connects these points of thought to each other, providing context to each thought point. Connecting points to form a thinking network can recreate the thought process when maintained properly. A well-maintained network allows me to continuously accumulate the results of my thoughts, with the context of these results not being lost.</p>
+<h2 id="requirements">Requirements
+<a href="#requirements">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+        <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+        <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+    </svg>
+</a>
+</h2><p>I often have reflections on problems in certain situations, and these reflections sometimes bring value. These reflections are small individual points of thought. After some time, I naturally move away from that situation. Even if I took notes at that time, I sometimes find it challenging to accurately understand the meaning of those notes. I imagine having a tool that connects these points of thought to each other, providing context to each thought point. Connecting points to form a thinking network can recreate the thought process when maintained properly. A well-maintained network allows me to continuously accumulate the results of my thoughts, with the context of these results not being lost.</p>
 <p>Since the constructed network can permanently save the context of thinking (i.e., the network), this offers another possibility. When I have a new idea, I can use search, mapping, and other functions to find the connections between the new idea and the existing network. This often leads to unexpected discoveries, and I can use this tool to link new ideas to the existing network.</p>
 <p>Here are my requirements in brief:</p>
 <ul>
@@ -39,8 +45,14 @@
 <li>Thinking is a time-consuming and energy-consuming process, and the results are often valuable, so I must have complete control over the data.</li>
 <li>My understanding of thinking patterns is constantly deepening, and my workflow may also iterate, so the tool requires a high degree of customization.</li>
 </ul>
-<h2 id="software-tool-selection">Software Tool Selection</h2>
-<p>Compared to enthusiasts who have used dozens or even hundreds of note-taking software, I have only used a few types of note-taking software available on the market and found some aspects unsatisfactory. I didn&rsquo;t intend to evaluate various note-taking software; I just compared them based on my own needs.</p>
+<h2 id="software-tool-selection">Software Tool Selection
+<a href="#software-tool-selection">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+        <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+        <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+    </svg>
+</a>
+</h2><p>Compared to enthusiasts who have used dozens or even hundreds of note-taking software, I have only used a few types of note-taking software available on the market and found some aspects unsatisfactory. I didn&rsquo;t intend to evaluate various note-taking software; I just compared them based on my own needs.</p>
 <ul>
 <li>
 <p>Linear note-taking software. According to the above analysis, tools like Evernote, Youdao Cloud, and WizNote are challenging to meet my requirements.</p>
@@ -56,17 +68,41 @@
 </li>
 </ul>
 <p>After careful consideration, I decided to create my own Side Project - perhaps the privilege of a programmer. Currently, the functionality of this project is mostly completed, but there is still much room for improvement. Here is a brief introduction:</p>
-<h2 id="thinknote">ThinkNote</h2>
-<p>The original intention is to help with thinking, so I simply call it ThinkNote. If it conflicts with other note-taking software, I may consider changing the name :).</p>
+<h2 id="thinknote">ThinkNote
+<a href="#thinknote">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+        <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+        <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+    </svg>
+</a>
+</h2><p>The original intention is to help with thinking, so I simply call it ThinkNote. If it conflicts with other note-taking software, I may consider changing the name :).</p>
 <p><img src="/thinking-flow/screenshot.png" alt="screenshot"><img src="" alt=""></p>
-<h3 id="cards">Cards</h3>
-<p>The smallest container for loading ideas is a card.</p>
+<h3 id="cards">Cards
+<a href="#cards">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+        <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+        <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+    </svg>
+</a>
+</h3><p>The smallest container for loading ideas is a card.</p>
 <p>Since I rarely use rich text, and to reduce development workload, the current cards only support simple text formatting.</p>
 <p>Supports tagging, and a card can have multiple tags. Tags can be understood as indexes for cards of the same type.</p>
-<h3 id="establishing-connections">Establishing Connections</h3>
-<p>The way to establish a connection between cards is to write <code>[[Card ID]]</code> inside a card (e.g., <code>[[V50D0H44NM]]</code>), creating a link from the current card to the card with the ID <code>V50D0H44NM</code>.</p>
-<h3 id="graph">Graph</h3>
-<p>Currently, the graph can be created based on tag classification, Card ID, and keyword searches.</p>
+<h3 id="establishing-connections">Establishing Connections
+<a href="#establishing-connections">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+        <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+        <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+    </svg>
+</a>
+</h3><p>The way to establish a connection between cards is to write <code>[[Card ID]]</code> inside a card (e.g., <code>[[V50D0H44NM]]</code>), creating a link from the current card to the card with the ID <code>V50D0H44NM</code>.</p>
+<h3 id="graph">Graph
+<a href="#graph">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+        <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+        <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+    </svg>
+</a>
+</h3><p>Currently, the graph can be created based on tag classification, Card ID, and keyword searches.</p>
 <ul>
 <li>Tag classification</li>
 </ul>
@@ -81,20 +117,38 @@
 </ul>
 <p>Retrieve cards containing specific keywords. If these cards are interconnected, display the connections in the graph.</p>
 <p>In the graph, hovering over each node will display the content of the card.</p>
-<h3 id="review-and-ratings">Review and Ratings</h3>
-<p>Many times, when recording cards, it&rsquo;s about quickly documenting an incomplete idea. Subsequently, I need to organize these cards, including associating them with existing cards in the network, comparing them, and revising related cards. Therefore, I need a Review mechanism.</p>
+<h3 id="review-and-ratings">Review and Ratings
+<a href="#review-and-ratings">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+        <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+        <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+    </svg>
+</a>
+</h3><p>Many times, when recording cards, it&rsquo;s about quickly documenting an incomplete idea. Subsequently, I need to organize these cards, including associating them with existing cards in the network, comparing them, and revising related cards. Therefore, I need a Review mechanism.</p>
 <p>I have designed a rating feature, where each card is divided into 11 rating levels: N, R, C-, C, C+, B-, B, B+, A-, A, A+. A new card is default to N. N (New card) indicates a new card, R (Recycle) indicates a card of little value that has been placed in the recycle bin, and the other 9 levels correspond to the value of the respective ideas.</p>
 <p>If a card is marked as N, it means that this card has not been organized. If marked as non-N, then this card has been organized.</p>
-<h3 id="inappropriate-use-cases">Inappropriate Use Cases</h3>
-<p>The following are known scenarios where ThinkNote is not suitable:</p>
+<h3 id="inappropriate-use-cases">Inappropriate Use Cases
+<a href="#inappropriate-use-cases">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+        <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+        <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+    </svg>
+</a>
+</h3><p>The following are known scenarios where ThinkNote is not suitable:</p>
 <ul>
 <li>Task management.</li>
 <li>Journal notes.</li>
 <li>Calendar reminders.</li>
 <li>Article output. (Can be used as material for article output)</li>
 </ul>
-<h3 id="download">Download</h3>
-<p>Link:
+<h3 id="download">Download
+<a href="#download">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+        <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+        <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+    </svg>
+</a>
+</h3><p>Link:
 <a href="https://github.com/defclass/thinknote/releases">https://github.com/defclass/thinknote/releases</a></p>
 <p>Installation Instructions:
 <a href="https://github.com/defclass/thinknote">https://github.com/defclass/thinknote</a></p>

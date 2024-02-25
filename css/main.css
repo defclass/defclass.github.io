@@ -49,7 +49,7 @@ article img {
 }
 
 
-article ul>li{
+article ul > li {
   list-style: tibetan;
 }
 
@@ -75,4 +75,15 @@ time {
 .copyright {
   font-size: 0.9em;
   color: #FFB0B0;
+}
+
+/*bootstrap SVG-Icons*/
+
+.bi {
+  display: inline-block;
+}
+
+.bi-link {
+  width: 1.2rem;
+  height: 1.2rem;
 }
