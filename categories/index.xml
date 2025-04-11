@@ -38,7 +38,7 @@
 &lt;li&gt;TiddlyWeb&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Logseq：记不那重要的笔记，如流水账。用到双链功能，Youtube链接等。&lt;/li&gt;
+&lt;li&gt;Logseq：记不那重要的笔记，如流水账。用到双链功能，Youtube 链接等。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;ide&#34;&gt;IDE&lt;/h4&gt;
 &lt;ul&gt;
@@ -48,7 +48,7 @@
 &lt;h4 id=&#34;编程辅助&#34;&gt;编程辅助&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;DevToys: 编程工具集。&lt;/li&gt;
-&lt;li&gt;Insomnia: 构造 HTTP 请求（类似于 Postman)。&lt;/li&gt;
+&lt;li&gt;Insomnia: 构造 HTTP 请求（类似于 Postman )。&lt;/li&gt;
 &lt;li&gt;Orbstack: 容器管理。&lt;/li&gt;
 &lt;li&gt;ColorSlurp: 拾色器。&lt;/li&gt;
 &lt;/ul&gt;
@@ -130,7 +130,7 @@
       <pubDate>Wed, 06 Oct 2021 15:09:26 +0800</pubDate>
       
       <guid>https://www.huangqian.org/posts/design-pattern-on-clojurian-eyes/</guid>
-      <description>&lt;p&gt;近几年的工作都是写 Clojure ，大多数时间是用函数式编程风格。 OOP 的设计模式在函数式语言里显得非常轻量，有时根本意识不到有些用法是设计模式。简单聊一聊，常用的设计模式在Clojure里可能长什么样子。由于语言类型不同，一些和语言构件相关的模式在 Clojure 里不太需要，比如我在写 Clojure 时就很少需要用迭代器模式。&lt;/p&gt;
+      <description>&lt;p&gt;近几年的工作都是写 Clojure ，大多数时间是用函数式编程风格。 OOP 的设计模式在函数式语言里显得非常轻量，有时根本意识不到有些用法是设计模式。简单聊一聊，常用的设计模式在 Clojure 里可能长什么样子。由于语言类型不同，一些和语言构件相关的模式在 Clojure 里不太需要，比如我在写 Clojure 时就很少需要用迭代器模式。&lt;/p&gt;
 &lt;p&gt;对象是 OOP 编程语言中的一等公民，在函数式语言中函数是编程中的一等公民，所以下面有些地方我会直接用函数来代替对象，如工厂模式用生产函数来代替生产对象。&lt;/p&gt;
 &lt;h2 id=&#34;策略模式&#34;&gt;策略模式&lt;/h2&gt;
 &lt;p&gt;定义：策略模式定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。&lt;/p&gt;
@@ -143,8 +143,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#000&#34;&gt;make-sound&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;true&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;小辨析：&lt;/p&gt;
-&lt;p&gt;策略模式：在context对象主动指定哪个策略对象来执行动作。&lt;/p&gt;
-&lt;p&gt;状态模式：在context对象中的状态决定使用哪一个state状态对象来操作，state状态对象在执行操作中反过来会改变context对象中的状态。&lt;/p&gt;
+&lt;p&gt;策略模式：在 context 对象主动指定哪个策略对象来执行动作。&lt;/p&gt;
+&lt;p&gt;状态模式：在 context 对象中的状态决定使用哪一个 state 状态对象来操作，state 状态对象在执行操作中反过来会改变 context 对象中的状态。&lt;/p&gt;
 &lt;h2 id=&#34;单件模式&#34;&gt;单件模式&lt;/h2&gt;
 &lt;p&gt;定义：确保一个类只有一个实例，并提供一个全局访问点。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a90d91&#34;&gt;let &lt;/span&gt;[&lt;span style=&#34;color:#000&#34;&gt;conn&lt;/span&gt; (&lt;span style=&#34;color:#000&#34;&gt;delay&lt;/span&gt; (&lt;span style=&#34;color:#000&#34;&gt;create-conn&lt;/span&gt;))]
@@ -159,7 +159,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a90d91&#34;&gt;map &lt;/span&gt;(&lt;span style=&#34;color:#a90d91&#34;&gt;fn &lt;/span&gt;[&lt;span style=&#34;color:#000&#34;&gt;x&lt;/span&gt;] (&lt;span style=&#34;color:#000&#34;&gt;create-adder&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;x&lt;/span&gt;))
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a90d91&#34;&gt;range &lt;/span&gt;&lt;span style=&#34;color:#1c01ce&#34;&gt;10&lt;/span&gt;))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;抽象工厂模式在Clojure中似乎和工厂模式没有太多区别。&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;抽象工厂模式在 Clojure 中似乎和工厂模式没有太多区别。&lt;/p&gt;</description>
     </item>
     
     
@@ -204,7 +204,7 @@
 &lt;/ul&gt;
 &lt;p&gt;一番考虑之后，我最后还是决定自己开一个Side Project 来做 &amp;ndash; 这可能是程序员的专属任性。目前这个作品在功能上大致上已经做完了，它还有很多可以改进的地方。下面简单介绍一下：&lt;/p&gt;
 &lt;h2 id=&#34;thinknote&#34;&gt;ThinkNote&lt;/h2&gt;
-&lt;p&gt;初衷是想让它帮助思考，所以简单地叫它为ThinkNote。如果和其它的笔记软件冲突，可能考虑换一个名字 : )。&lt;/p&gt;
+&lt;p&gt;初衷是想让它帮助思考，所以简单地叫它为 ThinkNote 。如果和其它的笔记软件冲突，可能考虑换一个名字 : )。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://www.huangqian.org/thinking-flow/screenshot.png&#34; alt=&#34;sreenshot&#34;&gt;&lt;img src=&#34;&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;卡片&#34;&gt;卡片&lt;/h3&gt;
 &lt;p&gt;装载想法最小粒度的容器是一张卡片。&lt;/p&gt;
