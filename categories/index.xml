@@ -59,6 +59,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Logseq：记不那重要的笔记，如流水账。用到双链功能，Youtube 链接等。&lt;/li&gt;
+&lt;li&gt;Anki: 记忆卡片。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;ide&#34;&gt;IDE&lt;/h4&gt;
 &lt;ul&gt;
@@ -81,8 +82,8 @@
 &lt;h3 id=&#34;邮件&#34;&gt;邮件&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;GMail&lt;/li&gt;
-&lt;li&gt;Outlook Mail&lt;/li&gt;
 &lt;li&gt;Thunderbird&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;Outlook Mail&lt;/del&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;沟通&#34;&gt;沟通&lt;/h3&gt;
 &lt;ul&gt;
@@ -111,6 +112,7 @@
 &lt;/ul&gt;
 &lt;h3 id=&#34;影音&#34;&gt;影音&lt;/h3&gt;
 &lt;ul&gt;
+&lt;li&gt;Final Cut Pro: 视频编辑。&lt;/li&gt;
 &lt;li&gt;IINA&lt;/li&gt;
 &lt;li&gt;VLC&lt;/li&gt;
 &lt;li&gt;Foobar2000&lt;/li&gt;
@@ -122,15 +124,15 @@
 &lt;li&gt;Jietu: 截图工具&lt;/li&gt;
 &lt;li&gt;ImageOptim: 压缩图片&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;加密货币&#34;&gt;加密货币&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Coin Tick: 在系统通知栏看价格。&lt;/li&gt;
-&lt;/ul&gt;
 &lt;h2 id=&#34;付费互联网服务&#34;&gt;付费互联网服务&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Amazon prime&lt;/li&gt;
-&lt;li&gt;Curiositystream:  科普视频。&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;Curiositystream:  科普视频。&lt;/del&gt;&lt;/li&gt;
 &lt;li&gt;Leetcode 会员&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;加密货币&#34;&gt;加密货币&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Coin Tick: 在系统通知栏看价格。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;硬件&#34;&gt;硬件&lt;/h2&gt;
 &lt;ul&gt;
