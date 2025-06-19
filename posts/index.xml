@@ -92,14 +92,12 @@
 &lt;/ul&gt;
 &lt;h3 id=&#34;系统&#34;&gt;系统&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;Rycast: 快捷唤起。&lt;/li&gt;
+&lt;li&gt;Raycast: 快捷唤起。&lt;/li&gt;
 &lt;li&gt;VeraCrypt: 磁盘全盘加密。&lt;/li&gt;
 &lt;li&gt;OmniDiskSweeper： Mac 硬盘清理。&lt;/li&gt;
 &lt;li&gt;&lt;del&gt;CleverFiles Cleaner:  Mac 硬盘清理。&lt;/del&gt;  有时容量会算不准，后续逐渐弃用。&lt;/li&gt;
 &lt;li&gt;VitrualBox: 虚拟化工具。&lt;/li&gt;
 &lt;li&gt;Clocker: 时区工具。&lt;/li&gt;
-&lt;li&gt;RunCat: 系统运行信息。&lt;/li&gt;
-&lt;li&gt;ClipMenu: 剪切板工具。&lt;/li&gt;
 &lt;li&gt;Motrix: 下载工具。&lt;/li&gt;
 &lt;li&gt;Keka: 压缩工具。&lt;/li&gt;
 &lt;li&gt;Weather for Status：天气工具。&lt;/li&gt;
