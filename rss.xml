@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Michael Wong&apos;s blog</title>
+    <link>https://huangqian.org</link>
+    <description>My blog</description>
+    <language>zh-CN</language>
+    <managingEditor>w&lt;at&gt;huangqian.org</managingEditor>
+    <webMaster>w&lt;at&gt;huangqian.org</webMaster>
+    <lastBuildDate>Wed, 08 Oct 2025 15:14:36 +0900</lastBuildDate>
+    <generator>Emacs Org-mode Blog System</generator>
+    <atom:link href="https://huangqian.org/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>先飞的笨鸟</title>
+      <link>https://huangqian.org/posts/do-you-still-love-life.html</link>
+      <guid>https://huangqian.org/posts/do-you-still-love-life.html</guid>
+      <pubDate>Sat, 31 May 2025 12:00:00 +0900</pubDate>
+      <description>上学的时候，不理解父母的期盼，以至于有些叛逆。模仿着韩寒那一批少年作家的样子，怼天怼地，怼老师怼父母。</description>
+    </item>
+    <item>
+      <title>我的互联网生存工具</title>
+      <link>https://huangqian.org/posts/my-toolkit.html</link>
+      <guid>https://huangqian.org/posts/my-toolkit.html</guid>
+      <pubDate>Sun, 25 Feb 2024 12:00:00 +0900</pubDate>
+      <description>   由于日常用电脑以写代码和文字为主，文字相关的工具会很常用。</description>
+    </item>
+    <item>
+      <title>Clojure 如何表达 OOP 设计模式</title>
+      <link>https://huangqian.org/posts/design-pattern-on-clojurian-eyes.html</link>
+      <guid>https://huangqian.org/posts/design-pattern-on-clojurian-eyes.html</guid>
+      <pubDate>Wed, 06 Oct 2021 12:00:00 +0900</pubDate>
+      <description>近几年的工作都是写 Clojure ，大多数时间是用函数式编程风格。 OOP 的设计模式在函数式语言里显得非常轻量，有时根本意识不到有些用法是设计模式。简单聊一聊，常用的设计模式在 Clojure 里可能长什么样子。由于语言类型不同，一些和语言构件相关的模式在 Clojure 里不太需要，比如我在写 Clojure 时就很少需要用迭代器模式。</description>
+    </item>
+    <item>
+      <title>我的思考工具流</title>
+      <link>https://huangqian.org/posts/my-thinking-flow.html</link>
+      <guid>https://huangqian.org/posts/my-thinking-flow.html</guid>
+      <pubDate>Fri, 01 Oct 2021 12:00:00 +0900</pubDate>
+      <description>长久以来，我都希望有一款合适的软件可以辅助自己思考。每个人对工具的需求不一样，下面对自己之前的想法和选择做一个总结。</description>
+    </item>
+  </channel>
+</rss>
