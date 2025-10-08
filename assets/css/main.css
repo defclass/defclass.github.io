@@ -821,7 +821,7 @@ th {
 
 /* 引用样式 */
 blockquote {
-  border-left: 4px solid var(--accent-color);
+  border-left: 2px solid grey;
   padding-left: 1rem;
   margin: 1rem 0;
   font-style: italic;
