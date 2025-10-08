@@ -76,7 +76,7 @@ body {
 .site-nav a {
   color: var(--light-text);
   text-decoration: none;
-  margin-right: 2rem;
+  margin-right: 1.2rem;
   font-size: 0.9rem;
   /* 导航链接中英文优化 */
   letter-spacing: 0.05em;
@@ -995,7 +995,7 @@ pre:hover .copy-code-button {
   
   .site-nav a {
     display: inline-block;
-    margin-right: 1.8rem;
+    margin-right: 1.2rem;
     margin-bottom: 0.3rem;
     font-size: 1rem;
     padding: 0.3rem 0;
