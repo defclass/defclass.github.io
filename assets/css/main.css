@@ -1,6 +1,5 @@
 /* 博客主样式 */
 :root {
-  /* Colors */
   --primary-color: #2c3e50;
   --secondary-color: #3498db;
   --accent-color: #c41a16;
@@ -10,19 +9,18 @@
   --light-bg: #f8f9fa;
   --border-color: #e1e8ed;
   --code-bg: #fafbfc;
-  
-  /* Layout */
-  --max-width: 800px;
   --shadow: 0 2px 4px rgba(0,0,0,0.1);
   --radius: 6px;
-  
-  /* Typography */
-  --font-family: "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "SimHei", 
-                 "Inter", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  --code-font: "Courier New", "Consolas", monospace;
+  --max-width: 800px;
+  /* 优化中英文混排字体 */
+  --font-family: 
+    "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "SimHei",
+    "Inter", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --code-font: 
+    "Courier New", "Consolas", monospace;
 }
 
-/* ========== 基础样式 ========== */
+/* 基础样式 */
 * {
   box-sizing: border-box;
 }
@@ -34,7 +32,10 @@ body {
   background-color: var(--bg-color);
   margin: 0;
   padding: 0;
+  width: 100%;
   font-weight: 400;
+
+  /* 优化中英文混排 */
   font-feature-settings: "kern" 1, "liga" 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -46,44 +47,10 @@ body {
   margin: 0 auto;
   padding: 0 20px;
   width: 100%;
+  box-sizing: border-box;
 }
 
-
-
-/* ========== 布局和容器 ========== */
-#content.content {
-  max-width: var(--max-width);
-  margin: 0 auto 3rem auto;
-  padding: 0 20px;
-}
-
-#preamble,
-#postamble {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-#preamble.status,
-#postamble.status {
-  max-width: none;
-  margin: 0;
-  padding: 0;
-}
-
-.site-header,
-.site-footer {
-  width: 100%;
-}
-
-.site-header .container,
-.site-footer .container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ========== 头部和导航 ========== */
+/* 头部样式 */
 .site-header {
   background-color: var(--bg-color);
   border-bottom: 1px solid var(--border-color);
@@ -111,6 +78,7 @@ body {
   text-decoration: none;
   margin-right: 2rem;
   font-size: 0.9rem;
+  /* 导航链接中英文优化 */
   letter-spacing: 0.05em;
   white-space: nowrap;
 }
@@ -119,7 +87,67 @@ body {
   color: var(--accent-color);
 }
 
-/* ========== 标题 ========== */
+/* 内容样式 */
+#content.content {
+  max-width: var(--max-width) !important;
+  margin: 0 auto 3rem auto !important;
+  padding: 0 20px !important;
+  box-sizing: border-box;
+}
+
+/* 如果有postamble和preamble，也要居中 */
+#preamble,
+#postamble {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 针对实际生成的HTML结构进行居中 */
+#content.content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* 确保preamble和postamble不影响布局 */
+#preamble.status,
+#postamble.status {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header 和 Footer 保持全宽，但内容居中 */
+.site-header,
+.site-footer {
+  width: 100%;
+}
+
+.site-header .container,
+.site-footer .container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 重要：覆盖之前可能冲突的样式 */
+body > #preamble,
+body > #content,
+body > #postamble {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 只有content内的内容才需要居中约束 */
+#content.content {
+  max-width: var(--max-width) !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+}
+
 .title {
   font-size: 2rem;
   font-weight: 400;
@@ -134,7 +162,6 @@ body {
   margin-bottom: 2rem;
 }
 
-/* ========== 基础排版 ========== */
 /* 文章元信息 */
 .post-meta {
   color: var(--light-text);
@@ -142,8 +169,9 @@ body {
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border-color);
+  /* 日期和元信息的中英文混排优化 */
   letter-spacing: 0.03em;
-  font-feature-settings: "tnum" 1;
+  font-feature-settings: "tnum" 1; /* 等宽数字 */
 }
 
 /* 标题样式 */
@@ -153,9 +181,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
   font-weight: 400;
   line-height: 1.3;
-  word-break: keep-all;
-  overflow-wrap: break-word;
-  letter-spacing: 0.02em;
 }
 
 h1 { font-size: 2rem; }
@@ -166,74 +191,127 @@ h4 { font-size: 1.1rem; }
 /* 段落和文本 */
 p {
   margin-bottom: 1.2rem;
+  /* 中英文混排优化 */
+  text-align: justify;  /* 两端对齐，改善中文换行 */
+  text-justify: inter-ideograph;  /* 中文字符间距调整 */
+  word-break: normal;  /* 使用正常的换行规则 */
+  overflow-wrap: normal;  /* 不强制换行 */
+  white-space: normal;
+  /* 中文字符间距优化 - 减少间距以改善换行 */
+  letter-spacing: 0;
+  /* 增强正文的可读性 */
   font-size: 1rem;
   line-height: 1.7;
-  text-align: justify;
-  text-justify: inter-ideograph;
-  word-break: normal;
-  overflow-wrap: normal;
-  letter-spacing: 0;
-  word-spacing: 0;
+}
+
+/* 优化中英文混排的字符间距 */
+p, 
+.post-meta,
+.post-list,
+blockquote {
+  /* 优化文本渲染 */
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  /* 针对中英文混排的间距优化 - 减少间距避免影响换行 */
+  word-spacing: 0;
 }
 
-/* 链接样式 */
-a {
-  color: var(--accent-color);
-  text-decoration: none;
-  word-break: keep-all;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* ========== 中英文排版优化 ========== */
-/* 中文内容优化 */
+/* 中文内容排版优化 */
 html[lang^="zh"] body,
 :lang(zh) body,
 :lang(zh-CN) body {
-  font-family: "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", "Microsoft YaHei", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  word-spacing: 0;
   line-height: 1.75;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 html[lang^="zh"] p,
+html[lang^="zh"] .post-meta,
 html[lang^="zh"] li,
 html[lang^="zh"] blockquote,
 :lang(zh) p,
+:lang(zh) .post-meta,
 :lang(zh) li,
 :lang(zh) blockquote,
 :lang(zh-CN) p,
+:lang(zh-CN) .post-meta,
 :lang(zh-CN) li,
 :lang(zh-CN) blockquote {
+  letter-spacing: 0;
+  word-spacing: 0;
   line-height: 1.9;
   margin-bottom: 1.45rem;
+  font-weight: 400;
+  color: #2a2a2a;
+  word-break: normal;
+  overflow-wrap: normal;
+  text-align: justify;
+  text-justify: inter-ideograph;
 }
 
-html[lang^="zh"] h1, html[lang^="zh"] h2, html[lang^="zh"] h3,
-html[lang^="zh"] h4, html[lang^="zh"] h5, html[lang^="zh"] h6,
-:lang(zh) h1, :lang(zh) h2, :lang(zh) h3,
-:lang(zh) h4, :lang(zh) h5, :lang(zh) h6,
-:lang(zh-CN) h1, :lang(zh-CN) h2, :lang(zh-CN) h3,
-:lang(zh-CN) h4, :lang(zh-CN) h5, :lang(zh-CN) h6 {
+html[lang^="zh"] h1,
+html[lang^="zh"] h2,
+html[lang^="zh"] h3,
+html[lang^="zh"] h4,
+html[lang^="zh"] h5,
+html[lang^="zh"] h6,
+:lang(zh) h1,
+:lang(zh) h2,
+:lang(zh) h3,
+:lang(zh) h4,
+:lang(zh) h5,
+:lang(zh) h6,
+:lang(zh-CN) h1,
+:lang(zh-CN) h2,
+:lang(zh-CN) h3,
+:lang(zh-CN) h4,
+:lang(zh-CN) h5,
+:lang(zh-CN) h6 {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  font-weight: 500;
   letter-spacing: 0.04em;
+  word-spacing: 0.05em;
+  line-height: 1.5;
   margin-top: 2.4rem;
   margin-bottom: 1.1rem;
+  color: var(--primary-color);
 }
 
-/* 英文内容优化 */
+html[lang^="zh"] .site-title,
+html[lang^="zh"] .title,
+:lang(zh) .site-title,
+:lang(zh) .title,
+:lang(zh-CN) .site-title,
+:lang(zh-CN) .title {
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+html[lang^="zh"] li,
+:lang(zh) li,
+:lang(zh-CN) li {
+  line-height: 1.85;
+  margin-bottom: 0.65rem;
+}
+
+/* 英文内容排版优化 */
 html[lang^="en"] body,
 :lang(en) body {
   font-family: "Inter", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   letter-spacing: 0.01em;
+  word-spacing: 0;
   font-feature-settings: "kern" 1, "liga" 1, "lnum" 1;
 }
 
 html[lang^="en"] p,
+html[lang^="en"] .post-meta,
 html[lang^="en"] li,
 html[lang^="en"] blockquote,
 :lang(en) p,
+:lang(en) .post-meta,
 :lang(en) li,
 :lang(en) blockquote {
   letter-spacing: 0.01em;
@@ -241,21 +319,55 @@ html[lang^="en"] blockquote,
   line-height: 1.6;
   margin-bottom: 1.1rem;
   font-weight: 350;
+  color: #2b2b2b;
 }
 
-html[lang^="en"] h1, html[lang^="en"] h2, html[lang^="en"] h3,
-html[lang^="en"] h4, html[lang^="en"] h5, html[lang^="en"] h6,
-:lang(en) h1, :lang(en) h2, :lang(en) h3,
-:lang(en) h4, :lang(en) h5, :lang(en) h6 {
+html[lang^="en"] h1,
+html[lang^="en"] h2,
+html[lang^="en"] h3,
+html[lang^="en"] h4,
+html[lang^="en"] h5,
+html[lang^="en"] h6,
+:lang(en) h1,
+:lang(en) h2,
+:lang(en) h3,
+:lang(en) h4,
+:lang(en) h5,
+:lang(en) h6 {
   font-family: "Inter", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
   font-weight: 500;
   letter-spacing: 0.008em;
+  word-spacing: 0;
   line-height: 1.35;
   margin-top: 1.8rem;
   margin-bottom: 0.9rem;
 }
 
-/* ========== 列表样式 ========== */
+html[lang^="en"] .site-title,
+html[lang^="en"] .title,
+:lang(en) .site-title,
+:lang(en) .title {
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+
+html[lang^="en"] .site-nav a,
+:lang(en) .site-nav a {
+  letter-spacing: 0.02em;
+  word-spacing: 0;
+}
+
+/* 链接样式 */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 列表样式 */
 ul, ol {
   margin-bottom: 1rem;
   padding-left: 2rem;
@@ -263,22 +375,21 @@ ul, ol {
 
 li {
   margin-bottom: 0.3rem;
-  word-break: keep-all;
-  overflow-wrap: break-word;
 }
 
-/* 首页文章列表 - 更紧凑 */
+/* 首页文章列表样式优化 - 更紧凑 */
 #content ul li {
   margin-bottom: 0.1rem;
   line-height: 1.6;
 }
 
+/* 确保其他页面的列表保持正常间距 */
 .post-content ul li,
 .content ul li {
   margin-bottom: 0.3rem;
 }
 
-/* ========== 代码样式 ========== */
+/* 代码样式 */
 code {
   background-color: var(--code-bg);
   padding: 0.2rem 0.4rem;
@@ -294,7 +405,6 @@ pre {
   overflow-x: auto;
   margin-bottom: 1rem;
   border: 1px solid var(--border-color);
-  position: relative;
 }
 
 pre code {
@@ -307,34 +417,391 @@ pre code {
   font-family: var(--code-font);
 }
 
-/* 代码复制按钮 */
-.copy-code-btn,
-.copy-code-button {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: var(--secondary-color);
-  color: white;
-  border: none;
-  padding: 0.3rem 0.6rem;
-  border-radius: 3px;
-  font-size: 0.8rem;
-  cursor: pointer;
+/* 目录(TOC)样式 - 书签式 */
+#table-of-contents,
+.table-of-contents {
+  position: fixed;
+  top: 100px;
+  left: -260px;
+  width: 240px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  padding: 1rem;
+  margin: 0;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.06);
+  z-index: 100;
+  /* 默认隐藏在左侧屏幕外 */
   opacity: 0;
-  transition: opacity 0.2s;
 }
 
-pre:hover .copy-code-btn,
-pre:hover .copy-code-button {
+/* 弱化TOC滚动条 */
+#table-of-contents::-webkit-scrollbar,
+.table-of-contents::-webkit-scrollbar {
+  width: 2px;
+}
+
+#table-of-contents::-webkit-scrollbar-track,
+.table-of-contents::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#table-of-contents::-webkit-scrollbar-thumb,
+.table-of-contents::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 1px;
+}
+
+#table-of-contents::-webkit-scrollbar-thumb:hover,
+.table-of-contents::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* 当TOC有内容时显示 */
+#table-of-contents.toc-visible,
+.table-of-contents.toc-visible {
+  left: 0;
   opacity: 1;
 }
 
-.copy-code-btn:hover,
-.copy-code-button:hover {
-  background: var(--primary-color);
+/* TOC切换按钮 - 书签式 */
+.toc-toggle {
+  position: fixed;
+  top: 140px;
+  left: 0;
+  width: 18px;
+  height: 50px;
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  color: var(--text-color);
+  border: 1px solid #e1e4e8;
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  z-index: 101;
+  font-size: 8px;
+  font-family: Arial, sans-serif;
+  font-weight: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 1px;
 }
 
-/* ========== 表格样式 ========== */
+.toc-toggle:hover {
+  left: 2px;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+}
+
+.toc-toggle.active {
+  display: none;
+}
+
+/* TOC书签 - 始终跟随TOC */
+.toc-bookmark {
+  position: fixed;
+  top: 115px;
+  left: 0;
+  width: 18px;
+  height: 45px;
+  background: rgba(248, 250, 252, 0.9);
+  color: rgba(100, 116, 139, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  z-index: 102;
+  font-size: 7px;
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  font-weight: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.05);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 1px;
+  opacity: 0.6;
+}
+
+.toc-bookmark:hover {
+  opacity: 0.9;
+  color: rgba(100, 116, 139, 1);
+}
+
+/* 当TOC隐藏时，书签在屏幕左边缘 */
+body:not(.toc-active) .toc-bookmark {
+  left: 0;
+}
+
+/* 当TOC显示时，书签移动到TOC右边缘 */
+body.toc-active .toc-bookmark {
+  left: 240px;
+}
+
+
+
+/* 隐藏原来的切换按钮 */
+.toc-toggle {
+  display: none;
+}
+
+#table-of-contents h2,
+.table-of-contents h2 {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  border: none;
+  text-transform: none;
+  letter-spacing: normal;
+  position: sticky;
+  top: 0;
+  background: inherit;
+  z-index: 1;
+  position: relative;
+}
+
+/* TOC标题样式 - 保留原文用于语言检测，但用CSS替换显示 */
+#table-of-contents h2,
+.table-of-contents h2 {
+  position: relative;
+  font-size: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* 保留原始内容供JavaScript检测，但不显示 */
+}
+
+#table-of-contents h2::before,
+.table-of-contents h2::before {
+  content: "目录";
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(100, 116, 139, 0.5);
+  display: block;
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+/* 英文页面的TOC标题 */
+html[lang^="en"] #table-of-contents h2::before,
+html[lang^="en"] .table-of-contents h2::before,
+.toc-lang-en #table-of-contents h2::before,
+.toc-lang-en .table-of-contents h2::before {
+  content: "Contents";
+  color: rgba(100, 116, 139, 0.5);
+}
+
+/* TOC列表样式 */
+#table-of-contents ul,
+.table-of-contents ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#table-of-contents > div > ul,
+.table-of-contents > div > ul {
+  margin: 0;
+}
+
+/* TOC链接样式 - 弱化版 */
+#table-of-contents a,
+.table-of-contents a {
+  color: rgba(100, 116, 139, 0.55);
+  text-decoration: none;
+  display: block;
+  padding: 0.3rem 0;
+  margin: 0.03rem 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  position: relative;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+#table-of-contents a:hover,
+.table-of-contents a:hover {
+  color: rgba(100, 116, 139, 0.8);
+  text-decoration: none;
+}
+
+/* TOC活动状态样式 - 弱化版 */
+#table-of-contents a.active,
+.table-of-contents a.active {
+  color: rgba(100, 116, 139, 0.8);
+  font-weight: 500;
+}
+
+/* TOC层级缩进 */
+#table-of-contents li,
+.table-of-contents li {
+  margin: 0;
+}
+
+/* TOC层级样式 - 极简版 */
+#table-of-contents ul ul li,
+.table-of-contents ul ul li {
+  margin-left: 0.8rem;
+}
+
+#table-of-contents ul ul ul li,
+.table-of-contents ul ul ul li {
+  margin-left: 1.6rem;
+}
+
+/* 四级及以下标题 - 简洁版 */
+#table-of-contents ul ul ul ul li,
+.table-of-contents ul ul ul ul li {
+  margin-left: 2.5rem;
+}
+
+#table-of-contents ul ul ul ul li > a,
+.table-of-contents ul ul ul ul li > a {
+  font-size: 0.75rem;
+  color: var(--light-text);
+  opacity: 0.8;
+}
+
+/* TOC折叠功能 - 浮动版 */
+#table-of-contents.collapsed > div > ul,
+.table-of-contents.collapsed > div > ul {
+  display: none;
+}
+
+#table-of-contents h2,
+.table-of-contents h2 {
+  cursor: pointer;
+  user-select: none;
+}
+
+#table-of-contents h2::after,
+.table-of-contents h2::after {
+  content: "▼";
+  float: right;
+  font-size: 0.7rem;
+  font-weight: normal;
+  color: var(--light-text);
+  transition: transform 0.2s ease;
+}
+
+#table-of-contents.collapsed h2::after,
+.table-of-contents.collapsed h2::after {
+  transform: rotate(-90deg);
+}
+
+/* TOC关闭按钮已被书签替代，隐藏 */
+.toc-close {
+  display: none;
+}
+
+/* TOC移动端和小屏幕优化 */
+@media (max-width: 1200px) {
+  /* 在中等屏幕上调整TOC宽度 */
+  #table-of-contents,
+  .table-of-contents {
+    width: 220px;
+    left: -220px;
+  }
+  
+  /* 调整书签位置 */
+  body.toc-active .toc-bookmark {
+    left: 220px;
+  }
+}
+
+
+
+/* 宽屏幕优化：为内容腾出空间 */
+@media (min-width: 1400px) {
+  /* 只调整主内容区域的左边距，不影响header */
+  body.toc-active #content.content {
+    margin-left: 260px;
+  }
+  
+  /* 宽屏幕上TOC稍微宽一点 */
+  #table-of-contents,
+  .table-of-contents {
+    width: 240px;
+    left: -240px;
+  }
+  
+  /* 宽屏幕书签位置 */
+  body.toc-active .toc-bookmark {
+    left: 240px;
+  }
+}
+
+/* 代码复制按钮样式 */
+.copy-code-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+pre:hover .copy-code-btn {
+  opacity: 1;
+}
+
+.copy-code-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* 键盘导航支持 */
+.toc-toggle:focus,
+.toc-close:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* 动画性能优化 */
+#table-of-contents,
+.table-of-contents,
+.toc-toggle {
+  will-change: transform;
+}
+
+/* 深色主题适配 */
+@media (prefers-color-scheme: dark) {
+  #table-of-contents,
+  .table-of-contents {
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .toc-toggle {
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .toc-close {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .toc-close:hover {
+    background: rgba(255, 0, 0, 0.2);
+  }
+}
+
+/* 表格样式 */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -352,160 +819,16 @@ th {
   font-weight: 600;
 }
 
-/* ========== 引用样式 ========== */
+/* 引用样式 */
 blockquote {
   border-left: 4px solid var(--accent-color);
   padding-left: 1rem;
   margin: 1rem 0;
   font-style: italic;
   color: var(--light-text);
-  word-break: keep-all;
-  overflow-wrap: break-word;
 }
 
-/* ========== 目录(TOC)样式 ========== */
-#table-of-contents,
-.table-of-contents {
-  position: fixed;
-  top: 100px;
-  left: -260px;
-  width: 240px;
-  max-height: calc(100vh - 140px);
-  overflow-y: auto;
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-left: none;
-  border-radius: 0 6px 6px 0;
-  padding: 1rem;
-  margin: 0;
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.06);
-  z-index: 100;
-  opacity: 0;
-  transition: left 0.3s ease, opacity 0.3s ease;
-}
-
-#table-of-contents.toc-visible,
-.table-of-contents.toc-visible {
-  left: 0;
-  opacity: 1;
-}
-
-/* TOC 滚动条样式 */
-#table-of-contents::-webkit-scrollbar,
-.table-of-contents::-webkit-scrollbar {
-  width: 2px;
-}
-
-#table-of-contents::-webkit-scrollbar-track,
-.table-of-contents::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-#table-of-contents::-webkit-scrollbar-thumb,
-.table-of-contents::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 1px;
-}
-
-/* TOC 书签按钮 */
-.toc-bookmark {
-  position: fixed;
-  top: 115px;
-  left: 0;
-  width: 18px;
-  height: 45px;
-  background: rgba(248, 250, 252, 0.9);
-  color: rgba(100, 116, 139, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-left: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  z-index: 102;
-  font-size: 7px;
-  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.05);
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  letter-spacing: 1px;
-  opacity: 0.6;
-  transition: opacity 0.3s ease, left 0.3s ease;
-}
-
-body.toc-active .toc-bookmark {
-  left: 240px;
-}
-
-.toc-bookmark:hover {
-  opacity: 0.9;
-}
-
-/* TOC 标题 */
-#table-of-contents h2::before,
-.table-of-contents h2::before {
-  content: "目录";
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: rgba(100, 116, 139, 0.5);
-  display: block;
-  margin-bottom: 0.8rem;
-}
-
-html[lang^="en"] #table-of-contents h2::before,
-html[lang^="en"] .table-of-contents h2::before {
-  content: "Contents";
-}
-
-#table-of-contents h2,
-.table-of-contents h2 {
-  font-size: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-/* TOC 列表和链接 */
-#table-of-contents ul,
-.table-of-contents ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-#table-of-contents a,
-.table-of-contents a {
-  color: rgba(100, 116, 139, 0.55);
-  text-decoration: none;
-  display: block;
-  padding: 0.3rem 0;
-  font-size: 0.85rem;
-  line-height: 1.4;
-  word-wrap: break-word;
-  transition: color 0.2s ease;
-}
-
-#table-of-contents a:hover,
-.table-of-contents a:hover,
-#table-of-contents a.active,
-.table-of-contents a.active {
-  color: rgba(100, 116, 139, 0.8);
-}
-
-/* TOC 层级缩进 */
-#table-of-contents ul ul li,
-.table-of-contents ul ul li {
-  margin-left: 0.8rem;
-}
-
-#table-of-contents ul ul ul li,
-.table-of-contents ul ul ul li {
-  margin-left: 1.6rem;
-}
-
-/* ========== 图片样式 ========== */
+/* 图片样式 */
 img {
   max-width: 100%;
   height: auto;
@@ -513,13 +836,19 @@ img {
   margin: 1rem 0;
 }
 
+/* 博客图片特殊样式 */
 img.blog-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  margin: 1.5rem 0;
   box-shadow: var(--shadow);
   display: block;
-  margin: 1.5rem auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* ========== 文章列表样式 ========== */
+/* 文章列表样式 */
 .post-list {
   list-style: none;
   padding: 0;
@@ -545,7 +874,7 @@ img.blog-image {
   font-size: 0.9rem;
 }
 
-/* ========== 底部样式 ========== */
+/* 底部样式 */
 .site-footer {
   background-color: transparent;
   padding: 2rem 0 3rem 0;
@@ -568,90 +897,464 @@ img.blog-image {
   opacity: 1;
 }
 
-/* ========== 代码高亮样式 ========== */
+/* 代码高亮样式 - 增强和修正 */
 .hljs {
   display: block;
   overflow-x: auto;
   padding: 1rem;
   border-radius: var(--radius);
-  font-family: var(--code-font);
+  font-family: var(--code-font) !important;
   font-size: 0.85rem;
   line-height: 1.5;
 }
 
+/* highlight.js会提供完整的语法高亮样式，这里只做一些增强 */
+
+/* 确保代码块的容器样式正确 */
 pre code.hljs {
   background: transparent;
   padding: 0;
 }
 
+/* 优化代码块的边框和阴影 */
 pre .hljs {
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow);
 }
 
-/* ========== TOC 响应式 ========== */
-@media (max-width: 1200px) {
-  #table-of-contents,
-  .table-of-contents {
-    width: 220px;
-    left: -220px;
-  }
-  
-  body.toc-active .toc-bookmark {
-    left: 220px;
-  }
+/* 代码复制按钮 */
+.copy-code-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
+pre:hover .copy-code-button {
+  opacity: 1;
+}
+
+.copy-code-button:hover {
+  background: var(--primary-color);
+}
+
+/* ========== 响应式设计优化 ========== */
+
+/* 移动端优化 */
 @media (max-width: 768px) {
-  #table-of-contents,
-  .table-of-contents {
-    width: 280px;
-    left: -280px;
-    top: 60px;
-    max-height: calc(100vh - 80px);
-  }
-  
-  .toc-bookmark {
-    top: 80px;
-  }
-  
-  body.toc-active .toc-bookmark {
-    left: 280px;
-  }
-}
-
-@media (min-width: 1400px) {
-  body.toc-active #content.content {
-    margin-left: 260px;
-  }
-}
-
-/* ========== 响应式设计 ========== */
-@media (max-width: 768px) {
+  /* 移动端容器和内容区域优化 */
   .container,
   #content.content {
-    padding: 0 15px;
+    padding: 0 16px !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
   }
   
+  /* 移动端字体大小优化 */
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* 移动端标题优化 */
   .title {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
   }
   
-  h1 { font-size: 1.5rem; }
-  h2 { font-size: 1.3rem; }
-  h3 { font-size: 1.1rem; }
+  h1 { font-size: 1.6rem; line-height: 1.3; }
+  h2 { font-size: 1.4rem; line-height: 1.3; }
+  h3 { font-size: 1.2rem; line-height: 1.3; }
+  h4 { font-size: 1.1rem; line-height: 1.3; }
+  
+  /* 移动端头部优化 */
+  .site-header {
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  .site-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+  
+  /* 移动端导航优化 */
+  .site-nav {
+    margin-top: 0;
+  }
   
   .site-nav a {
-    display: block;
-    margin-bottom: 0.5rem;
+    display: inline-block;
+    margin-right: 1.8rem;
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+    padding: 0.3rem 0;
   }
   
+  /* 移动端段落优化 */
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+  
+  /* 移动端列表优化 */
+  ul, ol {
+    padding-left: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  li {
+    margin-bottom: 0.6rem;
+    line-height: 1.65;
+  }
+  
+  /* 移动端section间距优化 */
+  .content section,
+  #content section {
+    margin-bottom: 2.5rem;
+  }
+  
+  /* Bio部分优化 */
+  h1:first-of-type,
+  h2:first-of-type {
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+  }
+  
+  /* 移动端代码样式优化 */
+  code {
+    font-size: 14px;
+    padding: 0.2rem 0.3rem;
+  }
+  
+  pre {
+    padding: 0.8rem;
+    font-size: 14px;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  
+  /* 移动端表格优化 */
+  table {
+    font-size: 14px;
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+  }
+  
+  th, td {
+    padding: 0.4rem 0.3rem;
+    font-size: 14px;
+  }
+  
+  /* 移动端引用优化 */
+  blockquote {
+    margin: 1rem 0;
+    padding-left: 0.8rem;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  /* 移动端图片优化 */
+  img,
+  img.blog-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+  }
+  
+  /* 移动端底部优化 */
   .site-footer {
-    padding: 1.5rem 0 2.5rem 0;
-    margin-top: 3rem;
+    padding: 2rem 0;
+    margin-top: 2.5rem;
   }
   
   .site-footer p {
-    font-size: 0.75rem;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  
+  /* 移动端文章元信息优化 */
+  .post-meta {
+    font-size: 14px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+  }
+  
+  /* 移动端文章列表优化 */
+  .post-list {
+    margin-top: 1rem;
+  }
+  
+  .post-list li {
+    margin-bottom: 0.8rem;
+    padding-bottom: 0;
+    line-height: 1.5;
+  }
+  
+  .post-list h3 {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+  
+  .post-list .post-date {
+    font-size: 14px;
+    color: var(--light-text);
+    margin-left: 0.5rem;
+  }
+  
+  /* Recent Posts 标题优化 */
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+  
+  /* 移动端TOC调整 */
+  #table-of-contents,
+  .table-of-contents {
+    width: min(85vw, 280px);
+    left: calc(-1 * min(85vw, 280px));
+    top: 70px;
+    max-height: calc(100vh - 90px);
+    font-size: 14px;
+  }
+  
+  .toc-bookmark {
+    top: 90px;
+    width: 16px;
+    height: 40px;
+    font-size: 6px;
+  }
+  
+  body.toc-active .toc-bookmark {
+    left: min(85vw, 280px);
+  }
+}
+
+/* 超小屏幕优化 (iPhone SE 等) */
+@media (max-width: 375px) {
+  .container,
+  #content.content {
+    padding: 0 14px !important;
+  }
+  
+  .title {
+    font-size: 1.4rem;
+  }
+  
+  h1 { font-size: 1.3rem; }
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1.1rem; }
+  
+  .site-title {
+    font-size: 1.3rem;
+  }
+  
+  .site-header {
+    padding: 0.8rem 0;
+    margin-bottom: 1.8rem;
+  }
+  
+  .site-nav a {
+    margin-right: 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* 超小屏幕TOC */
+  #table-of-contents,
+  .table-of-contents {
+    width: min(90vw, 260px);
+    left: calc(-1 * min(90vw, 260px));
+  }
+  
+  body.toc-active .toc-bookmark {
+    left: min(90vw, 260px);
+  }
+}
+
+/* 中等屏幕优化 (平板等) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container,
+  #content.content {
+    padding: 0 24px !important;
+    max-width: min(90vw, 720px) !important;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+}
+
+/* 移动端中英文混排优化 */
+@media (max-width: 768px) {
+  /* 移动端中文优化 */
+  html[lang^="zh"] p,
+  html[lang^="zh"] li,
+  html[lang^="zh"] blockquote,
+  :lang(zh) p,
+  :lang(zh) li,
+  :lang(zh) blockquote,
+  :lang(zh-CN) p,
+  :lang(zh-CN) li,
+  :lang(zh-CN) blockquote {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  
+  /* 移动端英文优化 */
+  html[lang^="en"] p,
+  html[lang^="en"] li,
+  html[lang^="en"] blockquote,
+  :lang(en) p,
+  :lang(en) li,
+  :lang(en) blockquote {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 1.1rem;
+  }
+  
+  /* 移动端链接优化 */
+  a {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+  }
+  
+  /* 移动端按钮和交互元素 */
+  .site-nav a:active {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 3px;
+  }
+  
+  /* 移动端内容分隔优化 */
+  .content > *:first-child,
+  #content > *:first-child {
+    margin-top: 0;
+  }
+  
+  .content > h1,
+  .content > h2,
+  #content > h1,
+  #content > h2 {
+    margin-top: 2.5rem;
+  }
+  
+  .content > h1:first-child,
+  .content > h2:first-child,
+  #content > h1:first-child,
+  #content > h2:first-child {
+    margin-top: 0;
+  }
+}/* 中英文混排优化 */
+.content p,
+.post-content p,
+#content p {
+  /* 使用更合适的断行规则 */
+  word-break: normal;
+  overflow-wrap: normal;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+/* 针对标题的中英文混排优化 */
+h1, h2, h3, h4, h5, h6,
+.title,
+.site-title {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  /* 标题字间距稍微紧凑一些 */
+  letter-spacing: 0.02em;
+}
+
+/* 链接文本优化 */
+a {
+  word-break: keep-all;
+}
+
+/* 列表项中英文混排 */
+li {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 引用块中英文混排 */
+blockquote {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 中文标点符号优化 */
+.content,
+#content,
+p, li, blockquote {
+  /* 优化中文标点的显示 */
+  text-emphasis: none;
+  /* 防止中文标点出现在行首 */
+  line-break: strict;
+}
+
+/* 针对Safari的优化 */
+@supports (-webkit-appearance: none) {
+  body {
+    -webkit-locale: "zh-CN";
+  }
+  
+  p, li, blockquote {
+    -webkit-hyphens: none;
+    hyphens: none;
+  }
+}
+
+/* 特殊的中英文间距优化（使用伪元素） */
+.content p::after,
+#content p::after {
+  content: "";
+  /* 为了更好的阅读体验，在段落后添加微小间距 */
+  display: inline-block;
+  width: 0;
+}
+
+/* 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #fff;
+    --text-color: #e1e8ed;
+    --light-text: #8899a6;
+    --bg-color: #15202b;
+    --light-bg: #192734;
+    --border-color: #38444d;
+    --code-bg: #192734;
+  }
+  
+  /* 暗色模式下的TOC优化 - 简洁版 */
+  #table-of-contents,
+  .table-of-contents {
+    border-left-color: var(--border-color);
   }
 }
