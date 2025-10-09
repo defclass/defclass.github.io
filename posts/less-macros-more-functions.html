@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2025-10-10 Fri 01:50 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Less macros more functions</title>
+<meta name="author" content="Michael Wong" />
+<meta name="generator" content="Org Mode" />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WLRH33H');</script>
+<!-- End Google Tag Manager -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="(Michael Wong)">
+<meta name="description" content="A developer living in Tokyo.">
+<meta name="date" content="((timestamp (:standard-properties [1 nil nil nil 17 0 nil nil nil nil nil nil nil nil  *Org parse* nil nil #0] :type inactive :range-type nil :raw-value [2019-05-05 Sun] :year-start 2019 :month-start 5 :day-start 5 :hour-start nil :minute-start nil :year-end 2019 :month-end 5 :day-end 5 :hour-end nil :minute-end nil)))">
+<meta name="language" content="en">
+<meta name="robots" content="index,follow">
+<meta name="generator" content="Emacs Org-mode">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://huangqian.org/posts/2025-10-10-less-macros-more-functions.html">
+<meta property="og:title" content="Less macros more functions">
+<meta property="og:description" content="A developer living in Tokyo.">
+<meta property="og:site_name" content="Michael Wong">
+<meta property="og:locale" content="en">
+<meta property="article:author" content="(Michael Wong)">
+<meta property="article:published_time" content="((timestamp (:standard-properties [1 nil nil nil 17 0 nil nil nil nil nil nil nil nil  *Org parse* nil nil #0] :type inactive :range-type nil :raw-value [2019-05-05 Sun] :year-start 2019 :month-start 5 :day-start 5 :hour-start nil :minute-start nil :year-end 2019 :month-end 5 :day-end 5 :hour-end nil :minute-end nil)))">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://huangqian.org/posts/2025-10-10-less-macros-more-functions.html">
+<meta property="twitter:title" content="Less macros more functions">
+<meta property="twitter:description" content="A developer living in Tokyo.">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://huangqian.org/posts/2025-10-10-less-macros-more-functions.html">
+
+<!-- DNS Prefetch -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Stylesheets -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/highlight.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="/assets/js/main.js" defer></script>
+
+<!-- Structured Data for Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Less macros more functions",
+  "description": "A developer living in Tokyo.",
+  "url": "https://huangqian.org/posts/2025-10-10-less-macros-more-functions.html",
+  "author": {
+    "@type": "Person",
+    "name": "(Michael Wong)"
+  },
+  "datePublished": "((timestamp (:standard-properties [1 nil nil nil 17 0 nil nil nil nil nil nil nil nil  *Org parse* nil nil #0] :type inactive :range-type nil :raw-value [2019-05-05 Sun] :year-start 2019 :month-start 5 :day-start 5 :hour-start nil :minute-start nil :year-end 2019 :month-end 5 :day-end 5 :hour-end nil :minute-end nil)))",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Michael Wong"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://huangqian.org/posts/2025-10-10-less-macros-more-functions.html"
+  }
+}
+</script>
+
+
+
+
+<!-- Performance and SEO Optimizations -->
+<meta name="theme-color" content="#ffffff">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+<meta name="format-detection" content="address=no">
+
+<!-- Security Headers -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
+<!-- RSS Feed -->
+<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml">
+
+<!-- Sitemap -->
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+</head>
+<body>
+<div id="preamble" class="status">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WLRH33H"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<header class="site-header">
+  <div class="container">
+    <h1 class="site-title"><a href="/">Michael Wong</a></h1>
+    <nav class="site-nav">
+      <a href="/">Home</a>
+      <a href="/archive.html">Archive</a>
+      <a href="/rss.xml" target="_blank">RSS</a>
+    </nav>
+  </div>
+</header>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Less macros more functions</h1>
+</header><div id="outline-container-orgc0bd3ed" class="outline-2">
+<h2 id="orgc0bd3ed"><span class="section-number-2">1.</span> Preface</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This article shares my experiences working with macros in Clojure.
+</p>
+</div>
+</div>
+<div id="outline-container-orged5e937" class="outline-2">
+<h2 id="orged5e937"><span class="section-number-2">2.</span> Prerequisite knowledge</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Familiarity with basic Clojure syntax and macros, and the ability to write running Clojure code.</li>
+<li>Understanding of <code>defmacro</code>, <code>quote (`)</code>, <code>unquote (~)</code>, and <code>unquote-splicing (~@)</code>.</li>
+<li>Awareness of the evaluation differences between macros and functions.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0456f09" class="outline-2">
+<h2 id="org0456f09"><span class="section-number-2">3.</span> When to use macros?</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Macros are notoriously difficult to reason about, so as a rule of thumb, we should minimize their use.
+</p>
+
+<p>
+In my experience, if a code pattern repeats more than three times, I first try to abstract it as a function. Only when a function cannot achieve the desired behavior do I consider implementing a macro, and even then, after careful thought.
+</p>
+
+<p>
+Following this principle, most macros I write end up serving real and practical use cases.
+</p>
+
+<p>
+You might consider writing a macro under these circumstances:
+</p>
+
+<ul class="org-ul">
+<li>The functionality is hard or impossible to implement as a function.</li>
+<li>You need to alter the default evaluation behavior (introducing new syntax).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2f7baa0" class="outline-2">
+<h2 id="org2f7baa0"><span class="section-number-2">4.</span> A few classic macros</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Let’s review some classic macros. Encountering these patterns often signals the need for a macro.
+</p>
+</div>
+<div id="outline-container-orgb41e4d9" class="outline-3">
+<h3 id="orgb41e4d9"><span class="section-number-3">4.1.</span> Creating context</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Macros can manipulate lexical environments. For example, we can implement our own <code>let</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">our-let</span> [binds &amp; body]
+  `((<span style="color: #A52A2A; font-weight: bold;">fn</span> ~(vec (map first (partition-all 2 binds)))
+      ~@body)
+    ~@(map second (partition-all 2 binds))))
+
+(our-let [a 1
+          b 2]
+         (+ a b))
+</pre>
+</div>
+
+<blockquote>
+<p>
+Q: The number of parameters bound to <code>let</code> is limited. How can we expand it?
+</p>
+</blockquote>
+
+<p>
+Another scenario is embedding calculations in a specific context. For example, measuring execution time:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">cal-time</span>
+  [&amp; body]
+  `(<span style="color: #A52A2A; font-weight: bold;">let</span> [start# (<span style="color: #2F8B58; font-weight: bold;">System</span>/currentTimeMillis)
+         result# (<span style="color: #A52A2A; font-weight: bold;">do</span> ~@body)
+         end# (<span style="color: #2F8B58; font-weight: bold;">System</span>/currentTimeMillis)]
+     {<span style="color: #F5666D;">:time-ms</span> (- end# start#)
+      <span style="color: #F5666D;">:result</span> result#}))
+
+(cal-time (<span style="color: #2F8B58; font-weight: bold;">Thread</span>/sleep 5000))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3ab6f4f" class="outline-3">
+<h3 id="org3ab6f4f"><span class="section-number-3">4.2.</span> Resource management macros</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+For example, <code>with-open</code> automatically prepares and cleans up resources to prevent leaks:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">with-open</span>
+  [bindings &amp; body]
+  (<span style="color: #A52A2A; font-weight: bold;">cond</span>
+    (= (count bindings) 0) `(<span style="color: #A52A2A; font-weight: bold;">do</span> ~@body)
+    (symbol? (bindings 0)) `(<span style="color: #A52A2A; font-weight: bold;">let</span> ~(subvec bindings 0 2)
+                              (<span style="color: #A52A2A; font-weight: bold;">try</span>
+                                (<span style="color: #A52A2A; font-weight: bold;">with-open</span> ~(subvec bindings 2) ~@body)
+                                (<span style="color: #A52A2A; font-weight: bold;">finally</span>
+                                  (<span style="color: #A52A2A; font-weight: bold;">.</span> ~(bindings 0) close))))
+    <span style="color: #F5666D;">:else</span> (<span style="color: #A52A2A; font-weight: bold;">throw</span> (IllegalArgumentException.
+                  <span style="color: #4E9A06;">"with-open only allows Symbols in bindings"</span>))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9680746" class="outline-3">
+<h3 id="org9680746"><span class="section-number-3">4.3.</span> Conditional evaluation</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Macros can defer evaluation. For example, <code>when</code> in <code>clojure.core</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">when</span>
+  [test &amp; body]
+  (<span style="color: #A52A2A; font-weight: bold;">if</span> test
+    (<span style="color: #A52A2A; font-weight: bold;">do</span> ~@body)
+    <span style="color: #F5666D;">nil</span>))
+
+(<span style="color: #A52A2A; font-weight: bold;">when</span> <span style="color: #F5666D;">false</span>
+  (prn 123))
+</pre>
+</div>
+
+<blockquote>
+<p>
+Q: Is there another way to prevent macro parameters from being evaluated?
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgae4f75b" class="outline-3">
+<h3 id="orgae4f75b"><span class="section-number-3">4.4.</span> Repeated evaluation</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">while</span>
+  [test &amp; body]
+  `(<span style="color: #A52A2A; font-weight: bold;">loop</span> []
+     (<span style="color: #A52A2A; font-weight: bold;">when</span> ~test
+       ~@body
+       (<span style="color: #A52A2A; font-weight: bold;">recur</span>))))
+
+(<span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #0084C8; font-weight: bold;">a</span> (atom 10))
+(<span style="color: #A52A2A; font-weight: bold;">while</span> (pos? @a) (<span style="color: #A52A2A; font-weight: bold;">do</span> (println @a) (swap! a dec)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org71478e3" class="outline-3">
+<h3 id="org71478e3"><span class="section-number-3">4.5.</span> Compile-time computation</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+Values known at compile-time can be calculated early, improving runtime performance:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">params-number</span> [&amp; body]
+  `(<span style="color: #A52A2A; font-weight: bold;">let</span> [n# ~(count body)]
+     n#))
+
+(params-number 1 2 3)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc57b366" class="outline-2">
+<h2 id="orgc57b366"><span class="section-number-2">5.</span> How I write a macro</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Here’s my workflow when writing a complex macro. The following example is not my original code :):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">let</span> [rt1 (exist-user? user)]
+  (<span style="color: #A52A2A; font-weight: bold;">if</span> (fail? rt1)
+    rt1
+    (<span style="color: #A52A2A; font-weight: bold;">let</span> [rt2 (channel-is-full? channel)]
+      (<span style="color: #A52A2A; font-weight: bold;">if</span> (fail? rt2)
+        rt2
+        (<span style="color: #A52A2A; font-weight: bold;">let</span> [rt3 (add-member channel-id user-id)]
+          rt3
+          (ok))))))
+</pre>
+</div>
+
+<p>
+Three main steps:
+</p>
+
+<ul class="org-ul">
+<li><b>Step 1:</b> Express the macro logic in a generic way and identify the pattern.</li>
+<li><b>Step 2:</b> Write the syntax template you prefer:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(new-macro
+ (exist-user? user)
+ (channel-is-full? channel)
+ (add-member channel-id user-id)
+ (ok))
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><b>Step 3:</b> Translate Step 2 into Step 1 implementation:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">new-macro</span>
+  [first-clause &amp; clauses]
+  (<span style="color: #A52A2A; font-weight: bold;">let</span> [g (gensym)]
+    `(<span style="color: #A52A2A; font-weight: bold;">let</span> [~g ~first-clause]
+       (<span style="color: #A52A2A; font-weight: bold;">if</span> (fail? (first ~g)
+                  ~g
+                  ~(<span style="color: #A52A2A; font-weight: bold;">if</span> clauses
+                     `(new-macro ~@clauses)
+                     g)))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org38e5bf5" class="outline-2">
+<h2 id="org38e5bf5"><span class="section-number-2">6.</span> Miscellaneous</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orga65dff2" class="outline-3">
+<h3 id="orga65dff2"><span class="section-number-3">6.1.</span> Avoid macros unless necessary</h3>
+<div class="outline-text-3" id="text-6-1">
+</div>
+<div id="outline-container-org92acae8" class="outline-4">
+<h4 id="org92acae8"><span class="section-number-4">6.1.1.</span> For the author</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+Writing macros is mentally demanding. Macros involve compile-time computation, so you must consider whether code runs during compilation or runtime, which is error-prone.
+</p>
+</div>
+</div>
+<div id="outline-container-org0a1e835" class="outline-4">
+<h4 id="org0a1e835"><span class="section-number-4">6.1.2.</span> For the reviewer</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+Reading macros is harder than writing them. Macros are a black box. The evaluation order of macro parameters is not guaranteed (unlike functions). Expanding the macro is often required to understand behavior.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org6196fb9" class="outline-3">
+<h3 id="org6196fb9"><span class="section-number-3">6.2.</span> Poor composability</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Functions compose well—they can be passed as arguments, returned, or combined with <code>comp</code> or <code>apply</code>. Macros, in contrast, are less orthogonal. Favor functions whenever possible.
+</p>
+</div>
+</div>
+<div id="outline-container-org172a785" class="outline-3">
+<h3 id="org172a785"><span class="section-number-3">6.3.</span> Macros as thin wrappers</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Macros should only wrap the part that requires altered evaluation. Many macros can be simplified by extracting helper functions.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure"><span style="color: #204A87;">;;;; </span><span style="color: #204A87;">Tag the result
+</span>(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">tag-result</span>
+  [group tag date &amp; body]
+  `(<span style="color: #A52A2A; font-weight: bold;">let</span> [result# ~body
+         group# (str ~group <span style="color: #4E9A06;">"-addition-group"</span>)
+         tag# (str ~tag <span style="color: #4E9A06;">"-addition-group"</span>)
+         date# (<span style="color: #2F8B58; font-weight: bold;">t</span>/plus ~date (<span style="color: #2F8B58; font-weight: bold;">t</span>/days 5))]
+     {<span style="color: #F5666D;">:group</span> group#
+      <span style="color: #F5666D;">:tag</span> tag#
+      <span style="color: #F5666D;">:date</span> date#
+      <span style="color: #F5666D;">:result</span> result#}))
+
+(tag-result <span style="color: #4E9A06;">"group"</span> <span style="color: #4E9A06;">"tag"</span> (<span style="color: #2F8B58; font-weight: bold;">t</span>/now) (+ 4 5 6 7 8))
+
+<span style="color: #204A87;">;;;; </span><span style="color: #204A87;">Cleaner version using a helper function
+</span>(<span style="color: #A52A2A; font-weight: bold;">defn</span> <span style="color: #00578E; font-weight: bold;">tag-result-f</span>
+  [group tag date result]
+  (<span style="color: #A52A2A; font-weight: bold;">let</span> [group (str group <span style="color: #4E9A06;">"-addition-group"</span>)
+        tag (str tag <span style="color: #4E9A06;">"-addition-group"</span>)
+        date (<span style="color: #2F8B58; font-weight: bold;">t</span>/plus date (<span style="color: #2F8B58; font-weight: bold;">t</span>/days 5))]
+    {<span style="color: #F5666D;">:group</span> group
+     <span style="color: #F5666D;">:tag</span> tag
+     <span style="color: #F5666D;">:date</span> date
+     <span style="color: #F5666D;">:result</span> result}))
+
+(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">another-tag-result</span>
+  [group tag date &amp; body]
+  `(<span style="color: #A52A2A; font-weight: bold;">let</span> [result# ~(reverse body)]
+     (tag-result-f ~group ~tag ~date result#)))
+
+(another-tag-result <span style="color: #4E9A06;">"group"</span> <span style="color: #4E9A06;">"tag"</span> (<span style="color: #2F8B58; font-weight: bold;">t</span>/now) (+ 4 5 6 7 8))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1717e14" class="outline-3">
+<h3 id="org1717e14"><span class="section-number-3">6.4.</span> Parameter validation</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+Always validate parameters. Fail fast when arguments are invalid. Debugging macros is expensive, so defensive checks are critical.
+</p>
+</div>
+</div>
+<div id="outline-container-org2a695e8" class="outline-3">
+<h3 id="org2a695e8"><span class="section-number-3">6.5.</span> Watch out for repeated evaluation</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+Re-evaluating parameters can easily introduce subtle bugs.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">transform-http-result</span>
+  [&amp; body]
+  `(<span style="color: #A52A2A; font-weight: bold;">try</span>
+     (<span style="color: #2F8B58; font-weight: bold;">log</span>/debugf <span style="color: #4E9A06;">"http-result: %s"</span> ~@body)
+     (transform ~@body)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org30364be" class="outline-3">
+<h3 id="org30364be"><span class="section-number-3">6.6.</span> Destructive parameter patterns</h3>
+<div class="outline-text-3" id="text-6-6">
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">test-a</span>
+  [[&amp; opts] &amp; body]
+  (prn (class opts))
+  (prn (class body)))
+=&gt; <span style="color: #2F8B58; font-weight: bold;">#'user</span>/test-a
+
+(test-a [4 5 6] 1 2 3)
+clojure.lang.PersistentVector$ChunkedSeq
+clojure.lang.PersistentList
+</pre>
+</div>
+
+<p>
+Note that the two <code>&amp;</code> sequences produce different types. Use <code>(vec opts)</code> to normalize them.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga64d457" class="outline-2">
+<h2 id="orga64d457"><span class="section-number-2">7.</span> References</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li><code>clojure.core</code> source code</li>
+<li><b>On Lisp</b> - Paul Graham</li>
+<li>Desensitization code at work</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; Michael Wong. All rights reserved.</p>
+  </div>
+</footer>
+</div>
+</body>
+</html>

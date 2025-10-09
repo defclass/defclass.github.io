@@ -35,8 +35,20 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://huangqian.org/posts/the-refactoring-of-logseq.html</loc>
+    <lastmod>2021-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://huangqian.org/posts/supported-format.html</loc>
     <lastmod>2020-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://huangqian.org/posts/less-macros-more-functions.html</loc>
+    <lastmod>2019-05-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
