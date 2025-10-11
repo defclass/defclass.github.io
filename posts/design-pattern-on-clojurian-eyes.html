@@ -1,7 +1,8 @@
+<!-- Created: 2025-10-12 Sun 01:17 from design-pattern-on-clojurian-eyes.org -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2025-10-11 Sat 00:48 -->
+<!-- 2025-10-12 Sun 01:17 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clojure 如何表达 OOP 设计模式</title>
@@ -131,17 +132,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header>
 <h1 class="title">Clojure 如何表达 OOP 设计模式</h1>
 </header><p>
-近几年的工作都是写 Clojure ，大多数时间是用函数式编程风格。 OOP 的设计模式在函数式语言里显得非常轻量，有时根本意识不到有些用法是设计模式。简单聊一聊，常用的设计模式在 Clojure 里可能长什么样子。由于语言类型不同，一些和语言构件相关的模式在 Clojure 里不太需要，比如我在写 Clojure 时就很少需要用迭代器模式。
+近几年的工作都是写 Clojure ，大多数时间是用函数式编程风格。 OOP 的设计模式在函数式语言里显得非常轻量，有时根本意识不到有些用法是设计模式。简单聊一聊，常用的设计模式在 Clojure 里可能长什么样子。由于语言类型不同，一些和语言构件相关的模式在 Clojure 里不太需要，比如我在写 Clojure 时就很少需要用迭代器模式。<br>
 </p>
 
 <p>
-对象是 OOP 编程语言中的一等公民，在函数式语言中函数是编程中的一等公民，所以下面有些地方我会直接用函数来代替对象，如工厂模式用生产函数来代替生产对象。
+对象是 OOP 编程语言中的一等公民，在函数式语言中函数是编程中的一等公民，所以下面有些地方我会直接用函数来代替对象，如工厂模式用生产函数来代替生产对象。<br>
 </p>
 <div id="outline-container-org1f1546c" class="outline-2">
 <h2 id="org1f1546c"><span class="section-number-2">1.</span> 策略模式</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-定义：策略模式定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。
+定义：策略模式定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。<br>
 </p>
 
 <div class="org-src-container">
@@ -157,15 +158,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <p>
-小辨析：
+小辨析：<br>
 </p>
 
 <p>
-策略模式：在 context 对象主动指定哪个策略对象来执行动作。
+策略模式：在 context 对象主动指定哪个策略对象来执行动作。<br>
 </p>
 
 <p>
-状态模式：在 context 对象中的状态决定使用哪一个 state 状态对象来操作，state 状态对象在执行操作中反过来会改变 context 对象中的状态。
+状态模式：在 context 对象中的状态决定使用哪一个 state 状态对象来操作，state 状态对象在执行操作中反过来会改变 context 对象中的状态。<br>
 </p>
 </div>
 </div>
@@ -173,7 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="org36d9ae4"><span class="section-number-2">2.</span> 单件模式</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-定义：确保一个类只有一个实例，并提供一个全局访问点。
+定义：确保一个类只有一个实例，并提供一个全局访问点。<br>
 </p>
 
 <div class="org-src-container">
@@ -188,7 +189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="orgddf4b95"><span class="section-number-2">3.</span> 工厂模式</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-定义:  定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。
+定义:  定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。<br>
 </p>
 
 <div class="org-src-container">
@@ -203,7 +204,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <p>
-抽象工厂模式在 Clojure 中似乎和工厂模式没有太多区别。
+抽象工厂模式在 Clojure 中似乎和工厂模式没有太多区别。<br>
 </p>
 </div>
 </div>
@@ -211,11 +212,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="org8a9db0a"><span class="section-number-2">4.</span> 装饰者模式</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-定义：动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。
+定义：动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。<br>
 </p>
 
 <p>
-Clojure 类型继承很弱，依然以函数来实现。
+Clojure 类型继承很弱，依然以函数来实现。<br>
 </p>
 
 <div class="org-src-container">
@@ -233,19 +234,19 @@ Clojure 类型继承很弱，依然以函数来实现。
 </div>
 
 <p>
-小辨析：
+小辨析：<br>
 </p>
 
 <p>
-装饰者：装饰与被装饰者实现同一个接口，在同一个接口内增强功能。
+装饰者：装饰与被装饰者实现同一个接口，在同一个接口内增强功能。<br>
 </p>
 
 <p>
-适配器：适配与被适配者实现的是两个不同的接口。意图是改变接口，满足客户的期望。
+适配器：适配与被适配者实现的是两个不同的接口。意图是改变接口，满足客户的期望。<br>
 </p>
 
 <p>
-外观模式：用一个接口实现子系统的一群接口。意图是，提供子系统的一个简化接口。
+外观模式：用一个接口实现子系统的一群接口。意图是，提供子系统的一个简化接口。<br>
 </p>
 </div>
 </div>
@@ -253,7 +254,7 @@ Clojure 类型继承很弱，依然以函数来实现。
 <h2 id="org44cb84a"><span class="section-number-2">5.</span> 观察者模式</h2>
 <div class="outline-text-2" id="text-5">
 <p>
-定义：定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。
+定义：定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。<br>
 </p>
 
 <div class="org-src-container">
@@ -273,7 +274,7 @@ Clojure 类型继承很弱，依然以函数来实现。
 <h2 id="orgfdf25b3"><span class="section-number-2">6.</span> 命令模式</h2>
 <div class="outline-text-2" id="text-6">
 <p>
-定义：将"请求"封装成对象，调用方可以直接调用对象的 execute。命令模式也支持可撤销的操作。
+定义：将"请求"封装成对象，调用方可以直接调用对象的 execute。命令模式也支持可撤销的操作。<br>
 </p>
 
 <div class="org-src-container">
@@ -286,15 +287,15 @@ Clojure 类型继承很弱，依然以函数来实现。
 </div>
 
 <p>
-小辨析：
+小辨析：<br>
 </p>
 
 <p>
-策略模式：在调用方需要传入一致的参数.
+策略模式：在调用方需要传入一致的参数.<br>
 </p>
 
 <p>
-命令模式：将不同命令的参数封装在命令对象里，只留一个 execute 方法。
+命令模式：将不同命令的参数封装在命令对象里，只留一个 execute 方法。<br>
 </p>
 </div>
 </div>
@@ -302,7 +303,7 @@ Clojure 类型继承很弱，依然以函数来实现。
 <h2 id="org3fd8b2d"><span class="section-number-2">7.</span> 适配器模式</h2>
 <div class="outline-text-2" id="text-7">
 <p>
-定义：适配器模式，将一个类的接口，转换成客户期望的另一个接口。
+定义：适配器模式，将一个类的接口，转换成客户期望的另一个接口。<br>
 </p>
 
 <div class="org-src-container">
@@ -316,19 +317,19 @@ Clojure 类型继承很弱，依然以函数来实现。
 </div>
 
 <p>
-小辨析：
+小辨析：<br>
 </p>
 
 <p>
-装饰者：装饰与被装饰者实现同一个接口，在同一个接口内增强功能。
+装饰者：装饰与被装饰者实现同一个接口，在同一个接口内增强功能。<br>
 </p>
 
 <p>
-适配器：适配与被适配者实现的是两个不同的接口。意图是改变接口，满足客户的期望。
+适配器：适配与被适配者实现的是两个不同的接口。意图是改变接口，满足客户的期望。<br>
 </p>
 
 <p>
-外观模式：用一个接口实现子系统的一群接口。意图是，提供子系统的一个简化接口。
+外观模式：用一个接口实现子系统的一群接口。意图是，提供子系统的一个简化接口。<br>
 </p>
 </div>
 </div>

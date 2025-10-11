@@ -1,3 +1,21 @@
+/* 嵌入视频iframe自适应宽高，适配YouTube/Bilibili */
+iframe {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  min-height: 240px;
+  margin: 2rem auto;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+@media (max-width: 768px) {
+  iframe {
+    min-height: 180px;
+  }
+}
 /* 博客主样式 */
 :root {
   --primary-color: #2c3e50;
