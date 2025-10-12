@@ -1,18 +1,54 @@
+// 全局锚点平滑滚动
+function addGlobalSmoothScrolling() {
+  const links = document.querySelectorAll('a[href^="#"]');
+  if (!links || typeof links.forEach !== 'function') return;
+  links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        // 暂时禁用Observer，避免冲突
+        const observer = window.tocObserver;
+        if (observer) {
+          observer.disconnect();
+        }
+
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+
+        // 高亮当前TOC链接
+        highlightCurrentTocItem(this);
+
+        // 滚动完成后重新启用Observer
+        setTimeout(function() {
+          if (observer) {
+            const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            headings.forEach(heading => observer.observe(heading));
+          }
+        }, 1000);
+      }
+    });
+  });
+}
+
 // 博客主脚本
 document.addEventListener('DOMContentLoaded', function() {
-    // 代码高亮初始化
-    if (typeof hljs !== 'undefined') {
-        hljs.highlightAll();
-    }
-    
-    // 添加代码复制功能
-    addCodeCopyButtons();
-    
-    // 平滑滚动
-    addSmoothScrolling();
-    
-    // TOC功能初始化
-    initTableOfContents();
+  // 代码高亮初始化
+  if (typeof hljs !== 'undefined') {
+    hljs.highlightAll();
+  }
+
+  // 添加代码复制功能
+  addCodeCopyButtons();
+
+  // 平滑滚动（全局锚点）
+  addGlobalSmoothScrolling();
+
+  // TOC功能初始化
+  initTableOfContents();
 });
 
 function addCodeCopyButtons() {
@@ -34,40 +70,42 @@ function addCodeCopyButtons() {
         pre.style.position = 'relative';
         pre.appendChild(button);
     });
-}
 
-function addSmoothScrolling() {
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                // 暂时禁用Observer，避免冲突
-                const observer = window.tocObserver;
-                if (observer) {
-                    observer.disconnect();
-                }
-                
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                
-                // 高亮当前TOC链接
-                highlightCurrentTocItem(this);
-                
-                // 滚动完成后重新启用Observer
-                setTimeout(function() {
-                    if (observer) {
-                        const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-                        headings.forEach(heading => observer.observe(heading));
-                    }
-                }, 1000);
-            }
+// 全局锚点平滑滚动
+function addGlobalSmoothScrolling() {
+  const links = document.querySelectorAll('a[href^="#"]');
+  if (!links || typeof links.forEach !== 'function') return;
+  links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        // 暂时禁用Observer，避免冲突
+        const observer = window.tocObserver;
+        if (observer) {
+          observer.disconnect();
+        }
+
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
         });
+
+        // 高亮当前TOC链接
+        highlightCurrentTocItem(this);
+
+        // 滚动完成后重新启用Observer
+        setTimeout(function() {
+          if (observer) {
+            const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            headings.forEach(heading => observer.observe(heading));
+          }
+        }, 1000);
+      }
     });
+  });
+}
 }
 
 /**
@@ -322,30 +360,26 @@ function addTocFoldButton(tocElement) {
  * 为TOC链接添加平滑滚动
  */
 function addSmoothScrolling(tocElement) {
+  if (!tocElement || typeof tocElement.querySelectorAll !== 'function') return;
   const tocLinks = tocElement.querySelectorAll('a[href^="#"]');
-  
+  if (!tocLinks || typeof tocLinks.forEach !== 'function') return;
   tocLinks.forEach(function(link) {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-      
       const targetId = this.getAttribute('href').substring(1);
       const targetElement = document.getElementById(targetId);
-      
       if (targetElement) {
         // 暂时断开Observer，避免滚动时频繁触发
         if (window.tocObserver) {
           window.tocObserver.disconnect();
         }
-        
         // 高亮当前TOC项
         highlightCurrentTocItem(this);
-        
         // 瞬间跳转到目标
         targetElement.scrollIntoView({
           behavior: 'instant',
           block: 'start'
         });
-        
         // 短暂延迟重新连接Observer
         setTimeout(function() {
           if (window.tocObserver) {
@@ -357,7 +391,6 @@ function addSmoothScrolling(tocElement) {
             });
           }
         }, 100);
-        
         // 在移动端点击后立即隐藏TOC
         if (window.innerWidth <= 768) {
           hideToc();

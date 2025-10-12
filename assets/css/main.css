@@ -1022,15 +1022,9 @@ pre:hover .copy-code-button {
   p {
     font-size: 16px;
     line-height: 1.6;
-    margin-bottom: 1.2rem;
   }
   
-  /* 移动端列表优化 */
-  ul, ol {
-    padding-left: 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-  
+   
   li {
     margin-bottom: 0.6rem;
     line-height: 1.65;
