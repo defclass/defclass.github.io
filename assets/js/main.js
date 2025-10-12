@@ -34,6 +34,23 @@ function addGlobalSmoothScrolling() {
   });
 }
 
+// 文章页链接新窗口打开
+function setArticleLinksTarget() {
+  // 只在文章页处理正文链接
+    var content = document.querySelector('#content');
+    if (!content) return;
+    var links = content.querySelectorAll('a[href]');
+    links.forEach(function(link) {
+      // 不处理锚点和 js 链接
+      var href = link.getAttribute('href');
+      if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+}
+
+
 // 博客主脚本
 document.addEventListener('DOMContentLoaded', function() {
   // 代码高亮初始化
@@ -49,6 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // TOC功能初始化
   initTableOfContents();
+
+  // 设置文章页链接新窗口打开
+  setArticleLinksTarget();
 });
 
 function addCodeCopyButtons() {
@@ -69,7 +89,7 @@ function addCodeCopyButtons() {
         const pre = codeBlock.parentNode;
         pre.style.position = 'relative';
         pre.appendChild(button);
-    });
+  });
 
 // 全局锚点平滑滚动
 function addGlobalSmoothScrolling() {

@@ -1,8 +1,7 @@
-<!-- Created: 2025-10-12 Sun 20:55 from do-you-still-love-life.org -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-<!-- 2025-10-12 Sun 20:55 -->
+<!-- 2025-10-12 Sun 23:34 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>先飞的笨鸟</title>
@@ -20,7 +19,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="(Michael Wong)">
 <meta name="description" content="A developer living in Tokyo.">
-<meta name="language" content="en">
+<meta name="date" content="((timestamp (:standard-properties [1 nil nil nil 17 0 nil nil nil nil nil nil nil nil  *Org parse* nil nil #0] :type inactive :range-type nil :raw-value [2024-02-25 Sun] :year-start 2024 :month-start 2 :day-start 25 :hour-start nil :minute-start nil :year-end 2024 :month-end 2 :day-end 25 :hour-end nil :minute-end nil)))">
+<meta name="language" content="zh-CN">
 <meta name="robots" content="index,follow">
 <meta name="generator" content="Emacs Org-mode">
 
@@ -28,21 +28,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://huangqian.org/../workspace.html">
-<meta property="og:title" content="Workspace">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://huangqian.org/posts/my-toolkit.html">
+<meta property="og:title" content="我的互联网生存工具">
 <meta property="og:description" content="A developer living in Tokyo.">
 <meta property="og:site_name" content="Michael Wong">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="(Michael Wong)">
+<meta property="article:published_time" content="((timestamp (:standard-properties [1 nil nil nil 17 0 nil nil nil nil nil nil nil nil  *Org parse* nil nil #0] :type inactive :range-type nil :raw-value [2024-02-25 Sun] :year-start 2024 :month-start 2 :day-start 25 :hour-start nil :minute-start nil :year-end 2024 :month-end 2 :day-end 25 :hour-end nil :minute-end nil)))">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://huangqian.org/../workspace.html">
-<meta property="twitter:title" content="Workspace">
+<meta property="twitter:url" content="https://huangqian.org/posts/my-toolkit.html">
+<meta property="twitter:title" content="我的互联网生存工具">
 <meta property="twitter:description" content="A developer living in Tokyo.">
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://huangqian.org/../workspace.html">
+<link rel="canonical" href="https://huangqian.org/posts/my-toolkit.html">
 
 <!-- DNS Prefetch -->
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -63,17 +65,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="/assets/js/main.js" defer></script>
 
-<!-- Structured Data for Website -->
+<!-- Structured Data for Article -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Website",
-  "name": "Michael Wong",
+  "@type": "BlogPosting",
+  "headline": "我的互联网生存工具",
   "description": "A developer living in Tokyo.",
-  "url": "https://huangqian.org",
+  "url": "https://huangqian.org/posts/my-toolkit.html",
   "author": {
     "@type": "Person",
     "name": "(Michael Wong)"
+  },
+  "datePublished": "((timestamp (:standard-properties [1 nil nil nil 17 0 nil nil nil nil nil nil nil nil  *Org parse* nil nil #0] :type inactive :range-type nil :raw-value [2024-02-25 Sun] :year-start 2024 :month-start 2 :day-start 25 :hour-start nil :minute-start nil :year-end 2024 :month-end 2 :day-end 25 :hour-end nil :minute-end nil)))",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Michael Wong"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://huangqian.org/posts/my-toolkit.html"
   }
 }
 </script>
@@ -89,7 +100,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- Security Headers -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta http-equiv="X-Frame-Options" content="DENY">
 <meta http-equiv="X-XSS-Protection" content="1; mode=block">
 
 <!-- RSS Feed -->
@@ -123,11 +133,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="org0c95d49"><span class="section-number-2">1.</span> 下蛋要孩子飞的笨鸟</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-上学的时候，不理解父母的期盼，以至于有些叛逆。模仿着韩寒那一批少年作家的样子，怼天怼地，怼老师怼父母。<br>
+上学的时候，不理解父母的期盼，以至于有些叛逆。模仿着韩寒那一批少年作家的样子，怼天怼地，怼老师怼父母。
 </p>
 
 <p>
-为了反驳父母，我曾经会引用一个关于"笨鸟"的段子：世上笨鸟有三种，一种是先飞的，一种是嫌累不飞的。第三种呢最讨厌，自己飞不起来，就在窝里下个蛋，要下一代使劲飞。"<br>
+为了反驳父母，我曾经会引用一个关于"笨鸟"的段子：世上笨鸟有三种，一种是先飞的，一种是嫌累不飞的。第三种呢最讨厌，自己飞不起来，就在窝里下个蛋，要下一代使劲飞。"
 </p>
 </div>
 </div>
@@ -135,15 +145,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="orgca74b60"><span class="section-number-2">2.</span> 蹉跎的年龄</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-上完了大学，职场上班了十几年，慢慢地磨平了曾经的心气。<br>
+上完了大学，职场上班了十几年，慢慢地磨平了曾经的心气。
 </p>
 
 <p>
-对于一个没有背景的人来说，在社会认知方面的觉醒，会比公务员或商人家庭晚一些。因为他们的父母或长辈本身对社会运作和规则的理解有限，最多只知道"读书很重要"，因此能把孩子送去读书就已经算是尽了全力。<br>
+对于一个没有背景的人来说，在社会认知方面的觉醒，会比公务员或商人家庭晚一些。因为他们的父母或长辈本身对社会运作和规则的理解有限，最多只知道"读书很重要"，因此能把孩子送去读书就已经算是尽了全力。
 </p>
 
 <p>
-通常他们要到35岁到40岁，才会逐渐明白社会运行的底层规则。然而这时，上有老下有小，如果再加上烂尾楼、A股、币圈等投资失败，基本上已经被生活所困，有些力不从心了。<br>
+通常他们要到35岁到40岁，才会逐渐明白社会运行的底层规则。然而这时，上有老下有小，如果再加上烂尾楼、A股、币圈等投资失败，基本上已经被生活所困，有些力不从心了。
 </p>
 </div>
 </div>
@@ -151,11 +161,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="orge9e6d67"><span class="section-number-2">3.</span> 是否依然有勇气</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-年轻的时候没轻没重的，过了20几年，不幸回旋镖打中了自己。<br>
+年轻的时候没轻没重的，过了20几年，不幸回旋镖打中了自己。
 </p>
 
 <p>
-我经常在思考和徘徊：经历了这么多次挫折，自己是否依然有勇气去做那个先飞的"笨鸟"？还是说，就这样了，变成了曾经讨厌的那种"笨鸟"，把主要的精力放到下一代身上？<br>
+我经常在思考和徘徊：经历了这么多次挫折，自己是否依然有勇气去做那个先飞的"笨鸟"？还是说，就这样了，变成了曾经讨厌的那种"笨鸟"，把主要的精力放到下一代身上？
 </p>
 </div>
 </div>

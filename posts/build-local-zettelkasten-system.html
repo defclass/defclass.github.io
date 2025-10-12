@@ -1,8 +1,7 @@
-<!-- Created: 2025-10-12 Sun 20:55 from 2025-10-12-build-local-zettelkasten-system.org -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2025-10-12 Sun 20:55 -->
+<!-- 2025-10-12 Sun 23:34 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>零成本的卢曼卡片系统</title>
@@ -20,7 +19,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="(Michael Wong)">
 <meta name="description" content="A developer living in Tokyo.">
-<meta name="language" content="en">
+<meta name="date" content="((timestamp (:standard-properties [1 nil nil nil 17 0 nil nil nil nil nil nil nil nil  *Org parse* nil nil #0] :type inactive :range-type nil :raw-value [2024-02-25 Sun] :year-start 2024 :month-start 2 :day-start 25 :hour-start nil :minute-start nil :year-end 2024 :month-end 2 :day-end 25 :hour-end nil :minute-end nil)))">
+<meta name="language" content="zh-CN">
 <meta name="robots" content="index,follow">
 <meta name="generator" content="Emacs Org-mode">
 
@@ -28,21 +28,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://huangqian.org/../workspace.html">
-<meta property="og:title" content="Workspace">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://huangqian.org/posts/my-toolkit.html">
+<meta property="og:title" content="我的互联网生存工具">
 <meta property="og:description" content="A developer living in Tokyo.">
 <meta property="og:site_name" content="Michael Wong">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="(Michael Wong)">
+<meta property="article:published_time" content="((timestamp (:standard-properties [1 nil nil nil 17 0 nil nil nil nil nil nil nil nil  *Org parse* nil nil #0] :type inactive :range-type nil :raw-value [2024-02-25 Sun] :year-start 2024 :month-start 2 :day-start 25 :hour-start nil :minute-start nil :year-end 2024 :month-end 2 :day-end 25 :hour-end nil :minute-end nil)))">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://huangqian.org/../workspace.html">
-<meta property="twitter:title" content="Workspace">
+<meta property="twitter:url" content="https://huangqian.org/posts/my-toolkit.html">
+<meta property="twitter:title" content="我的互联网生存工具">
 <meta property="twitter:description" content="A developer living in Tokyo.">
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://huangqian.org/../workspace.html">
+<link rel="canonical" href="https://huangqian.org/posts/my-toolkit.html">
 
 <!-- DNS Prefetch -->
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -63,17 +65,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="/assets/js/main.js" defer></script>
 
-<!-- Structured Data for Website -->
+<!-- Structured Data for Article -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Website",
-  "name": "Michael Wong",
+  "@type": "BlogPosting",
+  "headline": "我的互联网生存工具",
   "description": "A developer living in Tokyo.",
-  "url": "https://huangqian.org",
+  "url": "https://huangqian.org/posts/my-toolkit.html",
   "author": {
     "@type": "Person",
     "name": "(Michael Wong)"
+  },
+  "datePublished": "((timestamp (:standard-properties [1 nil nil nil 17 0 nil nil nil nil nil nil nil nil  *Org parse* nil nil #0] :type inactive :range-type nil :raw-value [2024-02-25 Sun] :year-start 2024 :month-start 2 :day-start 25 :hour-start nil :minute-start nil :year-end 2024 :month-end 2 :day-end 25 :hour-end nil :minute-end nil)))",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Michael Wong"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://huangqian.org/posts/my-toolkit.html"
   }
 }
 </script>
@@ -89,7 +100,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- Security Headers -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta http-equiv="X-Frame-Options" content="DENY">
 <meta http-equiv="X-XSS-Protection" content="1; mode=block">
 
 <!-- RSS Feed -->
@@ -123,66 +133,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="org458e6a6"><span class="section-number-2">1.</span> 卡片笔记的探索</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-为了构建一个完全本地，数据私有的系统，我尝试过不少方案，都不太满意。最后，没有办法只好自己用 SwiftUI 写了一个桌面 APP : <a href="my-thinking-flow.html">My think flow</a> 。只因为自己的使用，而单独自己做一个 APP，需要花费比较大的开发精力。另一方面，由于是桌面 APP ，操作系统升级时可能会导致某些 API 的变化，适配也需要维护时间。结果上来看，只开发出了基本功能，后面基本没有时间和精力进行维护。<br>
+为了构建一个完全本地，数据私有的系统，我尝试过不少方案，都不太满意。最后，没有办法只好自己用 SwiftUI 写了一个桌面 APP : <a href="my-thinking-flow.html">My think flow</a> 。只因为自己的使用，而单独自己做一个 APP，需要花费比较大的开发精力。另一方面，由于是桌面 APP ，操作系统升级时可能会导致某些 API 的变化，适配也需要维护时间。结果上来看，只开发出了基本功能，后面基本没有时间和精力进行维护。
 </p>
 
 <p>
-后来我发现了本次谈到的方案，我认为功能完全满足自己的需求。大约 1，2 两年前我开始使用，到目前已经积累了大约 2000 多张卡片。我觉得无论从性能还是体验上，我认为已经比较接近理想的方案了。<br>
+后来我发现了本次谈到的方案，我认为功能完全满足自己的需求。大约 1，2 两年前我开始使用，到目前已经积累了大约 2000 多张卡片。我觉得无论从性能还是体验上，我认为已经比较接近理想的方案了。
 </p>
 
 <p>
-从目前的角度的来看，对于卡片系统，我的期待是：<br>
+从目前的角度的来看，对于卡片系统，我的期待是：
 </p>
 
 <ul class="org-ul">
-<li>完全本地，数据私有。<br>
+<li>完全本地，数据私有。
 <ul class="org-ul">
-<li>笔记是非常私人的东西，应当优先考虑 <a href="https://github.com/alexanderop/awesome-local-first">Local first software</a> 。<br></li>
-<li>云服务商的存在一些问题<br>
+<li>笔记是非常私人的东西，应当优先考虑 <a href="https://github.com/alexanderop/awesome-local-first">Local first software</a> 。</li>
+<li>云服务商的存在一些问题
 <ul class="org-ul">
-<li>原则上我们应当证明方案是满足隐私的，而不选择相信。 Don't trust, verified.<br></li>
-<li>云服务商系统数据可能被泄露。<br></li>
+<li>原则上我们应当证明方案是满足隐私的，而不选择相信。 Don't trust, verified.</li>
+<li>云服务商系统数据可能被泄露。</li>
 </ul></li>
 </ul></li>
-<li>稳定，低维护成本<br>
+<li>稳定，低维护成本
 <ul class="org-ul">
-<li>主要目的是记录东西，而不是开发软件，在维护上不应当投入太多精力。<br></li>
-<li>有高质量的开发团队，可以保证软件质量稳定。<br></li>
+<li>主要目的是记录东西，而不是开发软件，在维护上不应当投入太多精力。</li>
+<li>有高质量的开发团队，可以保证软件质量稳定。</li>
 </ul></li>
-<li>长期有效<br>
+<li>长期有效
 <ul class="org-ul">
-<li>记录和整理笔记时间周期往往跨越几年甚至几十年，笔记要有持续性。<br></li>
+<li>记录和整理笔记时间周期往往跨越几年甚至几十年，笔记要有持续性。</li>
 </ul></li>
-<li>卡片、双向链接<br>
+<li>卡片、双向链接
 <ul class="org-ul">
-<li>卡片系统的标配。<br></li>
-<li>卡片网络化浏览体验。<br>
+<li>卡片系统的标配。</li>
+<li>卡片网络化浏览体验。
 <ul class="org-ul">
-<li>可以从一个卡片不断展开「所链接」的卡片；<br></li>
-<li>也可以不断展开「被链接」的卡片。让卡片根据链接关系流动起来。<br></li>
+<li>可以从一个卡片不断展开「所链接」的卡片；</li>
+<li>也可以不断展开「被链接」的卡片。让卡片根据链接关系流动起来。</li>
 </ul></li>
 </ul></li>
-<li>Tag 支持<br>
+<li>Tag 支持
 <ul class="org-ul">
-<li>可以对一系列的卡片打相同的 Tag，可以通过 Tag 将一个主题串联起来。<br></li>
+<li>可以对一系列的卡片打相同的 Tag，可以通过 Tag 将一个主题串联起来。</li>
 </ul></li>
 </ul>
 
 <p>
-当我看到  <a href="https://notes.andymatuschak.org/About_these_notes">Andy's working notes</a> 这个系统，我意识这个系统的体验是我需要的。后来发现用 TiddlyWiki 加一些插件可以达到同样的效果，有兴趣的朋友可以探索一下。<br>
+当我看到  <a href="https://notes.andymatuschak.org/About_these_notes">Andy's working notes</a> 这个系统，我意识这个系统的体验是我需要的。后来发现用 TiddlyWiki 加一些插件可以达到同样的效果，有兴趣的朋友可以探索一下。
 </p>
 
 <ul class="org-ul">
-<li>几乎有 <a href="https://notes.andymatuschak.org/About_these_notes">Andy's working notes</a> 的卡片和双向链接的全部能力。<br></li>
-<li>数据本地存储。<br>
+<li>几乎有 <a href="https://notes.andymatuschak.org/About_these_notes">Andy's working notes</a> 的卡片和双向链接的全部能力。</li>
+<li>数据本地存储。
 <ul class="org-ul">
-<li>数据私有，不用担心云提供商数据泄露或倒闭。<br></li>
+<li>数据私有，不用担心云提供商数据泄露或倒闭。</li>
 </ul></li>
-<li>开源免费，0 成本搭建。<br></li>
-<li>开发社区强大，十多年历史，功能稳定可靠。<br></li>
-<li>本地运行的 Web app。<br>
+<li>开源免费，0 成本搭建。</li>
+<li>开发社区强大，十多年历史，功能稳定可靠。</li>
+<li>本地运行的 Web app。
 <ul class="org-ul">
-<li>Web 技术标准化程度高，长年都比较稳定。<br></li>
+<li>Web 技术标准化程度高，长年都比较稳定。</li>
 </ul></li>
 </ul>
 </div>
@@ -191,11 +201,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="org9286e78"><span class="section-number-2">2.</span> 关于构建过程</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-由于写教程是一件挺费时间的事情，如果有人想要这样一个卡片系统，给我买一杯打折咖啡 ( RMB 9.9 )，我可以写一个简单教程发给你。<br>
+由于写教程是一件挺费时间的事情，如果有人想要这样一个卡片系统，给我买一杯打折咖啡 ( RMB 9.9 )，我可以写一个简单教程发给你。
 </p>
 
 <p>
-有兴趣可以 <a href="https://twitter.com/michaelwong666">Twitter</a> or <a href="http://t.me/defclass">Telegram</a>  私信我，或给我发 <a href="mailto:w@huangqian.org">Email</a> 。<br>
+有兴趣可以 <a href="https://twitter.com/michaelwong666">Twitter</a> or <a href="http://t.me/defclass">Telegram</a>  私信我，或给我发 <a href="mailto:w@huangqian.org">Email</a> 。
 </p>
 </div>
 </div>
