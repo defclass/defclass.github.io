@@ -208,7 +208,7 @@ h4 { font-size: 1.1rem; }
 
 /* 段落和文本 */
 p {
-  margin-bottom: 1.2rem;
+  /* margin-bottom: 1.2rem; */
   /* 中英文混排优化 */
   text-align: justify;  /* 两端对齐，改善中文换行 */
   text-justify: inter-ideograph;  /* 中文字符间距调整 */
@@ -387,7 +387,6 @@ a:hover {
 
 /* 列表样式 */
 ul, ol {
-  margin-bottom: 1rem;
   padding-left: 2rem;
 }
 
@@ -1349,30 +1348,3 @@ p, li, blockquote {
   }
 }
 
-/* 特殊的中英文间距优化（使用伪元素） */
-.content p::after,
-#content p::after {
-  content: "";
-  /* 为了更好的阅读体验，在段落后添加微小间距 */
-  display: inline-block;
-  width: 0;
-}
-
-/* 暗色模式支持 */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #fff;
-    --text-color: #e1e8ed;
-    --light-text: #8899a6;
-    --bg-color: #15202b;
-    --light-bg: #192734;
-    --border-color: #38444d;
-    --code-bg: #192734;
-  }
-  
-  /* 暗色模式下的TOC优化 - 简洁版 */
-  #table-of-contents,
-  .table-of-contents {
-    border-left-color: var(--border-color);
-  }
-}
