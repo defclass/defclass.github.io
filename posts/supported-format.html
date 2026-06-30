@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2026-02-01 Sun 13:09 -->
+<!-- 2026-06-30 Tue 14:10 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>支持的格式</title>
@@ -110,6 +110,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- Sitemap -->
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -133,7 +165,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div id="content" class="content">
 <header>
 <h1 class="title">支持的格式</h1>
-</header><div id="outline-container-org9ececad" class="outline-2">
+</header><div id="outline-container-orga53fcee" class="outline-2">
+<h2 id="orga53fcee">Latex</h2>
+<div class="outline-text-2" id="text-orga53fcee">
+\begin{aligned}
+\mathcal{L}(\theta)
+&=
+\lim_{T \to \infty}
+\frac{1}{T}
+\int_0^T
+\left[
+\sum_{i=1}^{n}
+\alpha_i
+\left\|
+\frac{\partial^2}{\partial x^2}
+f_\theta(x_i,t)
+-
+\int_{\Omega}
+K(x_i,y)
+\exp\!\left(
+-\frac{\|x_i-y\|_2^2}{2\sigma^2}
+\right)
+f_\theta(y,t)\,dy
+\right\|_2^2
+\right] dt
+\\
+&\quad
++
+\lambda
+\det\!\left(
+\begin{bmatrix}
+1 & x_1 & x_1^2 & \cdots & x_1^{m} \\
+1 & x_2 & x_2^2 & \cdots & x_2^{m} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & x_n & x_n^2 & \cdots & x_n^{m}
+\end{bmatrix}^{\!\top}
+\begin{bmatrix}
+1 & x_1 & x_1^2 & \cdots & x_1^{m} \\
+1 & x_2 & x_2^2 & \cdots & x_2^{m} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & x_n & x_n^2 & \cdots & x_n^{m}
+\end{bmatrix}
++
+\varepsilon I
+\right)
+\\
+&\quad
++
+\sum_{k=0}^{\infty}
+\frac{(-1)^k}{(2k+1)!}
+\left(
+\int_{-\infty}^{\infty}
+e^{-x^2}
+H_{2k+1}(x)
+\,dx
+\right)
+\\
+&\quad
++
+\begin{cases}
+\displaystyle
+\frac{\sin(\omega t)}{1 + e^{-\beta(t-t_0)}} ,
+& t < t_0, \\[1.2em]
+\displaystyle
+\int_0^1
+\frac{u^{a-1}(1-u)^{b-1}}
+{B(a,b)}
+\,du,
+& t \ge t_0 .
+\end{cases}
+\end{aligned}
+</div>
+</div>
+<div id="outline-container-org9ececad" class="outline-2">
 <h2 id="org9ececad">List</h2>
 <div class="outline-text-2" id="text-org9ececad">
 <ul class="org-ul">
