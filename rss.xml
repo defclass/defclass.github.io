@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Michael Wong</title>
+    <title>Michael Huang</title>
     <link>https://huangqian.org</link>
     <description>A developer living in Tokyo.</description>
     <language>zh-cn</language>
     <managingEditor>w@huangqian.org</managingEditor>
     <webMaster>w@huangqian.org</webMaster>
-    <lastBuildDate>Tue, 30 Jun 2026 14:10:09 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2026 11:23:50 +0900</lastBuildDate>
     <generator>Emacs Org-mode Blog System</generator>
     <atom:link href="https://huangqian.org/rss.xml" rel="self" type="application/rss+xml" />
     <item>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-06-30 Tue 14:10 -->
+<!-- 2026-10-20 Tue 11:23 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Less macros more functions</title>
@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:title" content="Less macros more functions">
 <meta property="og:description" content="A developer living in Tokyo.">
 <meta property="og:image" content="https://huangqian.org/assets/favicon.ico">
-<meta property="og:site_name" content="Michael Wong">
+<meta property="og:site_name" content="Michael Huang">
 <meta property="og:locale" content="en">
 <meta property="article:author" content="(Michael Wong)">
 <meta property="article:published_time" content="((timestamp (:standard-properties [1 nil nil nil 17 0 nil nil nil nil nil nil nil nil  *Org parse* nil nil #0] :type inactive :range-type nil :raw-value [2019-05-05 Sun] :year-start 2019 :month-start 5 :day-start 5 :hour-start nil :minute-start nil :year-end 2019 :month-end 5 :day-end 5 :hour-end nil :minute-end nil)))">
@@ -82,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "datePublished": "((timestamp (:standard-properties [1 nil nil nil 17 0 nil nil nil nil nil nil nil nil  *Org parse* nil nil #0] :type inactive :range-type nil :raw-value [2019-05-05 Sun] :year-start 2019 :month-start 5 :day-start 5 :hour-start nil :minute-start nil :year-end 2019 :month-end 5 :day-end 5 :hour-end nil :minute-end nil)))",
   "publisher": {
     "@type": "Organization",
-    "name": "Michael Wong"
+    "name": "Michael Huang"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -119,7 +119,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <header class="site-header">
   <div class="container">
-    <h1 class="site-title"><a href="/">Michael Wong</a></h1>
+    <h1 class="site-title"><a href="/">Michael Huang</a></h1>
     <nav class="site-nav">
       <a href="/">Home</a>
       <a href="/archive.html">Archive</a>
@@ -190,8 +190,8 @@ Macros can manipulate lexical environments. For example, we can implement our ow
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">our-let</span> [binds &amp; body]
-  `((<span style="color: #A52A2A; font-weight: bold;">fn</span> ~(vec (map first (partition-all 2 binds)))
+<pre class="src src-clojure">(<span style="color: #b4fa70;">defmacro</span> <span style="color: #fce94f;">our-let</span> [binds &amp; body]
+  `((<span style="color: #b4fa70;">fn</span> ~(vec (map first (partition-all 2 binds)))
       ~@body)
     ~@(map second (partition-all 2 binds))))
 
@@ -212,15 +212,15 @@ Another scenario is embedding calculations in a specific context. For example, m
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">cal-time</span>
+<pre class="src src-clojure">(<span style="color: #b4fa70;">defmacro</span> <span style="color: #fce94f;">cal-time</span>
   [&amp; body]
-  `(<span style="color: #A52A2A; font-weight: bold;">let</span> [start# (<span style="color: #2F8B58; font-weight: bold;">System</span>/currentTimeMillis)
-         result# (<span style="color: #A52A2A; font-weight: bold;">do</span> ~@body)
-         end# (<span style="color: #2F8B58; font-weight: bold;">System</span>/currentTimeMillis)]
-     {<span style="color: #F5666D;">:time-ms</span> (- end# start#)
-      <span style="color: #F5666D;">:result</span> result#}))
+  `(<span style="color: #b4fa70;">let</span> [start# (<span style="color: #8cc4ff;">System</span>/currentTimeMillis)
+         result# (<span style="color: #b4fa70;">do</span> ~@body)
+         end# (<span style="color: #8cc4ff;">System</span>/currentTimeMillis)]
+     {<span style="color: #e9b2e3;">:time-ms</span> (- end# start#)
+      <span style="color: #e9b2e3;">:result</span> result#}))
 
-(cal-time (<span style="color: #2F8B58; font-weight: bold;">Thread</span>/sleep 5000))
+(cal-time (<span style="color: #8cc4ff;">Thread</span>/sleep 5000))
 </pre>
 </div>
 </div>
@@ -233,17 +233,17 @@ For example, <code>with-open</code> automatically prepares and cleans up resourc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">with-open</span>
+<pre class="src src-clojure">(<span style="color: #b4fa70;">defmacro</span> <span style="color: #fce94f;">with-open</span>
   [bindings &amp; body]
-  (<span style="color: #A52A2A; font-weight: bold;">cond</span>
-    (= (count bindings) 0) `(<span style="color: #A52A2A; font-weight: bold;">do</span> ~@body)
-    (symbol? (bindings 0)) `(<span style="color: #A52A2A; font-weight: bold;">let</span> ~(subvec bindings 0 2)
-                              (<span style="color: #A52A2A; font-weight: bold;">try</span>
-                                (<span style="color: #A52A2A; font-weight: bold;">with-open</span> ~(subvec bindings 2) ~@body)
-                                (<span style="color: #A52A2A; font-weight: bold;">finally</span>
-                                  (<span style="color: #A52A2A; font-weight: bold;">.</span> ~(bindings 0) close))))
-    <span style="color: #F5666D;">:else</span> (<span style="color: #A52A2A; font-weight: bold;">throw</span> (IllegalArgumentException.
-                  <span style="color: #4E9A06;">"with-open only allows Symbols in bindings"</span>))))
+  (<span style="color: #b4fa70;">cond</span>
+    (= (count bindings) 0) `(<span style="color: #b4fa70;">do</span> ~@body)
+    (symbol? (bindings 0)) `(<span style="color: #b4fa70;">let</span> ~(subvec bindings 0 2)
+                              (<span style="color: #b4fa70;">try</span>
+                                (<span style="color: #b4fa70;">with-open</span> ~(subvec bindings 2) ~@body)
+                                (<span style="color: #b4fa70;">finally</span>
+                                  (<span style="color: #b4fa70;">.</span> ~(bindings 0) close))))
+    <span style="color: #e9b2e3;">:else</span> (<span style="color: #b4fa70;">throw</span> (IllegalArgumentException.
+                  <span style="color: #e9b96e;">"with-open only allows Symbols in bindings"</span>))))
 </pre>
 </div>
 </div>
@@ -256,13 +256,13 @@ Macros can defer evaluation. For example, <code>when</code> in <code>clojure.cor
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">when</span>
+<pre class="src src-clojure">(<span style="color: #b4fa70;">defmacro</span> <span style="color: #fce94f;">when</span>
   [test &amp; body]
-  (<span style="color: #A52A2A; font-weight: bold;">if</span> test
-    (<span style="color: #A52A2A; font-weight: bold;">do</span> ~@body)
-    <span style="color: #F5666D;">nil</span>))
+  (<span style="color: #b4fa70;">if</span> test
+    (<span style="color: #b4fa70;">do</span> ~@body)
+    <span style="color: #e9b2e3;">nil</span>))
 
-(<span style="color: #A52A2A; font-weight: bold;">when</span> <span style="color: #F5666D;">false</span>
+(<span style="color: #b4fa70;">when</span> <span style="color: #e9b2e3;">false</span>
   (prn 123))
 </pre>
 </div>
@@ -278,15 +278,15 @@ Q: Is there another way to prevent macro parameters from being evaluated?
 <h3 id="orgae4f75b"><span class="section-number-3">4.4.</span> Repeated evaluation</h3>
 <div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">while</span>
+<pre class="src src-clojure">(<span style="color: #b4fa70;">defmacro</span> <span style="color: #fce94f;">while</span>
   [test &amp; body]
-  `(<span style="color: #A52A2A; font-weight: bold;">loop</span> []
-     (<span style="color: #A52A2A; font-weight: bold;">when</span> ~test
+  `(<span style="color: #b4fa70;">loop</span> []
+     (<span style="color: #b4fa70;">when</span> ~test
        ~@body
-       (<span style="color: #A52A2A; font-weight: bold;">recur</span>))))
+       (<span style="color: #b4fa70;">recur</span>))))
 
-(<span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #0084C8; font-weight: bold;">a</span> (atom 10))
-(<span style="color: #A52A2A; font-weight: bold;">while</span> (pos? @a) (<span style="color: #A52A2A; font-weight: bold;">do</span> (println @a) (swap! a dec)))
+(<span style="color: #b4fa70;">def</span> <span style="color: #fcaf3e;">a</span> (atom 10))
+(<span style="color: #b4fa70;">while</span> (pos? @a) (<span style="color: #b4fa70;">do</span> (println @a) (swap! a dec)))
 </pre>
 </div>
 </div>
@@ -299,8 +299,8 @@ Values known at compile-time can be calculated early, improving runtime performa
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">params-number</span> [&amp; body]
-  `(<span style="color: #A52A2A; font-weight: bold;">let</span> [n# ~(count body)]
+<pre class="src src-clojure">(<span style="color: #b4fa70;">defmacro</span> <span style="color: #fce94f;">params-number</span> [&amp; body]
+  `(<span style="color: #b4fa70;">let</span> [n# ~(count body)]
      n#))
 
 (params-number 1 2 3)
@@ -317,13 +317,13 @@ Here’s my workflow when writing a complex macro. The following example is not 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">let</span> [rt1 (exist-user? user)]
-  (<span style="color: #A52A2A; font-weight: bold;">if</span> (fail? rt1)
+<pre class="src src-clojure">(<span style="color: #b4fa70;">let</span> [rt1 (exist-user? user)]
+  (<span style="color: #b4fa70;">if</span> (fail? rt1)
     rt1
-    (<span style="color: #A52A2A; font-weight: bold;">let</span> [rt2 (channel-is-full? channel)]
-      (<span style="color: #A52A2A; font-weight: bold;">if</span> (fail? rt2)
+    (<span style="color: #b4fa70;">let</span> [rt2 (channel-is-full? channel)]
+      (<span style="color: #b4fa70;">if</span> (fail? rt2)
         rt2
-        (<span style="color: #A52A2A; font-weight: bold;">let</span> [rt3 (add-member channel-id user-id)]
+        (<span style="color: #b4fa70;">let</span> [rt3 (add-member channel-id user-id)]
           rt3
           (ok))))))
 </pre>
@@ -352,13 +352,13 @@ Three main steps:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">new-macro</span>
+<pre class="src src-clojure">(<span style="color: #b4fa70;">defmacro</span> <span style="color: #fce94f;">new-macro</span>
   [first-clause &amp; clauses]
-  (<span style="color: #A52A2A; font-weight: bold;">let</span> [g (gensym)]
-    `(<span style="color: #A52A2A; font-weight: bold;">let</span> [~g ~first-clause]
-       (<span style="color: #A52A2A; font-weight: bold;">if</span> (fail? (first ~g)
+  (<span style="color: #b4fa70;">let</span> [g (gensym)]
+    `(<span style="color: #b4fa70;">let</span> [~g ~first-clause]
+       (<span style="color: #b4fa70;">if</span> (fail? (first ~g)
                   ~g
-                  ~(<span style="color: #A52A2A; font-weight: bold;">if</span> clauses
+                  ~(<span style="color: #b4fa70;">if</span> clauses
                      `(new-macro ~@clauses)
                      g)))))
 </pre>
@@ -406,37 +406,37 @@ Macros should only wrap the part that requires altered evaluation. Many macros c
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure"><span style="color: #204A87;">;;;; </span><span style="color: #204A87;">Tag the result
-</span>(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">tag-result</span>
+<pre class="src src-clojure"><span style="color: #73d216;">;;;; </span><span style="color: #73d216;">Tag the result
+</span>(<span style="color: #b4fa70;">defmacro</span> <span style="color: #fce94f;">tag-result</span>
   [group tag date &amp; body]
-  `(<span style="color: #A52A2A; font-weight: bold;">let</span> [result# ~body
-         group# (str ~group <span style="color: #4E9A06;">"-addition-group"</span>)
-         tag# (str ~tag <span style="color: #4E9A06;">"-addition-group"</span>)
-         date# (<span style="color: #2F8B58; font-weight: bold;">t</span>/plus ~date (<span style="color: #2F8B58; font-weight: bold;">t</span>/days 5))]
-     {<span style="color: #F5666D;">:group</span> group#
-      <span style="color: #F5666D;">:tag</span> tag#
-      <span style="color: #F5666D;">:date</span> date#
-      <span style="color: #F5666D;">:result</span> result#}))
+  `(<span style="color: #b4fa70;">let</span> [result# ~body
+         group# (str ~group <span style="color: #e9b96e;">"-addition-group"</span>)
+         tag# (str ~tag <span style="color: #e9b96e;">"-addition-group"</span>)
+         date# (<span style="color: #8cc4ff;">t</span>/plus ~date (<span style="color: #8cc4ff;">t</span>/days 5))]
+     {<span style="color: #e9b2e3;">:group</span> group#
+      <span style="color: #e9b2e3;">:tag</span> tag#
+      <span style="color: #e9b2e3;">:date</span> date#
+      <span style="color: #e9b2e3;">:result</span> result#}))
 
-(tag-result <span style="color: #4E9A06;">"group"</span> <span style="color: #4E9A06;">"tag"</span> (<span style="color: #2F8B58; font-weight: bold;">t</span>/now) (+ 4 5 6 7 8))
+(tag-result <span style="color: #e9b96e;">"group"</span> <span style="color: #e9b96e;">"tag"</span> (<span style="color: #8cc4ff;">t</span>/now) (+ 4 5 6 7 8))
 
-<span style="color: #204A87;">;;;; </span><span style="color: #204A87;">Cleaner version using a helper function
-</span>(<span style="color: #A52A2A; font-weight: bold;">defn</span> <span style="color: #00578E; font-weight: bold;">tag-result-f</span>
+<span style="color: #73d216;">;;;; </span><span style="color: #73d216;">Cleaner version using a helper function
+</span>(<span style="color: #b4fa70;">defn</span> <span style="color: #fce94f;">tag-result-f</span>
   [group tag date result]
-  (<span style="color: #A52A2A; font-weight: bold;">let</span> [group (str group <span style="color: #4E9A06;">"-addition-group"</span>)
-        tag (str tag <span style="color: #4E9A06;">"-addition-group"</span>)
-        date (<span style="color: #2F8B58; font-weight: bold;">t</span>/plus date (<span style="color: #2F8B58; font-weight: bold;">t</span>/days 5))]
-    {<span style="color: #F5666D;">:group</span> group
-     <span style="color: #F5666D;">:tag</span> tag
-     <span style="color: #F5666D;">:date</span> date
-     <span style="color: #F5666D;">:result</span> result}))
+  (<span style="color: #b4fa70;">let</span> [group (str group <span style="color: #e9b96e;">"-addition-group"</span>)
+        tag (str tag <span style="color: #e9b96e;">"-addition-group"</span>)
+        date (<span style="color: #8cc4ff;">t</span>/plus date (<span style="color: #8cc4ff;">t</span>/days 5))]
+    {<span style="color: #e9b2e3;">:group</span> group
+     <span style="color: #e9b2e3;">:tag</span> tag
+     <span style="color: #e9b2e3;">:date</span> date
+     <span style="color: #e9b2e3;">:result</span> result}))
 
-(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">another-tag-result</span>
+(<span style="color: #b4fa70;">defmacro</span> <span style="color: #fce94f;">another-tag-result</span>
   [group tag date &amp; body]
-  `(<span style="color: #A52A2A; font-weight: bold;">let</span> [result# ~(reverse body)]
+  `(<span style="color: #b4fa70;">let</span> [result# ~(reverse body)]
      (tag-result-f ~group ~tag ~date result#)))
 
-(another-tag-result <span style="color: #4E9A06;">"group"</span> <span style="color: #4E9A06;">"tag"</span> (<span style="color: #2F8B58; font-weight: bold;">t</span>/now) (+ 4 5 6 7 8))
+(another-tag-result <span style="color: #e9b96e;">"group"</span> <span style="color: #e9b96e;">"tag"</span> (<span style="color: #8cc4ff;">t</span>/now) (+ 4 5 6 7 8))
 </pre>
 </div>
 </div>
@@ -457,10 +457,10 @@ Re-evaluating parameters can easily introduce subtle bugs.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">transform-http-result</span>
+<pre class="src src-clojure">(<span style="color: #b4fa70;">defmacro</span> <span style="color: #fce94f;">transform-http-result</span>
   [&amp; body]
-  `(<span style="color: #A52A2A; font-weight: bold;">try</span>
-     (<span style="color: #2F8B58; font-weight: bold;">log</span>/debugf <span style="color: #4E9A06;">"http-result: %s"</span> ~@body)
+  `(<span style="color: #b4fa70;">try</span>
+     (<span style="color: #8cc4ff;">log</span>/debugf <span style="color: #e9b96e;">"http-result: %s"</span> ~@body)
      (transform ~@body)))
 </pre>
 </div>
@@ -470,11 +470,11 @@ Re-evaluating parameters can easily introduce subtle bugs.
 <h3 id="org30364be"><span class="section-number-3">6.6.</span> Destructive parameter patterns</h3>
 <div class="outline-text-3" id="text-6-6">
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #A52A2A; font-weight: bold;">defmacro</span> <span style="color: #00578E; font-weight: bold;">test-a</span>
+<pre class="src src-clojure">(<span style="color: #b4fa70;">defmacro</span> <span style="color: #fce94f;">test-a</span>
   [[&amp; opts] &amp; body]
   (prn (class opts))
   (prn (class body)))
-=&gt; <span style="color: #2F8B58; font-weight: bold;">#'user</span>/test-a
+=&gt; <span style="color: #8cc4ff;">#'user</span>/test-a
 
 (test-a [4 5 6] 1 2 3)
 clojure.lang.PersistentVector$ChunkedSeq
@@ -503,7 +503,7 @@ Note that the two <code>&amp;</code> sequences produce different types. Use <cod
 
 <footer class="site-footer">
   <div class="container">
-    <p>&copy; Michael Wong. All rights reserved.</p>
+    <p>&copy; Michael Huang. All rights reserved.</p>
   </div>
 </footer>
 </div>
